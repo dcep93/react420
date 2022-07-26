@@ -11,7 +11,6 @@ type ResultsType = {
   players: {
     name: string;
     fname: string;
-    score: number;
     diffs: number[];
   }[];
 }[];
@@ -100,8 +99,8 @@ function SubSubDraft(props: {
   );
 }
 
-function getScore(o: { rank: number; adp: number }): number {
-  return (100 * (o.rank - o.adp)) / (o.rank + 1);
+function getScore(rank: number, value: number): number {
+  return (100 * (value - rank)) / rank;
 }
 
 function results(draft_json: {
@@ -131,10 +130,6 @@ function results(draft_json: {
     }))
     .map((o) => ({
       ...o,
-      score: getScore(o),
-    }))
-    .map((o) => ({
-      ...o,
       extra: Object.fromEntries(
         extra.map((s) => [
           s,
@@ -144,11 +139,18 @@ function results(draft_json: {
       ),
     }))
     .map((o) => ({
+      ...o,
+      adp_score: getScore(o.rank, o.adp),
+      scores: Object.fromEntries(
+        extra.map((s) => [s, getScore(o.rank, o.extra[s])])
+      ),
+    }))
+    .map((o) => ({
       fname: `(${[
         ...extra.map((s) => o.extra[s]),
+        "",
         o.rank,
         o.adp.toFixed(1),
-        o.score.toFixed(1),
       ].join("/")}) ${o.name.substring(0, 20)}`,
       ...o,
     }));
@@ -157,11 +159,8 @@ function results(draft_json: {
     { source: "espn", players: raw.slice().sort((a, b) => a.rank - b.rank) },
     { source: "adp", players: raw.slice().sort((a, b) => a.adp - b.adp) },
     {
-      source: "score",
-      players: raw
-        .slice()
-        .sort((a, b) => a.score - b.score)
-        .reverse(),
+      source: "adp_score",
+      players: raw.slice().sort((a, b) => a.adp_score - b.adp_score),
     },
   ];
 
@@ -170,7 +169,12 @@ function results(draft_json: {
     players: raw.slice().sort((a, b) => a.extra[source] - b.extra[source]),
   }));
 
-  return extraR.concat(basic);
+  const extraS = extra.map((source) => ({
+    source: `${source}_score`,
+    players: raw.slice().sort((a, b) => a.scores[source] - b.scores[source]),
+  }));
+
+  return extraR.concat(extraS).concat(basic);
 }
 
 function printF(s: string): string {
