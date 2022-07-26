@@ -106,13 +106,15 @@ function getScore(o: { rank: number; adp: number }): number {
 
 function results(draft_json: {
   drafts: DraftType[];
-  players: PlayersType;
+  espn: PlayersType;
+  extra: { [source: string]: PlayersType };
 }): ResultsType {
   const ds = draft_json.drafts.map((d) => ({
     size: d.length,
     picks: Object.fromEntries(d.map((p, i) => [p, i])),
   }));
-  const raw = Object.entries(draft_json.players)
+  const extra = Object.keys(draft_json.extra);
+  const raw = Object.entries(draft_json.espn)
     .map(([name, rank]) => ({ name, rank }))
     .sort((a, b) => a.rank - b.rank)
     .map((o) => ({
@@ -132,13 +134,26 @@ function results(draft_json: {
       score: getScore(o),
     }))
     .map((o) => ({
-      fname: `(${[o.rank, o.adp.toFixed(1), o.score.toFixed(1)].join(
-        "/"
-      )}) ${o.name.substring(0, 20)}`,
+      ...o,
+      extra: Object.fromEntries(
+        extra.map((s) => [
+          s,
+          draft_json.extra[s][o.name] ||
+            Object.entries(draft_json.extra[s]).length + 1,
+        ])
+      ),
+    }))
+    .map((o) => ({
+      fname: `(${[
+        ...extra.map((s) => o.extra[s]),
+        o.rank,
+        o.adp.toFixed(1),
+        o.score.toFixed(1),
+      ].join("/")}) ${o.name.substring(0, 20)}`,
       ...o,
     }));
 
-  return [
+  const basic = [
     { source: "espn", players: raw.slice().sort((a, b) => a.rank - b.rank) },
     { source: "adp", players: raw.slice().sort((a, b) => a.adp - b.adp) },
     {
@@ -149,6 +164,13 @@ function results(draft_json: {
         .reverse(),
     },
   ];
+
+  const extraR = extra.map((source) => ({
+    source,
+    players: raw.slice().sort((a, b) => a.extra[source] - b.extra[source]),
+  }));
+
+  return extraR.concat(basic);
 }
 
 function printF(s: string): string {
