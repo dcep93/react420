@@ -52,49 +52,58 @@ function SubSubDraft(props: {
   const sources = props.o.r.map((d) => d.source);
   const [source, update] = useState(sources[0]);
   return (
-    <pre>
-      <div>
-        <ul>
-          {sources.map((s) => (
-            <li
-              key={s}
-              onClick={() => update(s)}
-              style={{
-                cursor: "pointer",
-                color: "blue",
-                textDecoration: "underline",
-              }}
-            >
-              {s}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <h1>{source}</h1>
-      <table
-        style={{
-          fontSize: "2em",
-        }}
-      >
-        <tbody>
-          {(props.o.r.find((d) => d.source === source)?.players || []).map(
-            (v, i) => (
-              <tr
-                key={i}
+    <pre style={{ display: "flex", height: "100vh" }}>
+      <div style={{ margin: "50px" }}>
+        <div>
+          <ul>
+            {sources.map((s) => (
+              <li
+                key={s}
+                onClick={() => update(s)}
                 style={{
-                  backgroundColor:
-                    props.o.players[v.name] !== undefined ? "lightgray" : "",
+                  cursor: "pointer",
+                  color: "blue",
+                  textDecoration: "underline",
                 }}
               >
-                <td>{v.fname}</td>
-                {v.diffs.map((w, j) => (
-                  <td key={j}>{w}</td>
-                ))}
-              </tr>
-            )
-          )}
-        </tbody>
-      </table>
+                {s}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <h1>{source}</h1>
+      </div>
+      <div
+        style={{
+          margin: "50px",
+          overflowY: "scroll",
+        }}
+      >
+        <table
+          style={{
+            fontSize: "2em",
+          }}
+        >
+          <tbody>
+            {(props.o.r.find((d) => d.source === source)?.players || []).map(
+              (v, i) => (
+                <tr
+                  key={i}
+                  style={{
+                    backgroundColor:
+                      props.o.players[v.name] !== undefined ? "lightgray" : "",
+                  }}
+                >
+                  <td>{v.fname}</td>
+                  {v.diffs.map((w, j) => (
+                    <td key={j}>{w}</td>
+                  ))}
+                </tr>
+              )
+            )}
+          </tbody>
+        </table>
+      </div>
     </pre>
   );
 }
