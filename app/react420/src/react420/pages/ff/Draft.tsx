@@ -3,6 +3,10 @@ import { FirebaseWrapper } from "../../firebase";
 
 import draft_json from "./draft.json";
 
+// beer
+// https://footballabsurdity.com/2022/06/27/2022-fantasy-football-salary-cap-values/
+// Object.fromEntries(Array.from(document.getElementById("sheets-viewport").getElementsByTagName("td")).map(td => td.innerText.replaceAll("’", "'")).reduce((prev, current) => {if (parseInt(current)) return Object.assign({current}, prev); if (prev.current) return Object.assign({}, prev, {current: undefined, rank: parseInt(prev.current), name: current.split(",")[0]}); if (prev.name) return {players: prev.players.concat({name: prev.name, value: parseInt(current.split("$")[1])})}; return prev;}, {players: []}).players.sort((a,b) => a.value > b.value ? -1 : 1).map(o => [o.name, -o.value]))
+
 type DraftType = string[];
 type PlayersType = { [name: string]: number };
 type FirebaseType = { name: string; rank: number }[];
@@ -189,27 +193,44 @@ function results(draft_json: {
 function printF(s: string): string {
   return s
     .split("\n")
-    .map((i) => i.trim())
+    .map((i) => i.split("//")[0].trim())
     .join(" ");
 }
 
 function getDraft() {
   const history = document.getElementsByClassName("pick-history")[0];
-  if (!history) return [];
-  return Array.from(
-    history.getElementsByClassName("fixedDataTableCellGroupLayout_cellGroup")
+  var s: { name: string; rank: number }[];
+  if (!history) {
+    // @ts-ignore
+    s = window.state;
+  } else {
+    s = Array.from(
+      history.getElementsByClassName("fixedDataTableCellGroupLayout_cellGroup")
+    )
+      .map((row) => ({
+        name_e: row.getElementsByClassName(
+          "playerinfo__playername"
+        )[0] as HTMLElement,
+        rank_e: Array.from(row.children).reverse()[0] as HTMLElement,
+      }))
+      .filter(({ name_e, rank_e }) => name_e && rank_e)
+      .map(({ name_e, rank_e }) => ({
+        name: name_e.innerText,
+        rank: parseInt(rank_e.innerText),
+      }));
+  }
+  const seen = Object.fromEntries(s.map((o) => [o.name, true]));
+  const recent = Array.from(
+    document.getElementsByClassName("pick__message-content")
   )
-    .map((row) => ({
-      name_e: row.getElementsByClassName(
-        "playerinfo__playername"
-      )[0] as HTMLElement,
-      rank_e: Array.from(row.children).reverse()[0] as HTMLElement,
-    }))
-    .filter(({ name_e, rank_e }) => name_e && rank_e)
-    .map(({ name_e, rank_e }) => ({
-      name: name_e.innerText,
-      rank: parseInt(rank_e.innerText),
-    }));
+    .map(
+      (e) =>
+        e.getElementsByClassName("playerinfo__playername")[0] as HTMLElement
+    )
+    .map((e) => e.innerText)
+    .filter((name) => !seen[name])
+    .map((name, i) => ({ name, rank: s.length + 1 + i }));
+  return s.concat(recent);
 }
 
 export function idk() {
