@@ -86,8 +86,6 @@ export function getFromBeersheets(): PlayersType {
               players: (prev.players || []).concat({
                 name: prev.name,
                 salary: parseInt(current.split("$")[1]),
-                position: `${prev.name}`,
-                team: "",
               }),
             };
           return prev;
@@ -96,8 +94,6 @@ export function getFromBeersheets(): PlayersType {
           players?: {
             name: string;
             salary: number;
-            team: string;
-            position: string;
           }[];
           current?: string;
           name?: string;
@@ -128,7 +124,7 @@ class SubDraft extends FirebaseWrapper<FirebaseType, { r: ResultsType }> {
       (this.state?.state || [])
         .slice()
         .sort((a, b) => a.rank - b.rank)
-        .map(({ name, rank }) => [name, rank])
+        .map(({ name, rank }) => [normalize(name), rank])
     );
     const draft = (this.state?.state || []).map(({ name }) => name);
     console.log("players");
@@ -139,12 +135,7 @@ class SubDraft extends FirebaseWrapper<FirebaseType, { r: ResultsType }> {
       <SubSubDraft
         o={{
           ...this.props,
-          players: Object.fromEntries(
-            Object.entries(players).map(([name, rank]) => [
-              normalize(name),
-              rank,
-            ])
-          ),
+          players,
           draft,
         }}
       />
@@ -208,9 +199,7 @@ function SubSubDraft(props: {
                   key={i}
                   style={{
                     backgroundColor:
-                      props.o.players[normalize(v.name)] !== undefined
-                        ? "lightgray"
-                        : "",
+                      props.o.players[v.name] !== undefined ? "lightgray" : "",
                   }}
                 >
                   <td>{v.since > 3 ? v.since : ""}</td>
@@ -252,11 +241,16 @@ function getScore(rank: number, value: number): number {
 }
 
 function results(draft_json: DraftJsonType): ResultsType {
-  draft_json.players = Object.fromEntries(
-    Object.entries(draft_json.players).map(([name, pt]) => [
-      normalize(name),
-      pt,
+  draft_json.extra = Object.fromEntries(
+    Object.entries(draft_json.extra).map(([s, ps]) => [
+      s,
+      Object.fromEntries(
+        Object.entries(ps).map(([name, value]) => [normalize(name), value])
+      ),
     ])
+  );
+  draft_json.players = Object.fromEntries(
+    Object.entries(draft_json.players).map(([name, o]) => [normalize(name), o])
   );
   const ds = draft_json.drafts.map((d) => ({
     size: d.length,
@@ -273,20 +267,17 @@ function results(draft_json: DraftJsonType): ResultsType {
           o.rank -
           ((d.picks[o.name] === undefined ? d.size : d.picks[o.name]) + 1)
       ),
+      extra: Object.fromEntries(
+        extra.map((s) => [
+          s,
+          draft_json.extra[s][normalize(o.name)] ||
+            Object.entries(draft_json.extra[s]).length + 1,
+        ])
+      ),
     }))
     .map((o) => ({
       ...o,
       adp: o.rank - o.diffs.reduce((a, b) => a + b, 0) / o.diffs.length,
-    }))
-    .map((o) => ({
-      ...o,
-      extra: Object.fromEntries(
-        extra.map((s) => [
-          s,
-          draft_json.extra[s][o.name] ||
-            Object.entries(draft_json.extra[s]).length + 1,
-        ])
-      ),
     }))
     .map((o) => ({
       ...o,
@@ -296,7 +287,6 @@ function results(draft_json: DraftJsonType): ResultsType {
       ),
     }))
     .map((o) => ({
-      ...draft_json.players[normalize(o.name)],
       fname: `(${[
         ...extra.map((s) => o.extra[s]),
         "",
@@ -304,7 +294,13 @@ function results(draft_json: DraftJsonType): ResultsType {
         o.adp.toFixed(1),
       ].join("/")}) ${o.name.substring(0, 20)}`,
       ...o,
-    }));
+    }))
+    .map(({ name, ...o }) => ({
+      name: normalize(name),
+      ...o,
+      ...(name.includes("D/ST") ? { position: "DEFENSES" } : {}),
+    }))
+    .map((o) => ({ ...o, ...draft_json.players[o.name] }));
 
   const basic = [
     { source: "espn", players: raw.slice().sort((a, b) => a.rank - b.rank) },
