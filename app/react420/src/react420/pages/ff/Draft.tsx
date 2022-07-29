@@ -3,21 +3,110 @@ import { FirebaseWrapper } from "../../firebase";
 
 import draft_json from "./draft.json";
 
-// beer
-// https://footballabsurdity.com/2022/06/27/2022-fantasy-football-salary-cap-values/
-// Object.fromEntries(Array.from(document.getElementById("sheets-viewport").getElementsByTagName("td")).map(td => td.innerText).reduce((prev, current) => {if (parseInt(current)) return Object.assign({current}, prev); if (prev.current) return Object.assign({}, prev, {current: undefined, rank: parseInt(prev.current), name: current.split(",")[0]}); if (prev.name) return {players: prev.players.concat({name: prev.name, value: parseInt(current.split("$")[1])})}; return prev;}, {players: []}).players.sort((a,b) => a.value > b.value ? -1 : 1).map(o => [o.name, -o.value]))
-
 type DraftType = string[];
 type PlayersType = { [name: string]: number };
 type FirebaseType = { name: string; rank: number }[];
+type PType = { position: string; team: string };
+type RPType = {
+  name: string;
+  fname: string;
+  diffs: number[];
+} & PType;
 type ResultsType = {
   source: string;
-  players: {
-    name: string;
-    fname: string;
-    diffs: number[];
-  }[];
+  players: RPType[];
 }[];
+type DraftJsonType = {
+  drafts: DraftType[];
+  players: { [name: string]: PType };
+  espn: PlayersType;
+  extra: { [source: string]: PlayersType };
+};
+
+export function getPlayersFromBeersheets() {
+  return Object.fromEntries(
+    Array.from(
+      document.getElementById("sheets-viewport")!.getElementsByTagName("tr")
+    )
+      .flatMap((tr, i) =>
+        Array.from(tr.children)
+          .map((td) => td as HTMLElement)
+          .map((td, j) => ({ td: td.innerText, i, j: j - 1 }))
+      )
+      .filter(({ td, j }) => [1, 5, 9].includes(j) && td && td !== "Player")
+      .map((o) => ({ ...o, index: 100 * o.j + o.i, split: o.td.split(", ") }))
+      .sort((a, b) => a.index - b.index)
+      .reduce(
+        (prev, { td, split }) => {
+          if (!td.includes(",")) return { ...prev, position: td };
+          return {
+            ...prev,
+            players: (prev.players || []).concat({
+              name: split[0],
+              team: split[1],
+              position: prev.position!,
+            }),
+          };
+        },
+        {} as {
+          players?: {
+            name: string;
+            team: string;
+            position: string;
+          }[];
+          position?: string;
+        }
+      )
+      .players!.map((o) => [o.name, { position: o.position, team: o.team }])
+  );
+}
+
+export function getFromBeersheets(): PlayersType {
+  // https://footballabsurdity.com/2022/06/27/2022-fantasy-football-salary-cap-values/
+  return Object.fromEntries(
+    Array.from(
+      document.getElementById("sheets-viewport")!.getElementsByTagName("tr")
+    )
+      .flatMap((tr, i) =>
+        Array.from(tr.children)
+          .map((td) => td as HTMLElement)
+          .map((td, j) => ({ td: td.innerText, i, j }))
+      )
+      .map(({ td }) => td)
+      .reduce(
+        (prev, current) => {
+          if (parseInt(current)) return Object.assign({ current }, prev);
+          if (prev.current)
+            return Object.assign({}, prev, {
+              rank: parseInt(prev.current),
+              name: current.split(",")[0],
+            });
+          if (prev.name)
+            return {
+              players: (prev.players || []).concat({
+                name: prev.name,
+                salary: parseInt(current.split("$")[1]),
+                position: `${prev.name}`,
+                team: "",
+              }),
+            };
+          return prev;
+        },
+        {} as {
+          players?: {
+            name: string;
+            salary: number;
+            team: string;
+            position: string;
+          }[];
+          current?: string;
+          name?: string;
+        }
+      )
+      .players!.sort((a, b) => (a.salary > b.salary ? -1 : 1))
+      .map((o) => [o.name, -o.salary])
+  );
+}
 
 function Draft() {
   const r = results(draft_json);
@@ -30,7 +119,7 @@ class SubDraft extends FirebaseWrapper<FirebaseType, { r: ResultsType }> {
   }
 
   componentDidMount(): void {
-    console.log(printF(getDraft.toString()));
+    // console.log(printF(getDraft.toString()));
     super.componentDidMount();
   }
 
@@ -96,14 +185,25 @@ function SubSubDraft(props: {
           overflowY: "scroll",
         }}
       >
-        <table
-          style={{
-            fontSize: "2em",
-          }}
-        >
+        <table>
           <tbody>
-            {(props.o.r.find((d) => d.source === source)?.players || []).map(
-              (v, i) => (
+            {(props.o.r.find((d) => d.source === source)?.players || [])
+              .reduce(
+                (prev, current, i) => ({
+                  players: prev.players.concat({
+                    ...current,
+                    since: i - 1 - (prev.positions[current.position] || 0),
+                  }),
+                  positions: Object.assign(prev.positions, {
+                    [current.position]: i,
+                  }),
+                }),
+                {
+                  players: [] as (RPType & { since: number })[],
+                  positions: {} as { [position: string]: number },
+                }
+              )
+              .players.map((v, i) => (
                 <tr
                   key={i}
                   style={{
@@ -113,13 +213,26 @@ function SubSubDraft(props: {
                         : "",
                   }}
                 >
-                  <td>{v.fname}</td>
+                  <td>{v.since > 3 ? v.since : ""}</td>
+                  <td
+                    style={{
+                      backgroundColor: {
+                        "RUNNING BACKS": "lightblue",
+                        "WIDE RECEIVERS": "lightseagreen",
+                        "TIGHT ENDS": "lightcoral",
+                        QUARTERBACKS: "purple",
+                        DEFENSES: "lightsalmon",
+                      }[v.position],
+                      fontSize: "2em",
+                    }}
+                  >
+                    {v.fname}, {v.team}
+                  </td>
                   {v.diffs.map((w, j) => (
                     <td key={j}>{w}</td>
                   ))}
                 </tr>
-              )
-            )}
+              ))}
           </tbody>
         </table>
       </div>
@@ -128,18 +241,23 @@ function SubSubDraft(props: {
 }
 
 function normalize(s: string) {
-  return s.replaceAll(/[^A-Za-z ]/g, "");
+  return s
+    .replaceAll(/[^A-Za-z ]/g, "")
+    .replaceAll(/ I+$/g, "")
+    .replaceAll(/ jr$/gi, "");
 }
 
 function getScore(rank: number, value: number): number {
   return (100 * (value - rank)) / rank;
 }
 
-function results(draft_json: {
-  drafts: DraftType[];
-  espn: PlayersType;
-  extra: { [source: string]: PlayersType };
-}): ResultsType {
+function results(draft_json: DraftJsonType): ResultsType {
+  draft_json.players = Object.fromEntries(
+    Object.entries(draft_json.players).map(([name, pt]) => [
+      normalize(name),
+      pt,
+    ])
+  );
   const ds = draft_json.drafts.map((d) => ({
     size: d.length,
     picks: Object.fromEntries(d.map((p, i) => [p, i])),
@@ -178,6 +296,7 @@ function results(draft_json: {
       ),
     }))
     .map((o) => ({
+      ...draft_json.players[normalize(o.name)],
       fname: `(${[
         ...extra.map((s) => o.extra[s]),
         "",
@@ -209,14 +328,14 @@ function results(draft_json: {
   return extraR.concat(extraS).concat(basic);
 }
 
-function printF(s: string): string {
+export function printF(s: string): string {
   return s
     .split("\n")
     .map((i) => i.split("//")[0].trim())
     .join(" ");
 }
 
-function getDraft() {
+export function getDraft() {
   const history = document.getElementsByClassName("pick-history")[0];
   var s: { name: string; rank: number }[];
   if (!history) {
