@@ -1,6 +1,394 @@
 {
     "drafts": [
         [
+            "Cooper Kupp",
+            "Jonathan Taylor",
+            "Christian McCaffrey",
+            "Austin Ekeler",
+            "Justin Jefferson",
+            "Dalvin Cook",
+            "Ja'Marr Chase",
+            "Najee Harris",
+            "Derrick Henry",
+            "Davante Adams",
+            "Stefon Diggs",
+            "D'Andre Swift",
+            "CeeDee Lamb",
+            "Tyreek Hill",
+            "Deebo Samuel",
+            "Joe Mixon",
+            "Alvin Kamara",
+            "Leonard Fournette",
+            "Aaron Jones",
+            "Javonte Williams",
+            "Saquon Barkley",
+            "James Conner",
+            "Keenan Allen",
+            "Mike Evans",
+            "Ezekiel Elliott",
+            "Cam Akers",
+            "Tee Higgins",
+            "Travis Kelce",
+            "Breece Hall",
+            "Mark Andrews",
+            "David Montgomery",
+            "Terry McLaurin",
+            "Nick Chubb",
+            "Jaylen Waddle",
+            "DJ Moore",
+            "Michael Pittman Jr.",
+            "Diontae Johnson",
+            "J.K. Dobbins",
+            "Josh Allen",
+            "A.J. Brown",
+            "Antonio Gibson",
+            "Josh Jacobs",
+            "Brandin Cooks",
+            "Kyle Pitts",
+            "Mike Williams",
+            "Marquise Brown",
+            "DK Metcalf",
+            "Patrick Mahomes",
+            "Travis Etienne Jr.",
+            "Amon-Ra St. Brown",
+            "Darnell Mooney",
+            "Courtland Sutton",
+            "Drake London",
+            "Justin Herbert",
+            "Jerry Jeudy",
+            "Darren Waller",
+            "Elijah Mitchell",
+            "Miles Sanders",
+            "Cordarrelle Patterson",
+            "Chris Godwin",
+            "Lamar Jackson",
+            "George Kittle",
+            "Kareem Hunt",
+            "Michael Thomas",
+            "Adam Thielen",
+            "Dalton Schultz",
+            "Amari Cooper",
+            "Jalen Hurts",
+            "Gabriel Davis",
+            "Tyler Lockett",
+            "Kyler Murray",
+            "Devin Singletary",
+            "Hunter Renfrow",
+            "T.J. Hockenson",
+            "Dak Prescott",
+            "Damien Harris",
+            "Garrett Wilson",
+            "Rashod Bateman",
+            "Tom Brady",
+            "Allen Robinson II",
+            "DeAndre Hopkins",
+            "AJ Dillon",
+            "Aaron Rodgers",
+            "Clyde Edwards-Helaire",
+            "Kadarius Toney",
+            "JuJu Smith-Schuster",
+            "Mike Gesicki",
+            "Joe Burrow",
+            "Matthew Stafford",
+            "DeVonta Smith",
+            "Tony Pollard",
+            "Kenneth Walker III",
+            "Russell Wilson",
+            "Christian Kirk",
+            "Elijah Moore",
+            "Dallas Goedert",
+            "Treylon Burks",
+            "Russell Gage",
+            "Zach Ertz",
+            "Rhamondre Stevenson",
+            "James Cook",
+            "Bills D/ST",
+            "Chris Olave",
+            "Robert Woods",
+            "Brandon Aiyuk",
+            "James Robinson",
+            "Chase Claypool",
+            "Rashaad Penny",
+            "Nyheim Hines",
+            "Chase Edmonds",
+            "Tyler Boyd",
+            "Dawson Knox",
+            "Melvin Gordon III",
+            "Derek Carr",
+            "Pat Freiermuth",
+            "Jameson Williams",
+            "Jarvis Landry",
+            "Jakobi Meyers",
+            "Kenny Golladay",
+            "Allen Lazard",
+            "Michael Carter",
+            "Hunter Henry",
+            "Noah Fant",
+            "Cole Kmet",
+            "Trey Lance",
+            "Skyy Moore",
+            "Saints D/ST",
+            "Packers D/ST",
+            "Buccaneers D/ST",
+            "Colts D/ST",
+            "Kirk Cousins",
+            "David Njoku",
+            "Irv Smith Jr.",
+            "Ravens D/ST",
+            "Brandon McManus",
+            "Michael Gallup",
+            "Christian Watson",
+            "Jahan Dotson",
+            "Marquez Valdes-Scantling",
+            "49ers D/ST",
+            "Cowboys D/ST",
+            "Mecole Hardman",
+            "Commanders D/ST",
+            "Steelers D/ST",
+            "Robbie Anderson",
+            "Justin Tucker",
+            "Evan McPherson",
+            "Matt Gay",
+            "Dameon Pierce",
+            "J.D. McKissic",
+            "Tyler Higbee",
+            "Harrison Butker",
+            "Deshaun Watson",
+            "Trevor Lawrence",
+            "Daniel Carlson",
+            "Dolphins D/ST",
+            "Raheem Mostert",
+            "Tua Tagovailoa",
+            "Marvin Jones Jr.",
+            "Tyler Bass",
+            "Marlon Mack",
+            "Nick Folk",
+            "Matt Prater",
+            "Jake Elliott",
+            "Graham Gano",
+            "DeVante Parker",
+            "Joshua Palmer",
+            "Justin Fields",
+            "Tim Patrick",
+            "Jalen Tolbert",
+            "Browns D/ST",
+            "Van Jefferson",
+            "Isaiah Spiller",
+            "Alexander Mattison",
+            "Rondale Moore",
+            "Nico Collins",
+            "DJ Chark",
+            "Ronald Jones",
+            "Evan Engram",
+            "Rachaad White",
+            "Greg Joseph",
+            "Gus Edwards",
+            "Daniel Jones",
+            "Jamison Crowder",
+            "Carson Wentz",
+            "Alec Pierce",
+            "Chargers D/ST",
+            "George Pickens",
+            "Curtis Samuel",
+            "Darrell Henderson Jr.",
+            "Jerick McKinnon",
+            "Cade York"
+        ],
+        [
+            "Jonathan Taylor",
+            "Cooper Kupp",
+            "Justin Jefferson",
+            "Najee Harris",
+            "Austin Ekeler",
+            "Christian McCaffrey",
+            "Ja'Marr Chase",
+            "Derrick Henry",
+            "Davante Adams",
+            "Dalvin Cook",
+            "Joe Mixon",
+            "Stefon Diggs",
+            "D'Andre Swift",
+            "Leonard Fournette",
+            "Deebo Samuel",
+            "Aaron Jones",
+            "Mike Evans",
+            "Alvin Kamara",
+            "CeeDee Lamb",
+            "Keenan Allen",
+            "Javonte Williams",
+            "Travis Kelce",
+            "Tyreek Hill",
+            "Mark Andrews",
+            "Nick Chubb",
+            "James Conner",
+            "Michael Pittman Jr.",
+            "Saquon Barkley",
+            "Ezekiel Elliott",
+            "Cam Akers",
+            "Travis Etienne Jr.",
+            "DJ Moore",
+            "David Montgomery",
+            "A.J. Brown",
+            "Elijah Mitchell",
+            "Tee Higgins",
+            "Breece Hall",
+            "Chris Godwin",
+            "Mike Williams",
+            "Josh Jacobs",
+            "Amon-Ra St. Brown",
+            "DK Metcalf",
+            "Terry McLaurin",
+            "Antonio Gibson",
+            "Courtland Sutton",
+            "Jaylen Waddle",
+            "J.K. Dobbins",
+            "Diontae Johnson",
+            "Brandin Cooks",
+            "Josh Allen",
+            "Patrick Mahomes",
+            "Gabriel Davis",
+            "Hunter Renfrow",
+            "Justin Herbert",
+            "Darnell Mooney",
+            "Miles Sanders",
+            "Kyle Pitts",
+            "Cordarrelle Patterson",
+            "Michael Thomas",
+            "Kyler Murray",
+            "Jalen Hurts",
+            "Tom Brady",
+            "Allen Robinson II",
+            "Jerry Jeudy",
+            "Dalton Schultz",
+            "George Kittle",
+            "Darren Waller",
+            "Adam Thielen",
+            "Russell Wilson",
+            "Devin Singletary",
+            "Marquise Brown",
+            "Amari Cooper",
+            "Tyler Lockett",
+            "T.J. Hockenson",
+            "Kareem Hunt",
+            "AJ Dillon",
+            "DeVonta Smith",
+            "Drake London",
+            "Lamar Jackson",
+            "Chris Olave",
+            "Dak Prescott",
+            "Aaron Rodgers",
+            "Rashod Bateman",
+            "Matthew Stafford",
+            "Derek Carr",
+            "Clyde Edwards-Helaire",
+            "JuJu Smith-Schuster",
+            "Christian Kirk",
+            "Trey Lance",
+            "Damien Harris",
+            "DeAndre Hopkins",
+            "Dallas Goedert",
+            "Cole Kmet",
+            "Joe Burrow",
+            "Garrett Wilson",
+            "Elijah Moore",
+            "Tony Pollard",
+            "Treylon Burks",
+            "Kadarius Toney",
+            "Chase Claypool",
+            "Kirk Cousins",
+            "Russell Gage",
+            "James Robinson",
+            "Rhamondre Stevenson",
+            "Chase Edmonds",
+            "Zach Ertz",
+            "Mike Gesicki",
+            "Dawson Knox",
+            "Noah Fant",
+            "Pat Freiermuth",
+            "Rashaad Penny",
+            "Kenneth Walker III",
+            "Allen Lazard",
+            "Brandon Aiyuk",
+            "Robert Woods",
+            "Melvin Gordon III",
+            "Trevor Lawrence",
+            "Jarvis Landry",
+            "Jakobi Meyers",
+            "Nyheim Hines",
+            "Tua Tagovailoa",
+            "Kenny Golladay",
+            "Tyler Boyd",
+            "Justin Fields",
+            "Jahan Dotson",
+            "Michael Carter",
+            "James Cook",
+            "Marlon Mack",
+            "Hunter Henry",
+            "Bills D/ST",
+            "Saints D/ST",
+            "Packers D/ST",
+            "Christian Watson",
+            "Skyy Moore",
+            "Jameson Williams",
+            "Ravens D/ST",
+            "DeVante Parker",
+            "Buccaneers D/ST",
+            "49ers D/ST",
+            "Mecole Hardman",
+            "Cowboys D/ST",
+            "Colts D/ST",
+            "Commanders D/ST",
+            "Justin Tucker",
+            "Marquez Valdes-Scantling",
+            "Robbie Anderson",
+            "Irv Smith Jr.",
+            "Evan McPherson",
+            "Chargers D/ST",
+            "David Njoku",
+            "Matt Gay",
+            "Jalen Tolbert",
+            "Tyler Higbee",
+            "Harrison Butker",
+            "Daniel Carlson",
+            "Brandon McManus",
+            "Marvin Jones Jr.",
+            "J.D. McKissic",
+            "Raheem Mostert",
+            "Nick Folk",
+            "Tyler Allgeier",
+            "Steelers D/ST",
+            "Tyler Bass",
+            "Gerald Everett",
+            "Matt Prater",
+            "Graham Gano",
+            "Dameon Pierce",
+            "Rams D/ST",
+            "Browns D/ST",
+            "Ronald Jones",
+            "Joshua Palmer",
+            "Tim Patrick",
+            "Chris Boswell",
+            "Michael Gallup",
+            "Van Jefferson",
+            "Jake Elliott",
+            "Rondale Moore",
+            "Nico Collins",
+            "Evan Engram",
+            "Isaiah Spiller",
+            "Alexander Mattison",
+            "Gus Edwards",
+            "Daniel Jones",
+            "Carson Wentz",
+            "Dolphins D/ST",
+            "DJ Chark",
+            "Jamison Crowder",
+            "Alec Pierce",
+            "Curtis Samuel",
+            "Darrell Henderson Jr.",
+            "Cade York",
+            "Rachaad White"
+        ],
+        [
             "Jonathan Taylor",
             "Christian McCaffrey",
             "Cooper Kupp",
@@ -1493,6 +1881,616 @@
             "J.D. McKissic"
         ]
     ],
+    "players": {
+        "Josh Allen": {
+            "position": "QUARTERBACKS",
+            "team": "BUF"
+        },
+        "Justin Herbert": {
+            "position": "QUARTERBACKS",
+            "team": "LAC"
+        },
+        "Joe Burrow": {
+            "position": "QUARTERBACKS",
+            "team": "CIN"
+        },
+        "Jalen Hurts": {
+            "position": "QUARTERBACKS",
+            "team": "PHI"
+        },
+        "Patrick Mahomes II": {
+            "position": "QUARTERBACKS",
+            "team": "KC"
+        },
+        "Lamar Jackson": {
+            "position": "QUARTERBACKS",
+            "team": "BAL"
+        },
+        "Kyler Murray": {
+            "position": "QUARTERBACKS",
+            "team": "ARI"
+        },
+        "Tom Brady": {
+            "position": "QUARTERBACKS",
+            "team": "TB"
+        },
+        "Dak Prescott": {
+            "position": "QUARTERBACKS",
+            "team": "DAL"
+        },
+        "Matthew Stafford": {
+            "position": "QUARTERBACKS",
+            "team": "LAR"
+        },
+        "Russell Wilson": {
+            "position": "QUARTERBACKS",
+            "team": "DEN"
+        },
+        "Aaron Rodgers": {
+            "position": "QUARTERBACKS",
+            "team": "GB"
+        },
+        "Trey Lance": {
+            "position": "QUARTERBACKS",
+            "team": "SF"
+        },
+        "Kirk Cousins": {
+            "position": "QUARTERBACKS",
+            "team": "MIN"
+        },
+        "Derek Carr": {
+            "position": "QUARTERBACKS",
+            "team": "LV"
+        },
+        "Tua Tagovailoa": {
+            "position": "QUARTERBACKS",
+            "team": "MIa"
+        },
+        "Trevor Lawrence": {
+            "position": "QUARTERBACKS",
+            "team": "JAC"
+        },
+        "Ryan Tannehill": {
+            "position": "QUARTERBACKS",
+            "team": "TEN"
+        },
+        "Justin Fields": {
+            "position": "QUARTERBACKS",
+            "team": "CHI"
+        },
+        "Zach Wilson": {
+            "position": "QUARTERBACKS",
+            "team": "NYJ"
+        },
+        "Mark Andrews": {
+            "position": "TIGHT ENDS",
+            "team": "BAL"
+        },
+        "Travis Kelce": {
+            "position": "TIGHT ENDS",
+            "team": "K.C."
+        },
+        "Kyle Pitts": {
+            "position": "TIGHT ENDS",
+            "team": "ATL"
+        },
+        "George Kittle": {
+            "position": "TIGHT ENDS",
+            "team": "SF"
+        },
+        "Darren Waller": {
+            "position": "TIGHT ENDS",
+            "team": "LV"
+        },
+        "Dallas Goedert": {
+            "position": "TIGHT ENDS",
+            "team": "PHI"
+        },
+        "Zack Ertz": {
+            "position": "TIGHT ENDS",
+            "team": "ARI"
+        },
+        "Dalton Schultz": {
+            "position": "TIGHT ENDS",
+            "team": "DAL"
+        },
+        "Mike Gesicki": {
+            "position": "TIGHT ENDS",
+            "team": "MIA"
+        },
+        "Pat Freirmuth": {
+            "position": "TIGHT ENDS",
+            "team": "PIT"
+        },
+        "Dawson Knox": {
+            "position": "TIGHT ENDS",
+            "team": "BUF"
+        },
+        "Hunter Henry": {
+            "position": "TIGHT ENDS",
+            "team": "NE"
+        },
+        "TJ Hockenson": {
+            "position": "TIGHT ENDS",
+            "team": "DET"
+        },
+        "All Kickers": {
+            "position": "KICKERS",
+            "team": "ALL"
+        },
+        "Jonathan Taylor": {
+            "position": "RUNNING BACKS",
+            "team": "IND"
+        },
+        "Austin Ekeler": {
+            "position": "RUNNING BACKS",
+            "team": "LAC"
+        },
+        "Najee Harris": {
+            "position": "RUNNING BACKS",
+            "team": "PIT"
+        },
+        "Derrick Henry": {
+            "position": "RUNNING BACKS",
+            "team": "TEN"
+        },
+        "Christian McCaffrey": {
+            "position": "RUNNING BACKS",
+            "team": "CAR"
+        },
+        "Dalvin Cook": {
+            "position": "RUNNING BACKS",
+            "team": "MIN"
+        },
+        "Joe Mixon": {
+            "position": "RUNNING BACKS",
+            "team": "CIN"
+        },
+        "Javonte Williams": {
+            "position": "RUNNING BACKS",
+            "team": "DEN"
+        },
+        "DAndre Swift": {
+            "position": "RUNNING BACKS",
+            "team": "DET"
+        },
+        "Nick Chubb": {
+            "position": "RUNNING BACKS",
+            "team": "CLE"
+        },
+        "Aaron Jones": {
+            "position": "RUNNING BACKS",
+            "team": "GB"
+        },
+        "Leonard Fournette": {
+            "position": "RUNNING BACKS",
+            "team": "T.B."
+        },
+        "Alvin Kamara": {
+            "position": "RUNNING BACKS",
+            "team": "N.O."
+        },
+        "Cam Akers": {
+            "position": "RUNNING BACKS",
+            "team": "LAR"
+        },
+        "Ezekiel Elliott": {
+            "position": "RUNNING BACKS",
+            "team": "DAL"
+        },
+        "David Montgomery": {
+            "position": "RUNNING BACKS",
+            "team": "CHI"
+        },
+        "Antonio Gibson": {
+            "position": "RUNNING BACKS",
+            "team": "WAS"
+        },
+        "James Conner": {
+            "position": "RUNNING BACKS",
+            "team": "ARI"
+        },
+        "Saquon Barkley": {
+            "position": "RUNNING BACKS",
+            "team": "NYG"
+        },
+        "Josh Jacobs": {
+            "position": "RUNNING BACKS",
+            "team": "L.V."
+        },
+        "JK Dobbins": {
+            "position": "RUNNING BACKS",
+            "team": "BAL"
+        },
+        "Travis Etienne": {
+            "position": "RUNNING BACKS",
+            "team": "JAX"
+        },
+        "Miles Sanders": {
+            "position": "RUNNING BACKS",
+            "team": "PHI"
+        },
+        "AJ Dillon": {
+            "position": "RUNNING BACKS",
+            "team": "G.B."
+        },
+        "Elijah Mitchell": {
+            "position": "RUNNING BACKS",
+            "team": "S.F."
+        },
+        "Clyde EdwardsHelaire": {
+            "position": "RUNNING BACKS",
+            "team": "K.C."
+        },
+        "Melvin Gordon": {
+            "position": "RUNNING BACKS",
+            "team": "DEN"
+        },
+        "Damien Harris": {
+            "position": "RUNNING BACKS",
+            "team": "N.E."
+        },
+        "Breece Hall": {
+            "position": "RUNNING BACKS",
+            "team": "NYJ"
+        },
+        "Devin Singletary": {
+            "position": "RUNNING BACKS",
+            "team": "BUF"
+        },
+        "Tony Pollard": {
+            "position": "RUNNING BACKS",
+            "team": "DAL"
+        },
+        "Chase Edmonds": {
+            "position": "RUNNING BACKS",
+            "team": "MIA"
+        },
+        "Kareem Hunt": {
+            "position": "RUNNING BACKS",
+            "team": "CLE"
+        },
+        "Cordarrelle Patterson": {
+            "position": "RUNNING BACKS",
+            "team": "ATL"
+        },
+        "Kenneth Walker III": {
+            "position": "RUNNING BACKS",
+            "team": "SEA"
+        },
+        "James Cook": {
+            "position": "RUNNING BACKS",
+            "team": "BUF"
+        },
+        "Rashaad Penny": {
+            "position": "RUNNING BACKS",
+            "team": "SEA"
+        },
+        "Nyheim Hines": {
+            "position": "RUNNING BACKS",
+            "team": "IND"
+        },
+        "Michael Carter": {
+            "position": "RUNNING BACKS",
+            "team": "NYJ"
+        },
+        "James Robinson": {
+            "position": "RUNNING BACKS",
+            "team": "JAX"
+        },
+        "Alexander Mattison": {
+            "position": "RUNNING BACKS",
+            "team": "MIN"
+        },
+        "Zamir White": {
+            "position": "RUNNING BACKS",
+            "team": "L.V."
+        },
+        "Tyler Allgeier": {
+            "position": "RUNNING BACKS",
+            "team": "ATL"
+        },
+        "Ronald Jones": {
+            "position": "RUNNING BACKS",
+            "team": "K.C."
+        },
+        "Rhamondre Stevenson": {
+            "position": "RUNNING BACKS",
+            "team": "N.E."
+        },
+        "Raheem Mostert": {
+            "position": "RUNNING BACKS",
+            "team": "MIA"
+        },
+        "Rachaad White": {
+            "position": "RUNNING BACKS",
+            "team": "T.B."
+        },
+        "Marlon Mack": {
+            "position": "RUNNING BACKS",
+            "team": "IND"
+        },
+        "Khalil Herbert": {
+            "position": "RUNNING BACKS",
+            "team": "CHI"
+        },
+        "James White": {
+            "position": "RUNNING BACKS",
+            "team": "N.E."
+        },
+        "Jamaal Williams": {
+            "position": "RUNNING BACKS",
+            "team": "DET"
+        },
+        "JD McKissic": {
+            "position": "RUNNING BACKS",
+            "team": "WAS"
+        },
+        "Isaiah Spiller": {
+            "position": "RUNNING BACKS",
+            "team": "LAC"
+        },
+        "Gus Edwards": {
+            "position": "RUNNING BACKS",
+            "team": "BAL"
+        },
+        "Dameon Pierce": {
+            "position": "Darrell Henderson | LAR",
+            "team": "HOU"
+        },
+        "DOnta Foreman": {
+            "position": "Darrell Henderson | LAR",
+            "team": "CAR"
+        },
+        "Cooper Kupp": {
+            "position": "WIDE RECEIVERS",
+            "team": "LAR"
+        },
+        "Justin Jefferson": {
+            "position": "WIDE RECEIVERS",
+            "team": "MIN"
+        },
+        "JaMarr Chase": {
+            "position": "WIDE RECEIVERS",
+            "team": "CIN"
+        },
+        "Davante Adams": {
+            "position": "WIDE RECEIVERS",
+            "team": "L.V."
+        },
+        "Stefon Diggs": {
+            "position": "WIDE RECEIVERS",
+            "team": "BUF"
+        },
+        "CeeDee Lamb": {
+            "position": "WIDE RECEIVERS",
+            "team": "DAL"
+        },
+        "Deebo Samuel": {
+            "position": "WIDE RECEIVERS",
+            "team": "S.F."
+        },
+        "Mike Evans": {
+            "position": "WIDE RECEIVERS",
+            "team": "T.B."
+        },
+        "Tyreek Hill": {
+            "position": "WIDE RECEIVERS",
+            "team": "MIA"
+        },
+        "Keenan Allen": {
+            "position": "WIDE RECEIVERS",
+            "team": "LAC"
+        },
+        "AJ Brown": {
+            "position": "WIDE RECEIVERS",
+            "team": "PHI"
+        },
+        "Tee Higgins": {
+            "position": "WIDE RECEIVERS",
+            "team": "CIN"
+        },
+        "Diontae Johnson": {
+            "position": "WIDE RECEIVERS",
+            "team": "PIT"
+        },
+        "Michael Pittman Jr": {
+            "position": "WIDE RECEIVERS",
+            "team": "IND"
+        },
+        "Jaylen Waddle": {
+            "position": "WIDE RECEIVERS",
+            "team": "MIA"
+        },
+        "DK Metcalf": {
+            "position": "WIDE RECEIVERS",
+            "team": "SEA"
+        },
+        "Courtland Sutton": {
+            "position": "WIDE RECEIVERS",
+            "team": "DEN"
+        },
+        "Mike Williams": {
+            "position": "WIDE RECEIVERS",
+            "team": "LAC"
+        },
+        "DJ Moore": {
+            "position": "WIDE RECEIVERS",
+            "team": "CAR"
+        },
+        "Amari Cooper": {
+            "position": "WIDE RECEIVERS",
+            "team": "CLE"
+        },
+        "Terry McLaurin": {
+            "position": "WIDE RECEIVERS",
+            "team": "WAS"
+        },
+        "Jerry Jeudy": {
+            "position": "WIDE RECEIVERS",
+            "team": "DEN"
+        },
+        "Rashod Bateman": {
+            "position": "WIDE RECEIVERS",
+            "team": "BAL"
+        },
+        "Marquise Brown": {
+            "position": "WIDE RECEIVERS",
+            "team": "ARI"
+        },
+        "DeAndre Hopkins": {
+            "position": "WIDE RECEIVERS",
+            "team": "ARI"
+        },
+        "Darnell Mooney": {
+            "position": "WIDE RECEIVERS",
+            "team": "CHI"
+        },
+        "Allen Robinson": {
+            "position": "WIDE RECEIVERS",
+            "team": "LAR"
+        },
+        "Michael Thomas": {
+            "position": "WIDE RECEIVERS",
+            "team": "N.O."
+        },
+        "Chris Godwin": {
+            "position": "WIDE RECEIVERS",
+            "team": "T.B."
+        },
+        "JuJu SmithSchuster": {
+            "position": "WIDE RECEIVERS",
+            "team": "K.C."
+        },
+        "AmonRa St Brown": {
+            "position": "WIDE RECEIVERS",
+            "team": "DET"
+        },
+        "Brandin Cooks": {
+            "position": "WIDE RECEIVERS",
+            "team": "HOU"
+        },
+        "Elijah Moore": {
+            "position": "WIDE RECEIVERS",
+            "team": "NYJ"
+        },
+        "Drake London": {
+            "position": "WIDE RECEIVERS",
+            "team": "ATL"
+        },
+        "Adam Thielen": {
+            "position": "WIDE RECEIVERS",
+            "team": "MIN"
+        },
+        "DeVonta Smith": {
+            "position": "WIDE RECEIVERS",
+            "team": "PHI"
+        },
+        "Allen Lazard": {
+            "position": "WIDE RECEIVERS",
+            "team": "G.B."
+        },
+        "Treylon Burks": {
+            "position": "WIDE RECEIVERS",
+            "team": "TEN"
+        },
+        "Brandon Aiyuk": {
+            "position": "WIDE RECEIVERS",
+            "team": "S.F."
+        },
+        "Gabriel Davis": {
+            "position": "WIDE RECEIVERS",
+            "team": "BUF"
+        },
+        "Tyler Lockett": {
+            "position": "WIDE RECEIVERS",
+            "team": "SEA"
+        },
+        "Hunter Renfrow": {
+            "position": "WIDE RECEIVERS",
+            "team": "L.V."
+        },
+        "Kenny Golladay": {
+            "position": "WIDE RECEIVERS",
+            "team": "NYG"
+        },
+        "Garrett Wilson": {
+            "position": "WIDE RECEIVERS",
+            "team": "NYJ"
+        },
+        "Robert Woods": {
+            "position": "WIDE RECEIVERS",
+            "team": "TEN"
+        },
+        "Christian Kirk": {
+            "position": "WIDE RECEIVERS",
+            "team": "JAX"
+        },
+        "Chase Claypool": {
+            "position": "WIDE RECEIVERS",
+            "team": "PIT"
+        },
+        "Russell Gage": {
+            "position": "WIDE RECEIVERS",
+            "team": "T.B."
+        },
+        "Michael Gallup": {
+            "position": "WIDE RECEIVERS",
+            "team": "DAL"
+        },
+        "Chris Olave": {
+            "position": "WIDE RECEIVERS",
+            "team": "N.O."
+        },
+        "Christian Watson": {
+            "position": "WIDE RECEIVERS",
+            "team": "G.B."
+        },
+        "Kadarius Toney": {
+            "position": "WIDE RECEIVERS",
+            "team": "NYG"
+        },
+        "Jakobi Meyers": {
+            "position": "WIDE RECEIVERS",
+            "team": "N.E."
+        },
+        "DJ Chark": {
+            "position": "WIDE RECEIVERS",
+            "team": "DET"
+        },
+        "Skyy Moore": {
+            "position": "WIDE RECEIVERS",
+            "team": "K.C."
+        },
+        "Jahan Dotson": {
+            "position": "WIDE RECEIVERS",
+            "team": "WAS"
+        },
+        "Tyler Boyd": {
+            "position": "WIDE RECEIVERS",
+            "team": "CIN"
+        },
+        "Marquez ValdesScantling": {
+            "position": "WIDE RECEIVERS",
+            "team": "K.C."
+        },
+        "DeVante Parker": {
+            "position": "WIDE RECEIVERS",
+            "team": "MIA"
+        },
+        "Tim Patrick": {
+            "position": "WIDE RECEIVERS",
+            "team": "DEN"
+        },
+        "Van Jefferson": {
+            "position": "WIDE RECEIVERS",
+            "team": "LAR"
+        },
+        "Jamison Crowder": {
+            "position": "WIDE RECEIVERS",
+            "team": "BUF"
+        }
+    },
     "extra": {
         "peak": {
             "Jonathan Taylor": 2,
