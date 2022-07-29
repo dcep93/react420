@@ -11,6 +11,7 @@ type RPType = {
   name: string;
   fname: string;
   diffs: number[];
+  value: number;
 } & PType;
 type ResultsType = {
   source: string;
@@ -120,34 +121,38 @@ class SubDraft extends FirebaseWrapper<FirebaseType, { r: ResultsType }> {
   }
 
   render() {
-    const players = Object.fromEntries(
+    console.log(this.state?.state);
+    const drafted = Object.fromEntries(
       (this.state?.state || [])
         .slice()
         .sort((a, b) => a.rank - b.rank)
         .map(({ name, rank }) => [normalize(name), rank])
     );
     const draft = (this.state?.state || []).map(({ name }) => name);
-    console.log("players");
-    console.log(players);
+    console.log("drafted");
+    console.log(drafted);
     console.log("draft");
     console.log(draft);
     return (
       <SubSubDraft
         o={{
           ...this.props,
-          players,
-          draft,
+          drafted,
         }}
       />
     );
   }
 }
 
-function SubSubDraft(props: {
-  o: { r: ResultsType; players: PlayersType; draft: DraftType };
-}) {
+function SubSubDraft(props: { o: { r: ResultsType; drafted: PlayersType } }) {
   const sources = props.o.r.map((d) => d.source);
   const [source, update] = useState(sources[0]);
+  const players = (
+    props.o.r.find((d) => d.source === source)?.players || []
+  ).map((p) => ({
+    ...p,
+    seen: props.o.drafted[p.name] !== undefined,
+  }));
   return (
     <pre style={{ display: "flex", height: "100vh" }}>
       <div style={{ margin: "50px" }}>
@@ -168,7 +173,9 @@ function SubSubDraft(props: {
             ))}
           </ul>
         </div>
-        <h1>{source}</h1>
+        <h1>
+          {source} ({Object.keys(props.o.drafted).length})
+        </h1>
       </div>
       <div
         style={{
@@ -178,31 +185,24 @@ function SubSubDraft(props: {
       >
         <table>
           <tbody>
-            {(props.o.r.find((d) => d.source === source)?.players || [])
-              .reduce(
-                (prev, current, i) => ({
-                  players: prev.players.concat({
-                    ...current,
-                    since: i - 1 - (prev.positions[current.position] || 0),
-                  }),
-                  positions: Object.assign(prev.positions, {
-                    [current.position]: i,
-                  }),
-                }),
-                {
-                  players: [] as (RPType & { since: number })[],
-                  positions: {} as { [position: string]: number },
-                }
-              )
-              .players.map((v, i) => (
+            {players
+              .map((player, i) => ({
+                ...player,
+                i,
+                pos_rank: players
+                  .slice(0, i)
+                  .filter((p, j) => p.position === player.position).length,
+              }))
+              .map((v, i) => (
                 <tr
                   key={i}
                   style={{
-                    backgroundColor:
-                      props.o.players[v.name] !== undefined ? "lightgray" : "",
+                    backgroundColor: v.seen ? "lightgray" : "",
                   }}
                 >
-                  <td>{v.since > 3 ? v.since : ""}</td>
+                  <td>
+                    {v.value} ({v.pos_rank + 1}/{v.i + 1})
+                  </td>
                   <td
                     style={{
                       backgroundColor: {
@@ -283,7 +283,7 @@ function results(draft_json: DraftJsonType): ResultsType {
       ...o,
       adp_score: getScore(o.rank, o.adp),
       scores: Object.fromEntries(
-        extra.map((s) => [s, getScore(o.rank, o.extra[s])])
+        extra.map((s) => [s, getScore(o.adp, o.extra[s])])
       ),
     }))
     .map((o) => ({
@@ -303,25 +303,31 @@ function results(draft_json: DraftJsonType): ResultsType {
     .map((o) => ({ ...o, ...draft_json.players[o.name] }));
 
   const basic = [
-    { source: "espn", players: raw.slice().sort((a, b) => a.rank - b.rank) },
-    { source: "adp", players: raw.slice().sort((a, b) => a.adp - b.adp) },
+    { source: "espn", players: raw.map((p) => ({ ...p, value: p.rank })) },
+    { source: "adp", players: raw.map((p) => ({ ...p, value: p.adp })) },
     {
       source: "adp_score",
-      players: raw.slice().sort((a, b) => a.adp_score - b.adp_score),
+      players: raw.map((p) => ({ ...p, value: p.adp_score })),
     },
   ];
 
   const extraR = extra.map((source) => ({
     source,
-    players: raw.slice().sort((a, b) => a.extra[source] - b.extra[source]),
+    players: raw.map((p) => ({ ...p, value: p.extra[source] })),
   }));
 
   const extraS = extra.map((source) => ({
     source: `${source}_score`,
-    players: raw.slice().sort((a, b) => a.scores[source] - b.scores[source]),
+    players: raw.map((p) => ({ ...p, value: p.scores[source] })),
   }));
 
-  return extraR.concat(extraS).concat(basic);
+  return extraR
+    .concat(extraS)
+    .concat(basic)
+    .map(({ players, ...o }) => ({
+      ...o,
+      players: players.sort((a, b) => a.value - b.value),
+    }));
 }
 
 export function printF(s: string): string {
