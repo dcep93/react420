@@ -5,7 +5,7 @@ import draft_json from "./draft.json";
 
 // beer
 // https://footballabsurdity.com/2022/06/27/2022-fantasy-football-salary-cap-values/
-// Object.fromEntries(Array.from(document.getElementById("sheets-viewport").getElementsByTagName("td")).map(td => td.innerText.replaceAll("’", "'")).reduce((prev, current) => {if (parseInt(current)) return Object.assign({current}, prev); if (prev.current) return Object.assign({}, prev, {current: undefined, rank: parseInt(prev.current), name: current.split(",")[0]}); if (prev.name) return {players: prev.players.concat({name: prev.name, value: parseInt(current.split("$")[1])})}; return prev;}, {players: []}).players.sort((a,b) => a.value > b.value ? -1 : 1).map(o => [o.name, -o.value]))
+// Object.fromEntries(Array.from(document.getElementById("sheets-viewport").getElementsByTagName("td")).map(td => td.innerText).reduce((prev, current) => {if (parseInt(current)) return Object.assign({current}, prev); if (prev.current) return Object.assign({}, prev, {current: undefined, rank: parseInt(prev.current), name: current.split(",")[0]}); if (prev.name) return {players: prev.players.concat({name: prev.name, value: parseInt(current.split("$")[1])})}; return prev;}, {players: []}).players.sort((a,b) => a.value > b.value ? -1 : 1).map(o => [o.name, -o.value]))
 
 type DraftType = string[];
 type PlayersType = { [name: string]: number };
@@ -46,7 +46,20 @@ class SubDraft extends FirebaseWrapper<FirebaseType, { r: ResultsType }> {
     console.log(players);
     console.log("draft");
     console.log(draft);
-    return <SubSubDraft o={{ ...this.props, players, draft }} />;
+    return (
+      <SubSubDraft
+        o={{
+          ...this.props,
+          players: Object.fromEntries(
+            Object.entries(players).map(([name, rank]) => [
+              normalize(name),
+              rank,
+            ])
+          ),
+          draft,
+        }}
+      />
+    );
   }
 }
 
@@ -95,7 +108,9 @@ function SubSubDraft(props: {
                   key={i}
                   style={{
                     backgroundColor:
-                      props.o.players[v.name] !== undefined ? "lightgray" : "",
+                      props.o.players[normalize(v.name)] !== undefined
+                        ? "lightgray"
+                        : "",
                   }}
                 >
                   <td>{v.fname}</td>
@@ -110,6 +125,10 @@ function SubSubDraft(props: {
       </div>
     </pre>
   );
+}
+
+function normalize(s: string) {
+  return s.replaceAll(/[^A-Za-z ]/g, "");
 }
 
 function getScore(rank: number, value: number): number {
