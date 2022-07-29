@@ -116,45 +116,40 @@ class SubDraft extends FirebaseWrapper<FirebaseType, { r: ResultsType }> {
   }
 
   componentDidMount(): void {
-    // console.log(printF(getDraft.toString()));
     super.componentDidMount();
   }
 
   render() {
     console.log(this.state?.state);
-    const drafted = Object.fromEntries(
-      (this.state?.state || [])
-        .slice()
-        .sort((a, b) => a.rank - b.rank)
-        .map(({ name, rank }) => [normalize(name), rank])
-    );
-    const draft = (this.state?.state || []).map(({ name }) => name);
-    console.log("drafted");
-    console.log(drafted);
-    console.log("draft");
-    console.log(draft);
     return (
       <SubSubDraft
         o={{
           ...this.props,
-          drafted,
+          f: this.state?.state || [],
         }}
       />
     );
   }
 }
 
-function SubSubDraft(props: { o: { r: ResultsType; drafted: PlayersType } }) {
+function SubSubDraft(props: { o: { r: ResultsType; f: FirebaseType } }) {
+  const espn = Object.fromEntries(
+    props.o.f
+      .slice()
+      .sort((a, b) => a.rank - b.rank)
+      .map(({ name, rank }) => [normalize(name), rank])
+  );
+  const drafted = props.o.f.map(({ name }) => name);
   const sources = props.o.r.map((d) => d.source);
   const [source, update] = useState(sources[0]);
   const players = (
     props.o.r.find((d) => d.source === source)?.players || []
   ).map((p) => ({
     ...p,
-    seen: props.o.drafted[p.name] !== undefined,
+    seen: espn[p.name] !== undefined,
   }));
   return (
-    <pre style={{ display: "flex", height: "100vh" }}>
+    <pre style={{ display: "flex", height: "90vh" }}>
       <div style={{ margin: "50px" }}>
         <div>
           <ul>
@@ -163,6 +158,7 @@ function SubSubDraft(props: { o: { r: ResultsType; drafted: PlayersType } }) {
                 key={s}
                 onClick={() => update(s)}
                 style={{
+                  fontSize: "2em",
                   cursor: "pointer",
                   color: "blue",
                   textDecoration: "underline",
@@ -174,8 +170,16 @@ function SubSubDraft(props: { o: { r: ResultsType; drafted: PlayersType } }) {
           </ul>
         </div>
         <h1>
-          {source} ({Object.keys(props.o.drafted).length})
+          {source} ({drafted.length})
         </h1>
+        <div>
+          <div>drafted</div>
+          <input value={JSON.stringify(drafted)} />
+        </div>
+        <div>
+          <div>espn</div>
+          <input value={JSON.stringify(espn)} />
+        </div>
       </div>
       <div
         style={{
@@ -201,7 +205,8 @@ function SubSubDraft(props: { o: { r: ResultsType; drafted: PlayersType } }) {
                   }}
                 >
                   <td>
-                    {v.value} ({v.pos_rank + 1}/{v.i + 1})
+                    {v.value % 1 === 0 ? v.value : v.value.toFixed(1)} (
+                    {v.pos_rank + 1}/{v.i + 1})
                   </td>
                   <td
                     style={{
@@ -258,13 +263,13 @@ function results(draft_json: DraftJsonType): ResultsType {
   }));
   const extra = Object.keys(draft_json.extra);
   const raw = Object.entries(draft_json.espn)
-    .map(([name, rank]) => ({ name, rank }))
-    .sort((a, b) => a.rank - b.rank)
+    .map(([name, espn]) => ({ name, espn }))
+    .sort((a, b) => a.espn - b.espn)
     .map((o) => ({
       ...o,
       diffs: ds.map(
         (d) =>
-          o.rank -
+          o.espn -
           ((d.picks[o.name] === undefined ? d.size : d.picks[o.name]) + 1)
       ),
       extra: Object.fromEntries(
@@ -277,11 +282,11 @@ function results(draft_json: DraftJsonType): ResultsType {
     }))
     .map((o) => ({
       ...o,
-      adp: o.rank - o.diffs.reduce((a, b) => a + b, 0) / o.diffs.length,
+      adp: o.espn - o.diffs.reduce((a, b) => a + b, 0) / o.diffs.length,
     }))
     .map((o) => ({
       ...o,
-      adp_score: getScore(o.rank, o.adp),
+      espn_score: getScore(o.espn, o.adp),
       scores: Object.fromEntries(
         extra.map((s) => [s, getScore(o.adp, o.extra[s])])
       ),
@@ -290,7 +295,7 @@ function results(draft_json: DraftJsonType): ResultsType {
       fname: `(${[
         ...extra.map((s) => o.extra[s]),
         "",
-        o.rank,
+        o.espn,
         o.adp.toFixed(1),
       ].join("/")}) ${o.name.substring(0, 20)}`,
       ...o,
@@ -303,11 +308,11 @@ function results(draft_json: DraftJsonType): ResultsType {
     .map((o) => ({ ...o, ...draft_json.players[o.name] }));
 
   const basic = [
-    { source: "espn", players: raw.map((p) => ({ ...p, value: p.rank })) },
+    { source: "espn", players: raw.map((p) => ({ ...p, value: p.espn })) },
     { source: "adp", players: raw.map((p) => ({ ...p, value: p.adp })) },
     {
-      source: "adp_score",
-      players: raw.map((p) => ({ ...p, value: p.adp_score })),
+      source: "espn_score",
+      players: raw.map((p) => ({ ...p, value: p.espn_score })),
     },
   ];
 
@@ -322,8 +327,8 @@ function results(draft_json: DraftJsonType): ResultsType {
   }));
 
   return extraR
-    .concat(extraS)
     .concat(basic)
+    .concat(extraS)
     .map(({ players, ...o }) => ({
       ...o,
       players: players.sort((a, b) => a.value - b.value),
