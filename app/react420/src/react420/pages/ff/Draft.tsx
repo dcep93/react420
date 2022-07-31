@@ -24,87 +24,6 @@ type DraftJsonType = {
   extra: { [source: string]: PlayersType };
 };
 
-export function getPlayersFromBeersheets() {
-  return Object.fromEntries(
-    Array.from(
-      document.getElementById("sheets-viewport")!.getElementsByTagName("tr")
-    )
-      .flatMap((tr, i) =>
-        Array.from(tr.children)
-          .map((td) => td as HTMLElement)
-          .map((td, j) => ({ td: td.innerText, i, j: j - 1 }))
-      )
-      .filter(({ td, j }) => [1, 5, 9].includes(j) && td && td !== "Player")
-      .map((o) => ({ ...o, index: 100 * o.j + o.i, split: o.td.split(", ") }))
-      .sort((a, b) => a.index - b.index)
-      .reduce(
-        (prev, { td, split }) => {
-          if (!td.includes(",")) return { ...prev, position: td };
-          return {
-            ...prev,
-            players: (prev.players || []).concat({
-              name: split[0],
-              team: split[1],
-              position: prev.position!,
-            }),
-          };
-        },
-        {} as {
-          players?: {
-            name: string;
-            team: string;
-            position: string;
-          }[];
-          position?: string;
-        }
-      )
-      .players!.map((o) => [o.name, { position: o.position, team: o.team }])
-  );
-}
-
-export function getFromBeersheets(): PlayersType {
-  // https://footballabsurdity.com/2022/06/27/2022-fantasy-football-salary-cap-values/
-  return Object.fromEntries(
-    Array.from(
-      document.getElementById("sheets-viewport")!.getElementsByTagName("tr")
-    )
-      .flatMap((tr, i) =>
-        Array.from(tr.children)
-          .map((td) => td as HTMLElement)
-          .map((td, j) => ({ td: td.innerText, i, j }))
-      )
-      .map(({ td }) => td)
-      .reduce(
-        (prev, current) => {
-          if (parseInt(current)) return Object.assign({ current }, prev);
-          if (prev.current)
-            return Object.assign({}, prev, {
-              rank: parseInt(prev.current),
-              name: current.split(",")[0],
-            });
-          if (prev.name)
-            return {
-              players: (prev.players || []).concat({
-                name: prev.name,
-                salary: parseInt(current.split("$")[1]),
-              }),
-            };
-          return prev;
-        },
-        {} as {
-          players?: {
-            name: string;
-            salary: number;
-          }[];
-          current?: string;
-          name?: string;
-        }
-      )
-      .players!.sort((a, b) => (a.salary > b.salary ? -1 : 1))
-      .map((o) => [o.name, -o.salary])
-  );
-}
-
 function Draft() {
   const r = results(draft_json);
   return <SubDraft r={r} />;
@@ -174,11 +93,11 @@ function SubSubDraft(props: { o: { r: ResultsType; f: FirebaseType } }) {
         </h1>
         <div>
           <div>drafted</div>
-          <input value={JSON.stringify(drafted)} />
+          <input readOnly value={JSON.stringify(drafted)} />
         </div>
         <div>
           <div>espn</div>
-          <input value={JSON.stringify(espn)} />
+          <input readOnly value={JSON.stringify(espn)} />
         </div>
       </div>
       <div
@@ -389,5 +308,143 @@ export function idk() {
     .map((i) => parseInt(i))
     .filter(Boolean);
 }
+
+export function getPlayersFromBeersheets() {
+  return Object.fromEntries(
+    Array.from(
+      document.getElementById("sheets-viewport")!.getElementsByTagName("tr")
+    )
+      .flatMap((tr, i) =>
+        Array.from(tr.children)
+          .map((td) => td as HTMLElement)
+          .map((td, j) => ({ td: td.innerText, i, j: j - 1 }))
+      )
+      .filter(({ td, j }) => [1, 5, 9].includes(j) && td && td !== "Player")
+      .map((o) => ({ ...o, index: 100 * o.j + o.i, split: o.td.split(", ") }))
+      .sort((a, b) => a.index - b.index)
+      .reduce(
+        (prev, { td, split }) => {
+          if (!td.includes(",")) return { ...prev, position: td };
+          return {
+            ...prev,
+            players: (prev.players || []).concat({
+              name: split[0],
+              team: split[1],
+              position: prev.position!,
+            }),
+          };
+        },
+        {} as {
+          players?: {
+            name: string;
+            team: string;
+            position: string;
+          }[];
+          position?: string;
+        }
+      )
+      .players!.map((o) => [o.name, { position: o.position, team: o.team }])
+  );
+}
+
+export function getFromBeersheets(): PlayersType {
+  // https://footballabsurdity.com/2022/06/27/2022-fantasy-football-salary-cap-values/
+  return Object.fromEntries(
+    Array.from(
+      document.getElementById("sheets-viewport")!.getElementsByTagName("tr")
+    )
+      .flatMap((tr, i) =>
+        Array.from(tr.children)
+          .map((td) => td as HTMLElement)
+          .map((td, j) => ({ td: td.innerText, i, j }))
+      )
+      .map(({ td }) => td)
+      .reduce(
+        (prev, current) => {
+          if (parseInt(current)) return Object.assign({ current }, prev);
+          if (prev.current)
+            return Object.assign({}, prev, {
+              rank: parseInt(prev.current),
+              name: current.split(",")[0],
+            });
+          if (prev.name)
+            return {
+              players: (prev.players || []).concat({
+                name: prev.name,
+                salary: parseInt(current.split("$")[1]),
+              }),
+            };
+          return prev;
+        },
+        {} as {
+          players?: {
+            name: string;
+            salary: number;
+          }[];
+          current?: string;
+          name?: string;
+        }
+      )
+      .players!.sort((a, b) => (a.salary > b.salary ? -1 : 1))
+      .map((o) => [o.name, -o.salary])
+  );
+}
+
+export function getEspnLiveDraft(max_index: number) {
+  // https://fantasy.espn.com/football/livedraftresults?leagueId=203836968
+  const players = {
+    adp: [] as [string, number][],
+    avc: [] as [string, number][],
+  };
+  function helper(index: number) {
+    if (index > max_index) {
+      console.log({
+        average_draft: Object.fromEntries(
+          players.adp.sort((a, b) => a[1] - b[1])
+        ),
+        average_auction: Object.fromEntries(
+          players.avc.sort((a, b) => a[1] - b[1])
+        ),
+      });
+      return;
+    }
+    function subHelper() {
+      Array.from(document.getElementsByTagName("tr"))
+        .map((tr) => tr)
+        .map((tr) => ({
+          nameE: tr.getElementsByClassName(
+            "player-column__athlete"
+          )[0] as HTMLElement,
+          adpE: tr.getElementsByClassName("adp")[0] as HTMLElement,
+          avcE: tr.getElementsByClassName("avc")[0] as HTMLElement,
+        }))
+        .filter(({ nameE, adpE, avcE }) => nameE && adpE && avcE)
+        .map(({ nameE, adpE, avcE }) => ({
+          name: (nameE.children[0] as HTMLElement).innerText,
+          adp: parseFloat(adpE.innerText),
+          avc: -parseFloat(avcE.innerText),
+        }))
+        .forEach(({ name, adp, avc }) => {
+          players.adp.push([name, adp]);
+          players.avc.push([name, avc]);
+        });
+      helper(index + 1);
+    }
+    const clickable = Array.from(
+      document.getElementsByClassName("Pagination__list__item__link")
+    )
+      .map((i) => i as HTMLElement)
+      .find((i) => i.innerText === index.toString())!;
+    if (clickable) {
+      clickable.click();
+      setTimeout(subHelper, 3000);
+    } else {
+      subHelper();
+    }
+  }
+  helper(1);
+}
+
+console.log(printF(getEspnLiveDraft.toString()));
 
 export default Draft;
