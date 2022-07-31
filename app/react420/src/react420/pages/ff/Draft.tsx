@@ -212,7 +212,7 @@ function results(draft_json: DraftJsonType): ResultsType {
     }))
     .map((o) => ({
       fname: `(${[
-        ...extra.map((s) => o.extra[s]),
+        ...extra.map((s) => (o.extra[s] < 0 ? `$${-o.extra[s]}` : o.extra[s])),
         "",
         o.espn,
         o.adp.toFixed(1),
