@@ -91,6 +91,25 @@ function SubSubDraft(props: { o: { r: ResultsType; f: FirebaseType } }) {
         <h1>
           {source} ({drafted.length})
         </h1>
+        <pre>
+          {JSON.stringify(
+            drafted
+              .map(
+                (name) =>
+                  (
+                    draft_json.players as {
+                      [name: string]: { position: string };
+                    }
+                  )[name]?.position
+              )
+              .reduce((prev, current) => {
+                prev[current] = (prev[current] || 0) + 1;
+                return prev;
+              }, {} as { [position: string]: number }),
+            null,
+            2
+          )}
+        </pre>
         <div>
           <div>drafted</div>
           <input readOnly value={JSON.stringify(drafted)} />
