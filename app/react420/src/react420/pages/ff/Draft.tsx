@@ -205,9 +205,9 @@ function results(draft_json: DraftJsonType): ResultsType {
     }))
     .map((o) => ({
       ...o,
-      espn_score: getScore(o.adp, o.espn),
+      espn_score: getScore(o.espn, o.adp),
       scores: Object.fromEntries(
-        extra.map((s) => [s, getScore(o.adp, o.extra[s])])
+        extra.map((s) => [s, getScore(o.extra[s], o.adp)])
       ),
     }))
     .map((o) => ({
