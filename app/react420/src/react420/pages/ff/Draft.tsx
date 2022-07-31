@@ -69,7 +69,7 @@ function SubSubDraft(props: { o: { r: ResultsType; f: FirebaseType } }) {
   }));
   return (
     <pre style={{ display: "flex", height: "90vh" }}>
-      <div style={{ margin: "50px" }}>
+      <div style={{ margin: "20px" }}>
         <div>
           <ul>
             {sources.map((s) => (
@@ -102,7 +102,7 @@ function SubSubDraft(props: { o: { r: ResultsType; f: FirebaseType } }) {
       </div>
       <div
         style={{
-          margin: "50px",
+          margin: "20px",
           overflowY: "scroll",
         }}
       >
