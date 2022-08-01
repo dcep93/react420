@@ -21,7 +21,8 @@ type ResultsType = {
 type DraftJsonType = {
   drafts: DraftType[];
   players: { [name: string]: PType };
-  espn: PlayersType;
+  adp: PlayersType;
+  avc: PlayersType;
   extra: { [source: string]: PlayersType };
 };
 
@@ -187,8 +188,8 @@ function normalize(s: string) {
     .replaceAll(/ jr$/gi, "");
 }
 
-function getScore(rank: number, value: number): number {
-  return (100 * (value - rank)) / rank;
+function getScore(average: number, value: number): number {
+  return (100 * (value - average)) / average;
 }
 
 function results(draft_json: DraftJsonType): ResultsType {
@@ -208,16 +209,14 @@ function results(draft_json: DraftJsonType): ResultsType {
     picks: Object.fromEntries(d.map((p, i) => [p, i])),
   }));
   const extra = Object.keys(draft_json.extra);
-  const raw = Object.entries(draft_json.espn)
-    .map(([name, espn]) => ({ name, espn }))
-    .sort((a, b) => a.espn - b.espn)
-    .map((o) => ({ ...o, nname: normalize(o.name) }))
+  const raw = Object.entries(draft_json.adp)
+    .map(([name, adp]) => ({ name, adp, avc: draft_json.avc[name] || 1 }))
+    .sort((a, b) => a.adp - b.adp)
+    .map((o, i) => ({ ...o, nname: normalize(o.name), i }))
     .map((o) => ({
       ...o,
       diffs: ds.map(
-        (d) =>
-          o.espn -
-          ((d.picks[o.name] === undefined ? d.size : d.picks[o.name]) + 1)
+        (d) => o.i - (d.picks[o.name] === undefined ? d.size : d.picks[o.name])
       ),
       extra: Object.fromEntries(
         extra.map((s) => [
@@ -229,36 +228,39 @@ function results(draft_json: DraftJsonType): ResultsType {
     }))
     .map((o) => ({
       ...o,
-      adp: o.espn - o.diffs.reduce((a, b) => a + b, 0) / o.diffs.length,
+      d_adp: 1 + o.i - o.diffs.reduce((a, b) => a + b, 0) / o.diffs.length,
     }))
     .map((o) => ({
       ...o,
-      espn_score: getScore(o.adp, o.espn),
+      d_adp_score: getScore(o.adp, o.d_adp),
       scores: Object.fromEntries(
-        extra.map((s) => [s, getScore(o.adp, o.extra[s])])
+        extra.map((s) => [
+          s,
+          getScore(o.extra[s] > 0 ? o.d_adp : o.avc, o.extra[s]),
+        ])
       ),
     }))
     .map((o) => ({
       fname: `(${[
-        ...extra.map((s) => (o.extra[s] < 0 ? `$${-o.extra[s]}` : o.extra[s])),
+        o.d_adp.toFixed(1),
         "",
-        o.espn,
-        o.adp.toFixed(1),
+        o.adp,
+        `$${-o.avc}`,
+        "",
+        ...extra.map((s) => (o.extra[s] < 0 ? `$${-o.extra[s]}` : o.extra[s])),
       ].join("/")}) ${o.name.substring(0, 20)}`,
-      ...o,
-    }))
-    .map(({ ...o }) => ({
-      ...o,
       ...(o.name.includes("D/ST") ? { position: "DEFENSES" } : {}),
+      ...o,
     }))
     .map((o) => ({ ...o, ...draft_json.players[o.nname] }));
 
   const basic = [
-    { source: "espn", players: raw.map((p) => ({ ...p, value: p.espn })) },
+    { source: "d_adp", players: raw.map((p) => ({ ...p, value: p.d_adp })) },
     { source: "adp", players: raw.map((p) => ({ ...p, value: p.adp })) },
+    { source: "avc", players: raw.map((p) => ({ ...p, value: p.avc })) },
     {
-      source: "espn_score",
-      players: raw.map((p) => ({ ...p, value: p.espn_score })),
+      source: "d_adp_score",
+      players: raw.map((p) => ({ ...p, value: p.d_adp_score })),
     },
   ];
 
@@ -272,8 +274,9 @@ function results(draft_json: DraftJsonType): ResultsType {
     players: raw.map((p) => ({ ...p, value: p.scores[source] })),
   }));
 
-  return extraR
+  return ([] as ResultsType)
     .concat(basic)
+    .concat(extraR)
     .concat(extraS)
     .map(({ players, ...o }) => ({
       ...o,
@@ -535,7 +538,8 @@ export function updateDraftRanking(ordered: { [name: string]: number }) {
           credentials: "include",
         }
       )
-    );
+    )
+    .then((resp) => alert(resp.ok));
 }
 
 export default Draft;
