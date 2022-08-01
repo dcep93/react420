@@ -9,6 +9,7 @@ type FirebaseType = { name: string; rank: number }[];
 type PType = { position: string; team: string };
 type RPType = {
   name: string;
+  nname: string;
   fname: string;
   diffs: number[];
   value: number;
@@ -65,7 +66,7 @@ function SubSubDraft(props: { o: { r: ResultsType; f: FirebaseType } }) {
     props.o.r.find((d) => d.source === source)?.players || []
   ).map((p) => ({
     ...p,
-    seen: espn[p.name] !== undefined,
+    seen: espn[p.nname] !== undefined,
   }));
   return (
     <pre style={{ display: "flex", height: "90vh" }}>
@@ -115,8 +116,15 @@ function SubSubDraft(props: { o: { r: ResultsType; f: FirebaseType } }) {
           <input readOnly value={JSON.stringify(drafted)} />
         </div>
         <div>
-          <div>espn</div>
-          <input readOnly value={JSON.stringify(espn)} />
+          <div>updateDraftRanking</div>
+          <input
+            readOnly
+            value={`${printF(
+              updateDraftRanking.toString()
+            )}; updateDraftRanking(${JSON.stringify(
+              Object.fromEntries(players.map((p, i) => [p.name, i]))
+            )});`}
+          />
         </div>
       </div>
       <div
@@ -203,6 +211,7 @@ function results(draft_json: DraftJsonType): ResultsType {
   const raw = Object.entries(draft_json.espn)
     .map(([name, espn]) => ({ name, espn }))
     .sort((a, b) => a.espn - b.espn)
+    .map((o) => ({ ...o, nname: normalize(o.name) }))
     .map((o) => ({
       ...o,
       diffs: ds.map(
@@ -213,7 +222,7 @@ function results(draft_json: DraftJsonType): ResultsType {
       extra: Object.fromEntries(
         extra.map((s) => [
           s,
-          draft_json.extra[s][normalize(o.name)] ||
+          draft_json.extra[s][o.nname] ||
             Object.entries(draft_json.extra[s]).length + 1,
         ])
       ),
@@ -224,9 +233,9 @@ function results(draft_json: DraftJsonType): ResultsType {
     }))
     .map((o) => ({
       ...o,
-      espn_score: getScore(o.espn, o.adp),
+      espn_score: getScore(o.adp, o.espn),
       scores: Object.fromEntries(
-        extra.map((s) => [s, getScore(o.extra[s], o.adp)])
+        extra.map((s) => [s, getScore(o.adp, o.extra[s])])
       ),
     }))
     .map((o) => ({
@@ -238,12 +247,11 @@ function results(draft_json: DraftJsonType): ResultsType {
       ].join("/")}) ${o.name.substring(0, 20)}`,
       ...o,
     }))
-    .map(({ name, ...o }) => ({
-      name: normalize(name),
+    .map(({ ...o }) => ({
       ...o,
-      ...(name.includes("D/ST") ? { position: "DEFENSES" } : {}),
+      ...(o.name.includes("D/ST") ? { position: "DEFENSES" } : {}),
     }))
-    .map((o) => ({ ...o, ...draft_json.players[o.name] }));
+    .map((o) => ({ ...o, ...draft_json.players[o.nname] }));
 
   const basic = [
     { source: "espn", players: raw.map((p) => ({ ...p, value: p.espn })) },
@@ -276,7 +284,7 @@ function results(draft_json: DraftJsonType): ResultsType {
 export function printF(s: string): string {
   return s
     .split("\n")
-    .map((i) => i.split("//")[0].trim())
+    .map((i) => i.split("// ")[0].trim())
     .join(" ");
 }
 
@@ -464,6 +472,70 @@ export function getEspnLiveDraft(max_index: number) {
   helper(1);
 }
 
-console.log(printF(getEspnLiveDraft.toString()));
+export function updateDraftRanking(ordered: { [name: string]: number }) {
+  fetch(
+    "https://fantasy.espn.com/apis/v3/games/ffl/seasons/2022/segments/0/leagues/203836968?view=kona_player_info_edit_draft_strategy",
+    {
+      headers: {
+        "x-fantasy-filter":
+          '{"players":{"filterStatsForSplitTypeIds":{"value":[0]},"filterStatsForSourceIds":{"value":[1]},"filterStatsForExternalIds":{"value":[2022]},"sortDraftRanks":{"sortPriority":2,"sortAsc":true,"value":"STANDARD"},"sortPercOwned":{"sortPriority":3,"sortAsc":false},"filterRanksForSlotIds":{"value":[0,2,4,6,17,16]},"filterStatsForTopScoringPeriodIds":{"value":2,"additionalValue":["002022","102022","002021","022022"]}}}',
+        "x-fantasy-platform":
+          "kona-PROD-b8da8220a336fe39a7b677c0dc5fa27a6bbf87ae",
+        "x-fantasy-source": "kona",
+      },
+      referrer:
+        "https://fantasy.espn.com/football/editdraftstrategy?leagueId=203836968",
+    }
+  )
+    .then((resp) => resp.json())
+    .then(({ players }: { players: any[] }) =>
+      players
+        .map((p, i) => ({
+          name: `${p.player.firstName} ${p.player.lastName}`,
+          playerId: p.player.id,
+          i,
+        }))
+        .map((p) => ({ ...p, order: ordered[p.name] }))
+        .map((p) => ({
+          ...p,
+          rank: p.order === undefined ? p.i + players.length : p.order,
+        }))
+        .sort((a, b) => a.rank - b.rank)
+        .map(({ playerId }) => ({ playerId }))
+    )
+    .then((players) =>
+      JSON.stringify({
+        draftStrategy: { excludedPlayerIds: [], draftList: players },
+      })
+    )
+    .then((body) =>
+      fetch(
+        "https://lm-api-writes.fantasy.espn.com/apis/v3/games/ffl/seasons/2022/segments/0/leagues/203836968/teams/1",
+        {
+          headers: {
+            accept: "application/json",
+            "accept-language": "en-US,en;q=0.9",
+            "content-type": "application/json",
+            "sec-ch-ua":
+              '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": '"macOS"',
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-site",
+            "x-fantasy-platform":
+              "kona-PROD-b8da8220a336fe39a7b677c0dc5fa27a6bbf87ae",
+            "x-fantasy-source": "kona",
+          },
+          referrer: "https://fantasy.espn.com/",
+          referrerPolicy: "strict-origin-when-cross-origin",
+          body,
+          method: "POST",
+          mode: "cors",
+          credentials: "include",
+        }
+      )
+    );
+}
 
 export default Draft;
