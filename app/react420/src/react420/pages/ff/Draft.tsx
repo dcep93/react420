@@ -118,13 +118,15 @@ function SubSubDraft(props: { o: { r: ResultsType; f: FirebaseType } }) {
         </div>
         <div>
           <div>updateDraftRanking</div>
+          <input readOnly value={printF(updateDraftRanking.toString())} />
+        </div>
+        <div>
+          <div>players</div>
           <input
             readOnly
-            value={`${printF(
-              updateDraftRanking.toString()
-            )}; updateDraftRanking(${JSON.stringify(
+            value={`updateDraftRanking(${JSON.stringify(
               Object.fromEntries(players.map((p, i) => [p.name, i]))
-            )});`}
+            )})`}
           />
         </div>
       </div>
