@@ -70,7 +70,7 @@ function SubSubDraft(props: { o: { r: ResultsType; f: FirebaseType } }) {
     seen: espn[p.nname] !== undefined,
   }));
   return (
-    <pre style={{ display: "flex", height: "90vh" }}>
+    <pre style={{ display: "flex", flexWrap: "wrap", height: "90vh" }}>
       <div style={{ margin: "20px" }}>
         <div>
           <ul>
