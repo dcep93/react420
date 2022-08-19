@@ -70,7 +70,7 @@ function SubSubDraft(props: { o: { r: ResultsType; f: FirebaseType } }) {
     seen: espn[p.nname] !== undefined,
   }));
   return (
-    <pre style={{ display: "flex", flexWrap: "wrap", height: "90vh" }}>
+    <pre style={{ display: "flex", height: "90vh" }}>
       <div style={{ margin: "20px" }}>
         <div>
           <ul>
@@ -115,6 +115,14 @@ function SubSubDraft(props: { o: { r: ResultsType; f: FirebaseType } }) {
         <div>
           <div>drafted</div>
           <input readOnly value={JSON.stringify(drafted)} />
+        </div>
+        <div>
+          <div>beerSheets</div>
+          <input readOnly value={printF(getFromBeersheets.toString())} />
+        </div>
+        <div>
+          <div>espn</div>
+          <input readOnly value={printF(getEspnLiveDraft.toString())} />
         </div>
         <div>
           <div>updateDraftRanking</div>
@@ -387,19 +395,21 @@ export function getFromBeersheets(): PlayersType {
     )
       .flatMap((tr, i) =>
         Array.from(tr.children)
+          .filter((_, i) => i > 0)
           .map((td) => td as HTMLElement)
           .map((td, j) => ({ td: td.innerText, i, j }))
       )
       .map(({ td }) => td)
       .reduce(
         (prev, current) => {
-          if (parseInt(current)) return Object.assign({ current }, prev);
+          if (parseInt(current)) return Object.assign({}, prev, { current });
           if (prev.current)
             return Object.assign({}, prev, {
+              current: null,
               rank: parseInt(prev.current),
               name: current.split(",")[0],
             });
-          if (prev.name)
+          if (prev.name && current.includes("$"))
             return {
               players: (prev.players || []).concat({
                 name: prev.name,
