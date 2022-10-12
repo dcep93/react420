@@ -53,7 +53,7 @@ export default function Chords() {
             onChange={(e) => update_num_to_pick(parseInt(e.target.value))}
           />
         </div>
-        <div>
+        <div style={{ display: "flex" }}>
           chords:{" "}
           {["mM7", "m7b5", "+M7", "m7", "7", "M7", "dim"].map((q, i) => (
             <div key={i} style={{ display: "inline-block", margin: "20px" }}>
