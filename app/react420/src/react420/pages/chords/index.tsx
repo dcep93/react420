@@ -88,19 +88,13 @@ function pick_helper(
     .map(([c, n]) => ({ c, n }))
     .filter(
       ({ c }) =>
-        !"ABCDEFG"
-          .split("")
-          .flatMap((l) => [l, `${l}#`, `${l}b`])
-          .flatMap((c) =>
-            Object.entries(qualities_to_skip)
-              .map(([q, b]) => ({ q, b }))
-              .filter(({ b }) => b)
-              .map(({ q }) => `${c}${q}`)
-          )
-          .includes(c)
+        Object.entries(qualities_to_skip)
+          .map(([q, b]) => ({ q, b }))
+          .filter(({ b }) => b)
+          .find(({ q }) => c.endsWith(` ${q}`)) === undefined
     )
     .map(({ c, n }) => ({ c, prob: n * Math.random() }))
     .sort((a, b) => b.prob - a.prob)
-    .map(({ c }) => c)
+    .map(({ c }) => c.split(" ").join(""))
     .slice(0, num_to_pick);
 }
