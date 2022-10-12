@@ -1,8 +1,9 @@
 import Catalog from "./Catalog";
 
 import { BrowserRouter } from "react-router-dom";
+import chords from "./pages/chords";
 
-const pages = {};
+const pages = { chords };
 
 function index() {
   return (
