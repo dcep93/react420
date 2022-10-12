@@ -55,7 +55,7 @@ export default function Chords() {
         </div>
         <div style={{ display: "flex" }}>
           chords:{" "}
-          {["mM7", "m7b5", "+M7", "m7", "7", "M7", "dim"].map((q, i) => (
+          {["mM", "m7b5", "+M", "m7", "7", "M7", "dim", "sus7"].map((q, i) => (
             <div key={i} style={{ display: "inline-block", margin: "20px" }}>
               <div>{q}</div>
               <div>
