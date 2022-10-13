@@ -9,13 +9,14 @@ export default function Chords() {
   const [qualities_to_skip, update_qualities_to_skip] = useState<{
     [q: string]: boolean;
   }>({});
+  const [showing, update_showing] = useState<{ [i: number]: boolean }>({});
   function pick(): string[] {
     return pick_helper(num_to_pick, qualities_to_skip, _chords_json);
   }
   const [picked, update_picked] = useState(pick());
   return (
     <div>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", alignItems: "flex-start" }}>
         {picked.map((c, i) => (
           <div
             key={i}
@@ -25,8 +26,12 @@ export default function Chords() {
               border: "2px solid black",
               borderRadius: "10px",
             }}
+            onClick={() =>
+              update_showing(Object.assign({}, showing, { [i]: !showing[i] }))
+            }
           >
-            {c}
+            <div>{c.split(" ").join("")}</div>
+            {/* {!showing[i] ? null : <div>{spell(c)}</div>} */}
           </div>
         ))}
       </div>
@@ -40,7 +45,10 @@ export default function Chords() {
           style={{
             padding: "10px",
           }}
-          onClick={() => update_picked(pick())}
+          onClick={() => {
+            update_showing({});
+            update_picked(pick());
+          }}
         >
           new chords
         </button>
@@ -65,7 +73,7 @@ export default function Chords() {
                   onChange={(e) =>
                     update_qualities_to_skip(
                       Object.assign({}, qualities_to_skip, {
-                        [q]: !e.target.checked,
+                        [q]: !qualities_to_skip[q],
                       })
                     )
                   }
@@ -95,6 +103,25 @@ function pick_helper(
     )
     .map(({ c, n }) => ({ c, prob: n * Math.random() }))
     .sort((a, b) => b.prob - a.prob)
-    .map(({ c }) => c.split(" ").join(""))
+    .map(({ c }) => c)
     .slice(0, num_to_pick);
 }
+
+// function spell(c: string): string {
+//   const [root, quality] = c.split(" ");
+//   return [
+//     0,
+//     quality.includes("sus") ? 5 : quality.includes("m") ? 3 : 4,
+//     quality.includes("+") ? 8 : quality.includes("b5") ? 6 : 7,
+//     quality === "dim" ? 9 : quality.includes("M") ? 11 : 10,
+//   ]
+//     .map((distance) => addDistance(root, distance))
+//     .join(" ");
+// }
+
+// function addDistance(root: string, distance: number): string {
+//   if (distance === 0) return root;
+//   if (root.endsWith("b")) return addDistance(root.charAt(0), distance - 1);
+//   if (root.endsWith("#")) return { A: "B" }[root.charAt(0)]!;
+//   return root;
+// }
