@@ -31,7 +31,7 @@ export default function Chords() {
             }
           >
             <div>{c.split(" ").join("")}</div>
-            {/* {!showing[i] ? null : <div>{spell(c)}</div>} */}
+            {!showing[i] ? null : <div>{spell(c)}</div>}
           </div>
         ))}
       </div>
@@ -107,21 +107,45 @@ function pick_helper(
     .slice(0, num_to_pick);
 }
 
-// function spell(c: string): string {
-//   const [root, quality] = c.split(" ");
-//   return [
-//     0,
-//     quality.includes("sus") ? 5 : quality.includes("m") ? 3 : 4,
-//     quality.includes("+") ? 8 : quality.includes("b5") ? 6 : 7,
-//     quality === "dim" ? 9 : quality.includes("M") ? 11 : 10,
-//   ]
-//     .map((distance) => addDistance(root, distance))
-//     .join(" ");
-// }
+function spell(c: string): string {
+  const [root, quality] = c.split(" ");
+  return [
+    { degree: 1, accidental: 0 },
+    {
+      degree: quality.includes("sus") ? 4 : 3,
+      accidental: quality.includes("m") || quality === "dim" ? -1 : 0,
+    },
+    {
+      degree: 5,
+      accidental: quality.includes("+")
+        ? 1
+        : quality.includes("b5") || quality === "dim"
+        ? -1
+        : 0,
+    },
+    {
+      degree: 7,
+      accidental: quality === "dim" ? -1 : quality.includes("M") ? 1 : 0,
+    },
+  ]
+    .map(({ degree, accidental }) => addDistance(root, degree, accidental))
+    .join(" ");
+}
 
-// function addDistance(root: string, distance: number): string {
-//   if (distance === 0) return root;
-//   if (root.endsWith("b")) return addDistance(root.charAt(0), distance - 1);
-//   if (root.endsWith("#")) return { A: "B" }[root.charAt(0)]!;
-//   return root;
-// }
+function addDistance(root: string, degree: number, accidental: number): string {
+  const noteNum = (root.charCodeAt(0) - "A".charCodeAt(0) + degree - 1) % 7;
+  const note = String.fromCharCode("A".charCodeAt(0) + noteNum);
+  const degreeAlt = {
+    1: [0, 0, 0, 0, 0, 0, 0],
+    3: [1, 1, 0, 1, 1, 0, 0],
+    4: [0, 0, 0, 0, 0, -1, 0],
+    5: [0, 1, 0, 0, 0, 0, 0],
+    7: [0, 0, -1, 0, 0, -1, 0],
+  }[degree]![(root.charCodeAt(0) - "A".charCodeAt(0)) % 7];
+  const startingAlt = { b: -1, "#": 1 }[root.charAt(1)] || 0;
+  const alteration = accidental + degreeAlt + startingAlt;
+  const quality = ["bb", "b", "", "#", "𝄪"][alteration + 2];
+  console.log(note, quality, noteNum, accidental, degreeAlt, startingAlt);
+
+  return `${note}${quality}`;
+}
