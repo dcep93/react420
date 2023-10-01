@@ -1,3 +1,5 @@
+// @ts-ignore
+import Metronome from "@kevinorriss/react-metronome";
 import { useState } from "react";
 
 import _chords_json from "./chords.json";
@@ -39,19 +41,22 @@ export default function Chords() {
         style={{
           margin: "10px",
           padding: "10px",
+          display: "flex",
         }}
       >
-        <button
-          style={{
-            padding: "10px",
-          }}
-          onClick={() => {
-            update_showing({});
-            update_picked(pick());
-          }}
-        >
-          new chords
-        </button>
+        <div>
+          <button
+            style={{
+              padding: "10px",
+            }}
+            onClick={() => {
+              update_showing({});
+              update_picked(pick());
+            }}
+          >
+            new chords
+          </button>
+        </div>
         <div style={{ display: "inline-block", margin: "20px" }}>
           num_to_pick:{" "}
           <input
@@ -61,6 +66,11 @@ export default function Chords() {
             onChange={(e) => update_num_to_pick(parseInt(e.target.value))}
           />
         </div>
+        <div style={{ width: "400px" }}>
+          <Metronome />
+        </div>
+      </div>
+      <div>
         <div style={{ display: "flex" }}>
           chords:{" "}
           {["mM", "m7b5", "+M", "m7", "7", "M7", "dim", "sus7"].map((q, i) => (
