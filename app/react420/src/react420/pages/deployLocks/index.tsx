@@ -117,7 +117,7 @@ export default function DeployLocks() {
         <pre style={{ whiteSpace: "pre-wrap" }}>
           {SlackFetcher(
             (s) => s.user === "U01ABDUQKTN",
-            (s) => s.ts <= start.toString()
+            (s) => s.ts <= (1714968000).toString()
           )}
         </pre>
         <pre>{`git log --since=@${start} --pretty=format:'{"hash": "%H", "timestamp": %ct}' --reverse | jq -c -s .`}</pre>
