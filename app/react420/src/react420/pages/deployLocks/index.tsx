@@ -7,6 +7,8 @@ const data = data_raw as unknown as {
   slack: SlackMessage[];
 };
 
+// git log --since=@$(date -v-180d +%s 2>/dev/null || date -d "180 days ago" +%s) --pretty=format:'{"hash": "%H", "timestamp": %ct}' --reverse | jq -c -s .
+
 export default function DeployLocks() {
   const maxAge = 180;
   const mappedSlack = data.slack.map((d) => ({
@@ -18,7 +20,7 @@ export default function DeployLocks() {
     if (!slackText.startsWith(":rocket:")) return false;
     const deployHash = slackText.split("commit/")[1]?.split("|")[0];
     for (let i = 0; i < 100; i++) {
-      if (data.git[gitIndex + i].hash === deployHash) {
+      if (data.git[gitIndex + i]?.hash === deployHash) {
         return true;
       }
     }
@@ -99,13 +101,16 @@ export default function DeployLocks() {
             l.timestamp >= timestamp && l.timestamp <= timestamp + 60 * 60 * 24
         )
         .map((l) => l.duration / (60 * 60))
-        .sort(),
+        .filter((d) => d < 24)
+        .sort((a, b) => a - b),
     }))
     .map((d) => ({
       ...d,
-      lockHours: d.lockHours > 12 ? -1 : d.lockHours,
+      lockHours:
+        d.lockHours === 0 ? undefined : d.lockHours > 12 ? -1 : d.lockHours,
       numCommits: d.commits.length,
-      p50: d.commits[Math.floor(d.commits.length / 2)],
+      p50: d.commits[Math.floor(d.commits.length * 0.5)],
+      p90: d.commits[Math.floor(d.commits.length * 0.9)],
       max: d.commits[d.commits.length - 1],
     }));
   console.log(days);
@@ -120,7 +125,7 @@ export default function DeployLocks() {
         </pre>
       </div>
       <div>
-        {["lockHours", "numCommits", "p50", "max"].map((dataKey) => (
+        {["lockHours", "numCommits", "p50", "p90", "max"].map((dataKey) => (
           <div key={dataKey}>
             <h1>{dataKey}</h1>
             <div>
