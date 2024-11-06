@@ -28,4 +28,15 @@ function Catalog(props: {
   );
 }
 
+export function printF(
+  f: (...args: any[]) => any,
+  argsStr: string = ""
+): string {
+  return `${f
+    .toString()
+    .split("\n")
+    .map((i) => i.replace(/\/\/$/, "").split("// ")[0].trim())
+    .join(" ")}; ${f.name}(${argsStr})`;
+}
+
 export default Catalog;
