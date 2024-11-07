@@ -1,4 +1,4 @@
-import { Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, Tooltip, XAxis, YAxis } from "recharts";
 import SlackFetcher, { SlackMessage } from "../../SlackFetcher";
 import data_raw from "./data.json";
 
@@ -104,11 +104,12 @@ export default function DeployLocks() {
     }))
     .map((d) => ({
       ...d,
-      lockHours: d.lockHours === 0 ? undefined : Math.min(12, d.lockHours),
+      lockHours_max12:
+        d.lockHours === 0 ? undefined : Math.min(12, d.lockHours),
       numCommits: d.commits.length,
       p50: d.commits[Math.floor(d.commits.length * 0.5)],
       p90: d.commits[Math.floor(d.commits.length * 0.9)],
-      max: d.commits[d.commits.length - 1],
+      max_sub24: d.commits[d.commits.length - 1],
     }));
   console.log(windows);
   return (
@@ -123,29 +124,31 @@ export default function DeployLocks() {
         <pre>{`git log --since=@${start} --pretty=format:'{"hash": "%H", "timestamp": %ct}' --reverse | jq -c -s .`}</pre>
       </div>
       <div>
-        {["lockHours", "numCommits", "p50", "p90", "max"].map((dataKey) => (
-          <div key={dataKey}>
-            <h1>{dataKey}</h1>
-            <div>
-              <LineChart data={windows} width={1200} height={500}>
-                <XAxis
-                  dataKey={"timestamp"}
-                  type={"number"}
-                  scale={"time"}
-                  domain={[windows[0]?.timestamp]}
-                  tickFormatter={(tick) =>
-                    new Date(tick * 1000).toLocaleDateString()
-                  }
-                />
-                <YAxis />
-                <Tooltip
-                  labelFormatter={(tick) => new Date(tick * 1000).toString()}
-                />
-                <Line type="linear" dataKey={dataKey} />
-              </LineChart>
+        {["lockHours_max12", "numCommits", "p50", "p90", "max_sub24"].map(
+          (dataKey) => (
+            <div key={dataKey}>
+              <h1>{dataKey}</h1>
+              <div>
+                <BarChart data={windows} width={1200} height={500}>
+                  <XAxis
+                    dataKey={"timestamp"}
+                    type={"number"}
+                    scale={"time"}
+                    domain={[windows[0]?.timestamp]}
+                    tickFormatter={(tick) =>
+                      new Date(tick * 1000).toLocaleDateString()
+                    }
+                  />
+                  <YAxis />
+                  <Tooltip
+                    labelFormatter={(tick) => new Date(tick * 1000).toString()}
+                  />
+                  <Bar type="linear" dataKey={dataKey} />
+                </BarChart>
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        )}
       </div>
     </div>
   );
