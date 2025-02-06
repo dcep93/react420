@@ -20,11 +20,18 @@ export default function SlackFetcher(
     const channel = urlParts[5];
     const token = JSON.parse(localStorage.localConfig_v2).teams[slack_route]
       .token;
+    // could parallelize with divide and conquer
+    // would need to know stop timestamp, instead of
+    // a stop function
     function SlackFetcherFSub(
       data: SlackMessage[],
       latest: string
     ): Promise<SlackMessage[]> {
-      console.log({ latest, count: data.length });
+      console.log({
+        latest,
+        l: new Date(parseFloat(latest) * 1000),
+        count: data.length,
+      });
       return fetchMultipart(
         `https://quizlet.slack.com/api/conversations.history?_x_id=1d71f1f5-${
           Date.now() / 1000

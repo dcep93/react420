@@ -6,6 +6,7 @@ export type DataType = {
 };
 
 export default function getData(token: string): Promise<void> {
+  // token = JSON.parse(localStorage.localConfig_v2).teams[slack_route].token
   const data: DataType[] = [];
   var latest = (Date.now() / 1000).toFixed(6);
   const tsCutoff = "1514764800";

@@ -2,14 +2,16 @@ import { Bar, BarChart, Tooltip, XAxis, YAxis } from "recharts";
 import SlackFetcher, { SlackMessage } from "../../SlackFetcher";
 import data_raw from "./data.json";
 
-const data = data_raw as unknown as {
+// data is nested to make private data a bit simpler to hide
+const data = (data_raw as unknown[])[0] as {
   git: { timestamp: number; hash: string }[];
   slack: SlackMessage[];
 };
 
 export default function DeployLocks() {
-  const start = 1714968000;
+  const start = 1714973400;
   const windowSizeSeconds = 60 * 60 * 24;
+  const slackURL = "https://app.slack.com/client/T024H38KR/C02NH96K0";
 
   const mappedSlack = data.slack.map((d) => ({
     ...d,
@@ -28,10 +30,12 @@ export default function DeployLocks() {
   }
   const gitData = data.git.map((d, gitIndex) => ({
     ...d,
-    duration:
-      (mappedSlack.find(
+    durationHours:
+      ((mappedSlack.find(
         (s) => s.timestamp > d.timestamp && isDeploy(s.text, gitIndex)
-      )?.timestamp || 100) - d.timestamp,
+      )?.timestamp || 100) -
+        d.timestamp) /
+      (60 * 60),
   }));
   const lockData = mappedSlack
     .map((d) => ({
@@ -53,7 +57,7 @@ export default function DeployLocks() {
                   ? prev.locks
                   : prev.locks.concat({
                       timestamp: prev.timestamp,
-                      duration: NaN,
+                      durationHours: NaN,
                     }),
             }
           : {
@@ -62,16 +66,16 @@ export default function DeployLocks() {
                 ? prev.locks
                 : prev.locks.concat({
                     timestamp: curr.timestamp,
-                    duration: NaN,
+                    durationHours: NaN,
                   })
               ).concat({
                 timestamp: prev.timestamp,
-                duration: curr.timestamp - prev.timestamp,
+                durationHours: (curr.timestamp - prev.timestamp) / (60 * 60),
               }),
             },
       {
         timestamp: 0,
-        locks: [] as { timestamp: number; duration: number }[],
+        locks: [] as { timestamp: number; durationHours: number }[],
       }
     ).locks;
   const today = new Date(new Date().toLocaleDateString());
@@ -88,7 +92,7 @@ export default function DeployLocks() {
               l.timestamp >= timestamp &&
               l.timestamp <= timestamp + windowSizeSeconds
           )
-          .map((l) => l.duration / (60 * 60))
+          .map((l) => l.durationHours)
           .reduce((a, b) => a + b, 0)
           .toFixed(2)
       ),
@@ -98,7 +102,7 @@ export default function DeployLocks() {
             l.timestamp >= timestamp &&
             l.timestamp <= timestamp + windowSizeSeconds
         )
-        .map((l) => l.duration / (60 * 60))
+        .map((l) => l.durationHours)
         .filter((d) => d < 24)
         .sort((a, b) => a - b),
     }))
@@ -115,10 +119,13 @@ export default function DeployLocks() {
   return (
     <div>
       <div>
+        <a href={slackURL}>{slackURL}</a>
+      </div>
+      <div>
         <pre style={{ whiteSpace: "pre-wrap" }}>
           {SlackFetcher(
             (s) => s.user === "U01ABDUQKTN",
-            (s) => s.ts <= (1714968000).toString()
+            (s) => s.ts <= (1714973400).toString() // start
           )}
         </pre>
         <pre>{`git log --since=@${start} --pretty=format:'{"hash": "%H", "timestamp": %ct}' --reverse | jq -c -s .`}</pre>
