@@ -43,8 +43,18 @@ export default function Employees() {
         };
       })
   );
+  const danJoin = data.find((d) => d.username === "dan")?.start!;
+  const startedBeforeDan = data
+    .filter((d) => d.start < danJoin)
+    .sort((a, b) => a.start - b.start)
+    .map((d) => d.username);
   return (
     <div>
+      <div>total: {data.length}</div>
+      <div>
+        started before dan: ({startedBeforeDan.length})
+        {startedBeforeDan.join(",")}
+      </div>
       <div>
         <pre style={{ whiteSpace: "pre-wrap" }}>{printF(getData)}</pre>
       </div>
