@@ -43,109 +43,136 @@ export default function Employees() {
         };
       })
   );
-  const danJoin = data.find((d) => d.username === "dan")?.start!;
-  const startedBeforeDan = data
-    .filter((d) => d.start < danJoin)
-    .sort((a, b) => a.start - b.start)
-    .map((d) => d.username);
+  const [sortByStart, updateSortByStart] = useState(true);
   return (
     <div>
-      <div>total: {data.length}</div>
-      <div>
-        started before dan: ({startedBeforeDan.length})
-        {startedBeforeDan.join(",")}
-      </div>
       <div>
         <pre style={{ whiteSpace: "pre-wrap" }}>{printF(getData)}</pre>
       </div>
-      {data.length !== 0 && (
+      <div>
+        {data.length !== 0 && (
+          <div>
+            <div>
+              <h1>num_employees</h1>
+              <LineChart data={mapped} width={1000} height={300}>
+                <XAxis
+                  dataKey={"t"}
+                  type={"number"}
+                  scale={"time"}
+                  domain={[mapped[0].t]}
+                  tickFormatter={(tick) =>
+                    new Date(tick * 1000).toLocaleDateString()
+                  }
+                />
+                <YAxis />
+                <Tooltip
+                  labelFormatter={(tick) =>
+                    new Date(tick * 1000).toLocaleDateString()
+                  }
+                />
+                <Line type="linear" dataKey={"num_employees"} />
+              </LineChart>
+            </div>
+            <div>
+              <h1>
+                percent_here_in_months
+                <input
+                  type={"range"}
+                  defaultValue={months}
+                  min={6}
+                  max={60}
+                  onChange={(e) => updateMonths(parseInt(e.target.value))}
+                />{" "}
+                {months}
+              </h1>
+              <LineChart data={mapped} width={1000} height={300}>
+                <XAxis
+                  dataKey={"t"}
+                  type={"number"}
+                  scale={"time"}
+                  domain={[mapped[0].t]}
+                  tickFormatter={(tick) =>
+                    new Date(tick * 1000).toLocaleDateString()
+                  }
+                />
+                <YAxis />
+                <Tooltip
+                  labelFormatter={(tick) =>
+                    new Date(tick * 1000).toLocaleDateString()
+                  }
+                />
+                <Line type="linear" dataKey={"percent_here_in_months"} />
+              </LineChart>
+            </div>
+            <div>
+              <h1>
+                percentile_tenure
+                <input
+                  type={"range"}
+                  defaultValue={percentile}
+                  min={0.1}
+                  max={1}
+                  step={0.01}
+                  onChange={(e) => updatePercentile(parseFloat(e.target.value))}
+                />{" "}
+                {percentile}
+              </h1>
+              <LineChart data={mapped} width={1000} height={300}>
+                <XAxis
+                  dataKey={"t"}
+                  type={"number"}
+                  scale={"time"}
+                  domain={[mapped[0].t]}
+                  tickFormatter={(tick) =>
+                    new Date(tick * 1000).toLocaleDateString()
+                  }
+                />
+                <YAxis />
+                <Tooltip
+                  labelFormatter={(tick) =>
+                    new Date(tick * 1000).toLocaleDateString()
+                  }
+                />
+                <Line type="linear" dataKey={"percentile_tenure"} />
+              </LineChart>
+            </div>
+          </div>
+        )}
+      </div>
+      <div>
         <div>
-          <div>
-            <h1>num_employees</h1>
-            <LineChart data={mapped} width={1000} height={300}>
-              <XAxis
-                dataKey={"t"}
-                type={"number"}
-                scale={"time"}
-                domain={[mapped[0].t]}
-                tickFormatter={(tick) =>
-                  new Date(tick * 1000).toLocaleDateString()
-                }
-              />
-              <YAxis />
-              <Tooltip
-                labelFormatter={(tick) =>
-                  new Date(tick * 1000).toLocaleDateString()
-                }
-              />
-              <Line type="linear" dataKey={"num_employees"} />
-            </LineChart>
-          </div>
-          <div>
-            <h1>
-              percent_here_in_months
-              <input
-                type={"range"}
-                defaultValue={months}
-                min={6}
-                max={60}
-                onChange={(e) => updateMonths(parseInt(e.target.value))}
-              />{" "}
-              {months}
-            </h1>
-            <LineChart data={mapped} width={1000} height={300}>
-              <XAxis
-                dataKey={"t"}
-                type={"number"}
-                scale={"time"}
-                domain={[mapped[0].t]}
-                tickFormatter={(tick) =>
-                  new Date(tick * 1000).toLocaleDateString()
-                }
-              />
-              <YAxis />
-              <Tooltip
-                labelFormatter={(tick) =>
-                  new Date(tick * 1000).toLocaleDateString()
-                }
-              />
-              <Line type="linear" dataKey={"percent_here_in_months"} />
-            </LineChart>
-          </div>
-          <div>
-            <h1>
-              percentile_tenure
-              <input
-                type={"range"}
-                defaultValue={percentile}
-                min={0.1}
-                max={1}
-                step={0.01}
-                onChange={(e) => updatePercentile(parseFloat(e.target.value))}
-              />{" "}
-              {percentile}
-            </h1>
-            <LineChart data={mapped} width={1000} height={300}>
-              <XAxis
-                dataKey={"t"}
-                type={"number"}
-                scale={"time"}
-                domain={[mapped[0].t]}
-                tickFormatter={(tick) =>
-                  new Date(tick * 1000).toLocaleDateString()
-                }
-              />
-              <YAxis />
-              <Tooltip
-                labelFormatter={(tick) =>
-                  new Date(tick * 1000).toLocaleDateString()
-                }
-              />
-              <Line type="linear" dataKey={"percentile_tenure"} />
-            </LineChart>
-          </div>
+          {[true, false].map((t, i) => (
+            <div key={i}>
+              <label>
+                <input
+                  type="radio"
+                  checked={sortByStart === t}
+                  value={t.toString()}
+                  onChange={(e) =>
+                    updateSortByStart(e.currentTarget.value === "true")
+                  }
+                />
+                <span>{t ? "sortByStart" : "sortByEnd"}</span>
+              </label>
+            </div>
+          ))}
         </div>
-      )}
+        <table>
+          <tbody>
+            {data
+              .map((d) => ({ d, s: sortByStart ? d.start : d.end }))
+              .sort((a, b) => a.s - b.s)
+              .map(({ d }) => d)
+              .map((d, i) => (
+                <tr key={i}>
+                  <td>{d.username || d.id}</td>
+                  <td>{new Date(d.start * 1000).toDateString()}</td>
+                  <td>{new Date(d.end * 1000).toDateString()}</td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
