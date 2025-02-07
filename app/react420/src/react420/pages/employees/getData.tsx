@@ -5,8 +5,12 @@ export type DataType = {
   username?: string;
 };
 
-export default function getData(token: string): Promise<void> {
-  // token = JSON.parse(localStorage.localConfig_v2).teams[slack_route].token
+export default function getData(): Promise<void> {
+  const urlParts = window.location.href.split("/");
+  const slack_route = urlParts[4];
+  const channel = urlParts[5];
+  const token = JSON.parse(localStorage.localConfig_v2).teams[slack_route]
+    .token;
   const data: DataType[] = [];
   var latest = (Date.now() / 1000).toFixed(6);
   const tsCutoff = "1514764800";
@@ -53,7 +57,7 @@ export default function getData(token: string): Promise<void> {
       }&slack_route=T024H38KR&_x_version_ts=1729825956&_x_frontend_build_type=current&_x_desktop_ia=4&_x_gantry=true&fp=59&_x_num_retries=0`,
       {
         token,
-        channel: "C3G14QKPS",
+        channel,
         limit: 28,
         ignore_replies: true,
         latest,

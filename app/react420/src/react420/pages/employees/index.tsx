@@ -46,9 +46,7 @@ export default function Employees() {
   return (
     <div>
       <div>
-        <pre style={{ whiteSpace: "pre-wrap" }}>
-          {printF(getData, JSON.stringify(process.env.REACT_APP_TOKEN))}
-        </pre>
+        <pre style={{ whiteSpace: "pre-wrap" }}>{printF(getData)}</pre>
       </div>
       {data.length !== 0 && (
         <div>
