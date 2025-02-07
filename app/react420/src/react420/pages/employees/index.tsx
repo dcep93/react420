@@ -140,6 +140,7 @@ export default function Employees() {
         )}
       </div>
       <div>
+        <div>{data.length} entries</div>
         <div>
           {["sortByStart", "sortByEnd", "sortByTenure"].map((t, i) => (
             <div key={i}>
