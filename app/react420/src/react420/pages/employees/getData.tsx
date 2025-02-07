@@ -87,9 +87,13 @@ export default function getData(): Promise<any> {
         throw err;
       });
   }
-  type JoinType = { ts: string; user: string; subtype: string };
-  function getJoins(joins: JoinType[], latest: string): Promise<JoinType[]> {
-    clog(["getJoins", new Date(parseFloat(latest) * 1000), joins.length]);
+  type JoinType = { [user: string]: string };
+  function getJoins(joins: JoinType, latest: string): Promise<JoinType> {
+    clog([
+      "getJoins",
+      new Date(parseFloat(latest) * 1000),
+      Object.keys(joins).length,
+    ]);
     return fetchMultipart(
       `https://quizlet.slack.com/api/conversations.history?_x_id=1d71f1f5-${
         Date.now() / 1000
@@ -101,33 +105,48 @@ export default function getData(): Promise<any> {
         ignore_replies: true,
         latest,
       }
-    ).then((resp: { messages: JoinType[] }) =>
-      resp.messages.length === 0
-        ? joins
-        : Promise.resolve()
-            .then(() =>
-              resp.messages.filter(
-                (result) => result.subtype === "channel_join"
-              )
-            )
-            .then((additionalJoins) =>
-              Promise.resolve()
-                .then(() => new Promise((resolve) => setTimeout(resolve, 100)))
-                .then(() =>
-                  getJoins(
-                    joins.concat(additionalJoins),
-                    resp.messages[resp.messages.length - 1].ts
-                  )
+    ).then(
+      (resp: {
+        messages: {
+          ts: string;
+          user: string;
+          subtype: string;
+          reply_users: string[];
+        }[];
+      }) =>
+        resp.messages.length === 0
+          ? joins
+          : Promise.resolve()
+              .then(() =>
+                resp.messages.flatMap((result) =>
+                  result.subtype === "channel_join"
+                    ? [[result.user, result.ts]]
+                    : (result.reply_users || []).map((user) => [
+                        user,
+                        result.ts,
+                      ])
                 )
-            )
+              )
+              .then((additionalJoins) =>
+                Promise.resolve()
+                  .then(
+                    () => new Promise((resolve) => setTimeout(resolve, 100))
+                  )
+                  .then(() =>
+                    getJoins(
+                      { ...joins, ...Object.fromEntries(additionalJoins) },
+                      resp.messages[resp.messages.length - 1].ts
+                    )
+                  )
+              )
     );
   }
-  function getDataFromJoins(joins: JoinType[]): Promise<DataType[]> {
+  function getDataFromJoins(joins: JoinType): Promise<DataType[]> {
     var count = 0;
     return Promise.resolve()
       .then(() => new Promise((resolve) => setTimeout(resolve, 30 * 1000)))
       .then(() =>
-        joins.map((join) =>
+        Object.entries(joins).map(([user, timestamp]) =>
           Promise.resolve()
             .then(() =>
               fetchMultipart(
@@ -137,7 +156,7 @@ export default function getData(): Promise<any> {
                 {
                   token,
                   module: "messages",
-                  query: `from:<@${join.user}>`,
+                  query: `from:<@${user}>`,
                   page: 1,
                   count: 1,
                   sort: "timestamp",
@@ -153,9 +172,9 @@ export default function getData(): Promise<any> {
               }) => latestResp.items?.[0]?.messages[0]
             )
             .then((latestMessage) =>
-              (!latestMessage || join.ts > tsCutoff
+              (!latestMessage || timestamp > tsCutoff
                 ? Promise.resolve({
-                    items: [{ messages: [join] }],
+                    items: [{ messages: [{ ts: timestamp }] }],
                   })
                 : fetchMultipart(
                     `https://quizlet.slack.com/api/search.modules.messages?_x_id=ee504506-${
@@ -164,7 +183,7 @@ export default function getData(): Promise<any> {
                     {
                       token,
                       module: "messages",
-                      query: `from:<@${join.user}>`,
+                      query: `from:<@${user}>`,
                       page: 1,
                       count: 1,
                       sort: "timestamp",
@@ -178,21 +197,21 @@ export default function getData(): Promise<any> {
                   }[];
                 }) =>
                   ((_) => ({
-                    id: join.user,
+                    id: user,
                     username: latestMessage?.username,
                     start: parseFloat(earliestResp.items[0].messages[0].ts),
-                    end: parseFloat(latestMessage?.ts || join.ts),
+                    end: parseFloat(latestMessage?.ts || timestamp),
                   }))(
                     clog({
-                      user: latestMessage?.username || join,
+                      user: latestMessage?.username || user,
                       count: count++,
-                      total: joins.length,
+                      total: Object.keys(joins).length,
                     })
                   )
               )
             )
             .catch((err) => {
-              clog({ err, join });
+              clog({ err, user });
               throw err;
             })
         )
@@ -200,7 +219,7 @@ export default function getData(): Promise<any> {
       .then((ps) => Promise.all(ps));
   }
   return Promise.resolve()
-    .then(() => getJoins([], (Date.now() / 1000).toFixed(6)))
+    .then(() => getJoins({}, (Date.now() / 1000).toFixed(6)))
     .then(getDataFromJoins)
     .then((data) => JSON.stringify(data))
     .then(clog);
