@@ -121,10 +121,9 @@ export default function getData(): Promise<any> {
                 resp.messages.flatMap((result) =>
                   result.subtype === "channel_join"
                     ? [[result.user, result.ts]]
-                    : (result.reply_users || []).map((user) => [
-                        user,
-                        result.ts,
-                      ])
+                    : (result.reply_users || [])
+                        .filter((user) => user.startsWith("U"))
+                        .map((user) => [user, result.ts])
                 )
               )
               .then((additionalJoins) =>
