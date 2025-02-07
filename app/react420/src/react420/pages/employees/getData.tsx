@@ -16,36 +16,76 @@ export default function getData(): Promise<any> {
     setTimeout(() => console.log(t), 500);
     return t;
   }
+
+  var errored = false;
+  var tickets = 4;
+  const sleepMs = tickets * 1000;
+  const queue: (() => void)[] = [];
+  function getTicket(): Promise<void> {
+    if (errored) throw new Error("cancelled");
+    if (tickets > 0) {
+      tickets--;
+      return Promise.resolve();
+    }
+    return new Promise((resolve) => queue.push(resolve));
+  }
+
+  function releaseTicket<T>(t: T) {
+    const p = queue.shift();
+    if (p) {
+      setTimeout(p, sleepMs);
+    } else {
+      tickets++;
+    }
+    return t;
+  }
+
   function fetchMultipart(
     url: string,
     body: { [key: string]: any }
   ): Promise<any> {
     const boundary = "----WebKitFormBoundaryCva22mPHuiAmPFzo";
-    return fetch(url, {
-      headers: {
-        accept: "*/*",
-        "accept-language": "en-US,en;q=0.9",
-        "content-type": `multipart/form-data; boundary=${boundary}`,
-        "sec-ch-ua":
-          '"Chromium";v="130", "Google Chrome";v="130", "Not?A_Brand";v="99"',
-        "sec-ch-ua-mobile": "?0",
-        "sec-ch-ua-platform": '"macOS"',
-        "sec-fetch-dest": "empty",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "same-site",
-      },
-      referrerPolicy: "no-referrer",
-      body:
-        Object.entries(body)
-          .map(([k, v]) => `"${k}"\r\n\r\n${v}\r\n`)
-          .concat("")
-          .reverse()
-          .join(`--${boundary}\r\nContent-Disposition: form-data; name=`) +
-        `--${boundary}--\r\n`,
-      method: "POST",
-      mode: "cors",
-      credentials: "include",
-    }).then((resp) => resp.json());
+    return Promise.resolve()
+      .then(getTicket)
+      .then(() =>
+        fetch(url, {
+          headers: {
+            accept: "*/*",
+            "accept-language": "en-US,en;q=0.9",
+            "content-type": `multipart/form-data; boundary=${boundary}`,
+            "sec-ch-ua":
+              '"Chromium";v="130", "Google Chrome";v="130", "Not?A_Brand";v="99"',
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": '"macOS"',
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-site",
+          },
+          referrerPolicy: "no-referrer",
+          body:
+            Object.entries(body)
+              .map(([k, v]) => `"${k}"\r\n\r\n${v}\r\n`)
+              .concat("")
+              .reverse()
+              .join(`--${boundary}\r\nContent-Disposition: form-data; name=`) +
+            `--${boundary}--\r\n`,
+          method: "POST",
+          mode: "cors",
+          credentials: "include",
+        })
+      )
+      .then(releaseTicket)
+      .then((resp) => {
+        if (!resp.ok) {
+          errored = true;
+        }
+        return resp;
+      })
+      .then((resp) => resp.json())
+      .catch((err) => {
+        errored = true;
+        throw err;
+      });
   }
   type JoinType = { ts: string; user: string; subtype: string };
   function getJoins(joins: JoinType[], latest: string): Promise<JoinType[]> {
@@ -66,20 +106,26 @@ export default function getData(): Promise<any> {
         ? joins
         : Promise.resolve()
             .then(() =>
-              resp.messages
-                .filter((result) => result.subtype === "channel_join")
-                .map(clog)
+              resp.messages.filter(
+                (result) => result.subtype === "channel_join"
+              )
             )
             .then((additionalJoins) =>
-              getJoins(
-                joins.concat(additionalJoins),
-                resp.messages[resp.messages.length - 1].ts
-              )
+              Promise.resolve()
+                .then(() => new Promise((resolve) => setTimeout(resolve, 100)))
+                .then(() =>
+                  getJoins(
+                    joins.concat(additionalJoins),
+                    resp.messages[resp.messages.length - 1].ts
+                  )
+                )
             )
     );
   }
   function getDataFromJoins(joins: JoinType[]): Promise<DataType[]> {
+    var count = 0;
     return Promise.resolve()
+      .then(() => new Promise((resolve) => setTimeout(resolve, 30 * 1000)))
       .then(() =>
         joins.map((join) =>
           Promise.resolve()
@@ -104,7 +150,7 @@ export default function getData(): Promise<any> {
                 items: {
                   messages: { ts: string; username: string }[];
                 }[];
-              }) => latestResp.items[0]?.messages[0]
+              }) => latestResp.items?.[0]?.messages[0]
             )
             .then((latestMessage) =>
               (!latestMessage || join.ts > tsCutoff
@@ -136,11 +182,17 @@ export default function getData(): Promise<any> {
                     username: latestMessage?.username,
                     start: parseFloat(earliestResp.items[0].messages[0].ts),
                     end: parseFloat(latestMessage?.ts || join.ts),
-                  }))(clog(latestMessage?.username || join))
+                  }))(
+                    clog({
+                      user: latestMessage?.username || join,
+                      count: count++,
+                      total: joins.length,
+                    })
+                  )
               )
             )
             .catch((err) => {
-              clog(join);
+              clog({ err, join });
               throw err;
             })
         )
