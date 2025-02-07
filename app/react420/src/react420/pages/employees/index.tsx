@@ -43,7 +43,7 @@ export default function Employees() {
         };
       })
   );
-  const [sortByStart, updateSortByStart] = useState(true);
+  const [sortKey, updateSortKey] = useState("sortByStart");
   return (
     <div>
       <div>
@@ -141,18 +141,16 @@ export default function Employees() {
       </div>
       <div>
         <div>
-          {[true, false].map((t, i) => (
+          {["sortByStart", "sortByEnd", "sortByTenure"].map((t, i) => (
             <div key={i}>
               <label>
                 <input
                   type="radio"
-                  checked={sortByStart === t}
-                  value={t.toString()}
-                  onChange={(e) =>
-                    updateSortByStart(e.currentTarget.value === "true")
-                  }
+                  checked={t === sortKey}
+                  value={t}
+                  onChange={(e) => updateSortKey(e.currentTarget.value)}
                 />
-                <span>{t ? "sortByStart" : "sortByEnd"}</span>
+                <span>{t}</span>
               </label>
             </div>
           ))}
@@ -160,7 +158,14 @@ export default function Employees() {
         <table>
           <tbody>
             {data
-              .map((d) => ({ d, s: sortByStart ? d.start : d.end }))
+              .map((d) => ({
+                d,
+                s: {
+                  sortByStart: d.start,
+                  sortByEnd: -d.end,
+                  sortByTenure: d.start - d.end,
+                }[sortKey]!,
+              }))
               .sort((a, b) => a.s - b.s)
               .map(({ d }) => d)
               .map((d, i) => (
@@ -168,6 +173,10 @@ export default function Employees() {
                   <td>{d.username || d.id}</td>
                   <td>{new Date(d.start * 1000).toDateString()}</td>
                   <td>{new Date(d.end * 1000).toDateString()}</td>
+                  <td>
+                    {((d.end - d.start) / (60 * 60 * 24 * 365)).toFixed(2)}{" "}
+                    years
+                  </td>
                 </tr>
               ))}
           </tbody>
