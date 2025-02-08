@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 var initialized = false;
 var errored = false;
+var moves = 0;
 
 export default function SpotifyShuffler() {
   const [now, updateNow] = useState(0);
@@ -19,6 +20,7 @@ export default function SpotifyShuffler() {
       return;
     }
     errored = false;
+    moves = 0;
     shuffle().then(updateData);
   }, [now]);
   return (
@@ -42,6 +44,7 @@ function moveSong(
   endIndex: number,
   desiredOrder: number[]
 ): Promise<void> {
+  moves++;
   desiredOrder.splice(endIndex, 0, ...desiredOrder.splice(startIndex, count));
   //   console.log("moveSong", {
   //     startIndex,
@@ -53,14 +56,14 @@ function moveSong(
 }
 
 function shuffle(): Promise<string> {
-  const num = 1024;
+  const num = 8;
   const desiredOrder = Array.from(new Array(num))
     .map((_, i) => ({ i, r: Math.random() }))
     .sort((a, b) => a.r - b.r)
     .map(({ i }) => i);
 
   const fs = {
-    basic,
+    // basic,
     divideAndConquer,
   };
 
@@ -78,6 +81,7 @@ function shuffle(): Promise<string> {
     .then((os) => Object.fromEntries(os))
     .then((o) => ({
       ...o,
+      moves,
       num,
       errored,
       desiredOrder: JSON.stringify(desiredOrder),
@@ -128,8 +132,7 @@ async function basic(
 function divideAndConquer(
   desiredOrder: number[],
   startIndex: number,
-  endIndex: number,
-  isSubCall: boolean = false
+  endIndex: number
 ): Promise<number> {
   //   console.log("divideAndConquer");
   const min = 2;
@@ -146,36 +149,79 @@ function divideAndConquer(
     .then((ps) => Promise.all(ps))
     .then((counts) => Math.max(...counts))
     .then(async (count) => {
-      const pivot = desiredOrder
-        .map((value, currentIndex) => ({ value, currentIndex }))
-        .filter(
-          ({ currentIndex }) =>
-            currentIndex >= midpoint && currentIndex < endIndex
-        )
-        .reverse()
-        .find(
-          ({ value, currentIndex }) =>
-            value < desiredOrder[2 * midpoint - currentIndex - 1]
-        );
-      if (pivot === undefined) {
-        return count;
-      }
-      if (isSubCall) {
-        console.log(pivot);
-        throw new Error("isSubCall");
-      }
-      await moveSong(
-        midpoint,
-        pivot.currentIndex - midpoint + 1,
+      const distributeCount = await distribute(
+        desiredOrder,
         startIndex,
-        desiredOrder
+        midpoint,
+        endIndex
       );
       const subcounts = await divideAndConquer(
         desiredOrder,
         startIndex,
-        endIndex,
-        true
+        endIndex
       );
-      return subcounts + count + 1;
+
+      return count + distributeCount + subcounts;
     });
+}
+
+async function distribute(
+  desiredOrder: number[],
+  startIndex: number,
+  midpoint: number,
+  endIndex: number
+): Promise<number> {
+  desiredOrder = [0, 7, 1, 2, 3, 6, 4, 5];
+  startIndex = 4;
+  endIndex = 8;
+  midpoint = 6;
+  const getPivot = () =>
+    desiredOrder
+      .map((value, currentIndex) => ({ value, currentIndex }))
+      .filter(
+        ({ currentIndex }) =>
+          currentIndex >= midpoint && currentIndex < endIndex
+      )
+      .reverse()
+      .find(
+        ({ value, currentIndex }) =>
+          value < desiredOrder[2 * midpoint - currentIndex - 1]
+      );
+  const pivot = getPivot();
+  if (pivot === undefined) {
+    return 0;
+  }
+  // todo move closer to destination
+  const quarterPoint =
+    midpoint + Math.floor((pivot.currentIndex - midpoint) / 2);
+  const prev = desiredOrder.slice();
+  await moveSong(
+    quarterPoint,
+    pivot.currentIndex - quarterPoint,
+    startIndex,
+    // Math.floor((startIndex + midpoint + midpoint) / 3),
+    desiredOrder
+  );
+  await moveSong(
+    midpoint,
+    quarterPoint - midpoint,
+    startIndex,
+    // Math.floor((startIndex + startIndex + midpoint) / 3),
+    desiredOrder
+  );
+  const subPivot = getPivot();
+  if (subPivot !== undefined) {
+    console.log({
+      startIndex,
+      endIndex,
+      midpoint,
+      pivot,
+      subPivot,
+      desiredOrder,
+      prev,
+      quarterPoint,
+    });
+    throw new Error("subpivot");
+  }
+  return 2;
 }
