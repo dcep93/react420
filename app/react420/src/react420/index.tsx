@@ -7,6 +7,7 @@ import DeployLocks from "./pages/deployLocks";
 import Employees from "./pages/employees";
 import firebaseHacker from "./pages/firebaseHacker";
 import quizletEmbed from "./pages/quizletEmbed";
+import SpotifyShuffler from "./pages/spotifyShuffler";
 
 const pages = {
   chords,
@@ -15,6 +16,7 @@ const pages = {
   Charades,
   DeployLocks,
   Employees,
+  SpotifyShuffler,
 };
 
 function index() {
