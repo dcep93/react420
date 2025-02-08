@@ -1,16 +1,25 @@
 import { useEffect, useState } from "react";
 
-var errored = true;
+var initialized = false;
+var errored = false;
 
 export default function SpotifyShuffler() {
   const [now, updateNow] = useState(0);
   const [data, updateData] = useState("");
   useEffect(() => {
-    if (errored) {
-      errored = false;
+    if (now) {
+      initialized = true;
+    }
+    if (!initialized) {
+      initialized = true;
       return;
     }
-    shuffle(now).then(updateData);
+    if (!now) {
+      updateNow(Date.now());
+      return;
+    }
+    errored = false;
+    shuffle().then(updateData);
   }, [now]);
   return (
     <div>
@@ -33,21 +42,25 @@ function moveSong(
   endIndex: number,
   desiredOrder: number[]
 ): Promise<void> {
-  console.log("moveSong", { startIndex, count, endIndex });
   desiredOrder.splice(endIndex, 0, ...desiredOrder.splice(startIndex, count));
+  //   console.log("moveSong", {
+  //     startIndex,
+  //     count,
+  //     endIndex,
+  //     x: desiredOrder.slice(),
+  //   });
   return Promise.resolve();
 }
 
-function shuffle(now: number): Promise<string> {
-  const num = 8;
-  var desiredOrder = Array.from(new Array(num))
+function shuffle(): Promise<string> {
+  const num = 1024;
+  const desiredOrder = Array.from(new Array(num))
     .map((_, i) => ({ i, r: Math.random() }))
     .sort((a, b) => a.r - b.r)
     .map(({ i }) => i);
-  desiredOrder = [0, 1, 6, 7, 5, 3, 4, 2];
 
   const fs = {
-    // basic,
+    basic,
     divideAndConquer,
   };
 
@@ -66,7 +79,6 @@ function shuffle(now: number): Promise<string> {
     .then((o) => ({
       ...o,
       num,
-      now,
       errored,
       desiredOrder: JSON.stringify(desiredOrder),
     }))
@@ -116,14 +128,16 @@ async function basic(
 function divideAndConquer(
   desiredOrder: number[],
   startIndex: number,
-  endIndex: number
+  endIndex: number,
+  isSubCall: boolean = false
 ): Promise<number> {
-  const min = 4;
+  //   console.log("divideAndConquer");
+  const min = 2;
   const size = endIndex - startIndex;
   if (size <= min) {
     return basic(desiredOrder, startIndex, endIndex);
   }
-  const midpoint = startIndex + Math.floor(size / 2);
+  const midpoint = Math.floor((startIndex + endIndex) / 2);
   return Promise.resolve()
     .then(() => [
       divideAndConquer(desiredOrder, startIndex, midpoint),
@@ -132,125 +146,36 @@ function divideAndConquer(
     .then((ps) => Promise.all(ps))
     .then((counts) => Math.max(...counts))
     .then(async (count) => {
-      const secondHalf = await distributeWindow(
-        desiredOrder,
-        midpoint,
-        endIndex,
-        startIndex,
-        midpoint
-      );
-      const firstHalf = await distributeWindow(
-        desiredOrder,
-        startIndex,
-        midpoint,
-        midpoint,
-        endIndex
-      );
-      if (!errored && find(desiredOrder, startIndex, endIndex) !== undefined) {
-        console.log("error divideAndConquer", {
-          startIndex,
-          endIndex,
-          desiredOrder,
-        });
-        errored = true;
+      const pivot = desiredOrder
+        .map((value, currentIndex) => ({ value, currentIndex }))
+        .filter(
+          ({ currentIndex }) =>
+            currentIndex >= midpoint && currentIndex < endIndex
+        )
+        .reverse()
+        .find(
+          ({ value, currentIndex }) =>
+            value < desiredOrder[2 * midpoint - currentIndex - 1]
+        );
+      if (pivot === undefined) {
+        return count;
       }
-      return count + secondHalf + firstHalf;
-    });
-}
-
-async function distributeWindow(
-  desiredOrder: number[],
-  sourceStart: number,
-  sourceEnd: number,
-  targetStart: number,
-  targetEnd: number
-): Promise<number> {
-  if (errored) return -1;
-  console.log("distributing", {
-    sourceStart,
-    sourceEnd,
-    targetStart,
-    targetEnd,
-  });
-  const getShouldDistribute = () =>
-    desiredOrder
-      .map((value, currentIndex) => ({ value, currentIndex }))
-      .filter(
-        ({ currentIndex }) =>
-          currentIndex >= sourceStart && currentIndex < sourceEnd
-      )
-      .map((o) => ({
-        ...o,
-        direction: o.value >= targetEnd ? 1 : o.value < targetStart ? -1 : 0,
-      }))
-      .filter(({ direction }) =>
-        sourceStart < targetStart ? direction >= 0 : direction <= 0
+      if (isSubCall) {
+        console.log(pivot);
+        throw new Error("isSubCall");
+      }
+      await moveSong(
+        midpoint,
+        pivot.currentIndex - midpoint + 1,
+        startIndex,
+        desiredOrder
       );
-
-  const shouldDistribute = getShouldDistribute();
-  console.log({
-    shouldDistribute,
-    desiredOrder,
-    x: desiredOrder
-      .map((value, currentIndex) => ({ value, currentIndex }))
-      .filter(
-        ({ currentIndex }) =>
-          currentIndex >= sourceStart && currentIndex < sourceEnd
-      )
-      .map((o) => ({
-        ...o,
-        direction:
-          o.currentIndex >= targetEnd
-            ? 1
-            : o.currentIndex < targetStart
-            ? -1
-            : 0,
-      })),
-  });
-  if (shouldDistribute.length === 0) {
-    return 0;
-  }
-  const sourceMid = sourceStart + Math.floor((sourceEnd - sourceStart) / 2);
-  const targetMidpoint = desiredOrder
-    .map((value, currentIndex) => ({ value, currentIndex }))
-    .filter(
-      ({ currentIndex }) =>
-        currentIndex >= targetStart && currentIndex < targetEnd
-    )
-    .find(({ value }) => value >= desiredOrder[sourceMid]);
-  if (
-    targetMidpoint === undefined ||
-    targetMidpoint.currentIndex === targetStart
-  ) {
-    await moveSong(
-      sourceStart,
-      sourceEnd - sourceStart,
-      targetStart,
-      desiredOrder
-    );
-    return 1;
-  }
-  const secondHalf = await distributeWindow(
-    desiredOrder,
-    sourceMid,
-    sourceEnd,
-    targetMidpoint.currentIndex,
-    targetEnd + sourceEnd - sourceMid
-  );
-  const firstHalf = await distributeWindow(
-    desiredOrder,
-    sourceStart,
-    sourceMid,
-    targetStart,
-    targetMidpoint.currentIndex + sourceMid - sourceStart
-  );
-  const checkShouldDistribute = getShouldDistribute();
-  if (checkShouldDistribute.length > 0) {
-    errored = true;
-    console.log("error distributeWindow", {
-      checkShouldDistribute,
-      desiredOrder,
+      const subcounts = await divideAndConquer(
+        desiredOrder,
+        startIndex,
+        endIndex,
+        true
+      );
+      return subcounts + count + 1;
     });
-  }
-  return secondHalf + firstHalf;
 }
