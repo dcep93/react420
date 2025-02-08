@@ -1,16 +1,27 @@
 import { useEffect, useState } from "react";
 
-var errored = false;
+var errored = true;
 
 export default function SpotifyShuffler() {
   const [now, updateNow] = useState(0);
   const [data, updateData] = useState("");
   useEffect(() => {
+    if (errored) {
+      errored = false;
+      return;
+    }
     shuffle(now).then(updateData);
   }, [now]);
   return (
     <div>
-      <div onClick={() => updateNow(Date.now())}>spotifyShuffler</div>
+      <div
+        onClick={() => {
+          errored = false;
+          updateNow(Date.now());
+        }}
+      >
+        spotifyShuffler
+      </div>
       <pre>{data}</pre>
     </div>
   );
@@ -22,19 +33,23 @@ function moveSong(
   endIndex: number,
   desiredOrder: number[]
 ): Promise<void> {
+  console.log("moveSong", { startIndex, count, endIndex });
   desiredOrder.splice(endIndex, 0, ...desiredOrder.splice(startIndex, count));
   return Promise.resolve();
 }
 
 function shuffle(now: number): Promise<string> {
-  const num = 64;
-  const desiredOrder = [29, 38, 52, 56, 60, 18, 41, 34];
-  // Array.from(new Array(num))
-  //   .map((_, i) => ({ i, r: Math.random() }))
-  //   .sort((a, b) => a.r - b.r)
-  //   .map(({ i }) => i);
+  const num = 8;
+  var desiredOrder = Array.from(new Array(num))
+    .map((_, i) => ({ i, r: Math.random() }))
+    .sort((a, b) => a.r - b.r)
+    .map(({ i }) => i);
+  desiredOrder = [0, 1, 6, 7, 5, 3, 4, 2];
 
-  const fs = { basic, divideAndConquer };
+  const fs = {
+    // basic,
+    divideAndConquer,
+  };
 
   return Promise.resolve()
     .then(() =>
@@ -48,7 +63,13 @@ function shuffle(now: number): Promise<string> {
     .then((ps) => Promise.all(ps))
     .then((os) => os.map(({ fn, count }) => [fn, count]))
     .then((os) => Object.fromEntries(os))
-    .then((o) => ({ ...o, num, now, errored }))
+    .then((o) => ({
+      ...o,
+      num,
+      now,
+      errored,
+      desiredOrder: JSON.stringify(desiredOrder),
+    }))
     .then((o) => JSON.stringify(o, null, 2));
 }
 
@@ -66,7 +87,7 @@ function find(
         currentIndex >= startIndex && currentIndex < endIndex
     )
     .sort((a, b) => a.value - b.value)
-    .map((o, sortedIndex) => ({ ...o, sortedIndex }))
+    .map((o, sortedIndex) => ({ ...o, sortedIndex: sortedIndex + startIndex }))
     .find((o) => o.sortedIndex !== o.currentIndex);
 }
 
@@ -75,6 +96,7 @@ async function basic(
   startIndex: number,
   endIndex: number
 ): Promise<number> {
+  //   console.log("basic", { startIndex, endIndex });
   var count = 0;
   while (count <= endIndex - startIndex) {
     const found = find(desiredOrder, startIndex, endIndex);
@@ -82,12 +104,11 @@ async function basic(
       return Promise.resolve(count);
     }
     count++;
-    await moveSong(
-      found.currentIndex + startIndex,
-      1,
-      found.sortedIndex + startIndex,
-      desiredOrder
-    );
+    await moveSong(found.currentIndex, 1, found.sortedIndex, desiredOrder);
+  }
+  if (!errored) {
+    errored = true;
+    console.log("error basic", { startIndex, endIndex, desiredOrder });
   }
   return Promise.resolve(-1);
 }
@@ -111,30 +132,29 @@ function divideAndConquer(
     .then((ps) => Promise.all(ps))
     .then((counts) => Math.max(...counts))
     .then(async (count) => {
-      count += await distributeWindow(
-        desiredOrder,
-        startIndex,
-        midpoint,
-        midpoint,
-        endIndex
-      );
-      count += await distributeWindow(
+      const secondHalf = await distributeWindow(
         desiredOrder,
         midpoint,
         endIndex,
         startIndex,
         midpoint
       );
+      const firstHalf = await distributeWindow(
+        desiredOrder,
+        startIndex,
+        midpoint,
+        midpoint,
+        endIndex
+      );
       if (!errored && find(desiredOrder, startIndex, endIndex) !== undefined) {
-        console.log({
-          desiredOrder,
+        console.log("error divideAndConquer", {
           startIndex,
           endIndex,
-          x: desiredOrder.filter((_, i) => i >= startIndex && i < endIndex),
+          desiredOrder,
         });
         errored = true;
       }
-      return count;
+      return count + secondHalf + firstHalf;
     });
 }
 
@@ -145,20 +165,48 @@ async function distributeWindow(
   targetStart: number,
   targetEnd: number
 ): Promise<number> {
-  const shouldDistribute = desiredOrder
-    .map((value, currentIndex) => ({ value, currentIndex }))
-    .filter(
-      ({ currentIndex }) =>
-        currentIndex >= sourceStart && currentIndex < sourceEnd
-    )
-    .map((o) => ({
-      ...o,
-      direction:
-        o.currentIndex >= targetEnd ? 1 : o.currentIndex < targetStart ? -1 : 0,
-    }))
-    .filter(({ direction }) =>
-      sourceStart < targetStart ? direction >= 0 : direction <= 0
-    );
+  if (errored) return -1;
+  console.log("distributing", {
+    sourceStart,
+    sourceEnd,
+    targetStart,
+    targetEnd,
+  });
+  const getShouldDistribute = () =>
+    desiredOrder
+      .map((value, currentIndex) => ({ value, currentIndex }))
+      .filter(
+        ({ currentIndex }) =>
+          currentIndex >= sourceStart && currentIndex < sourceEnd
+      )
+      .map((o) => ({
+        ...o,
+        direction: o.value >= targetEnd ? 1 : o.value < targetStart ? -1 : 0,
+      }))
+      .filter(({ direction }) =>
+        sourceStart < targetStart ? direction >= 0 : direction <= 0
+      );
+
+  const shouldDistribute = getShouldDistribute();
+  console.log({
+    shouldDistribute,
+    desiredOrder,
+    x: desiredOrder
+      .map((value, currentIndex) => ({ value, currentIndex }))
+      .filter(
+        ({ currentIndex }) =>
+          currentIndex >= sourceStart && currentIndex < sourceEnd
+      )
+      .map((o) => ({
+        ...o,
+        direction:
+          o.currentIndex >= targetEnd
+            ? 1
+            : o.currentIndex < targetStart
+            ? -1
+            : 0,
+      })),
+  });
   if (shouldDistribute.length === 0) {
     return 0;
   }
@@ -196,5 +244,13 @@ async function distributeWindow(
     targetStart,
     targetMidpoint.currentIndex + sourceMid - sourceStart
   );
+  const checkShouldDistribute = getShouldDistribute();
+  if (checkShouldDistribute.length > 0) {
+    errored = true;
+    console.log("error distributeWindow", {
+      checkShouldDistribute,
+      desiredOrder,
+    });
+  }
   return secondHalf + firstHalf;
 }
