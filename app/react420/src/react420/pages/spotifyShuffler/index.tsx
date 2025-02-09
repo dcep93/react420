@@ -59,6 +59,8 @@ function shuffle(): Promise<string> {
     .sort((a, b) => a.r - b.r)
     .map(({ i }) => i);
 
+  console.log({ desiredOrder });
+
   const fs = {
     // basic,
     divideAndConquer,

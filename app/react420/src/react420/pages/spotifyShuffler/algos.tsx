@@ -73,11 +73,14 @@ export function divideAndConquer(
       midpoint,
       endIndex
     );
-    const subcounts = await getSubcount();
+    const subcount = await getSubcount();
 
-    return count + distributeCount + subcounts;
+    return count + distributeCount + subcount;
   });
 }
+
+// const x = [2, 6, 3, 4, 0, 5, 7, 1];
+// divideAndConquer(x, 0, 4).then(() => console.log(x));
 
 async function distribute(
   desiredOrder: number[],
@@ -95,7 +98,7 @@ async function distribute(
     ) {
       return undefined;
     }
-    return desiredOrder
+    const pivot = desiredOrder
       .map((value, currentIndex) => ({ value, currentIndex }))
       .filter(
         ({ currentIndex }) =>
@@ -103,23 +106,43 @@ async function distribute(
       )
       .reverse()
       .find(({ value }) => value < midpoint);
+    if (pivot === undefined) {
+      const destination = desiredOrder
+        .map((value, currentIndex) => ({ value, currentIndex }))
+        .filter(
+          ({ currentIndex }) =>
+            currentIndex >= startIndex && currentIndex < midpoint
+        )
+        .find(({ value }) => value >= endIndex);
+      if (destination === undefined) {
+        return undefined;
+      }
+      return {
+        currentIndex: endIndex - 1,
+        destinationIndex: destination.currentIndex,
+      };
+    }
+    const destinationIndex = desiredOrder
+      .map((value, currentIndex) => ({ value, currentIndex }))
+      .filter(
+        ({ currentIndex }) =>
+          currentIndex >= startIndex && currentIndex < midpoint
+      )
+      .find(({ value }) => value >= startIndex)!.currentIndex;
+    return {
+      ...pivot,
+      destinationIndex,
+    };
   };
   const pivot = getPivot();
   if (pivot === undefined) {
     return 0;
   }
-  const destinationIndex = desiredOrder
-    .map((value, currentIndex) => ({ value, currentIndex }))
-    .filter(
-      ({ currentIndex }) =>
-        currentIndex >= startIndex && currentIndex < midpoint
-    )
-    .find(({ value }) => value >= startIndex)!.currentIndex;
   const prev = desiredOrder.slice();
   await moveSong(
     midpoint,
     pivot.currentIndex - midpoint + 1,
-    destinationIndex,
+    pivot.destinationIndex,
     desiredOrder
   );
   const subPivot = getPivot();
@@ -131,7 +154,6 @@ async function distribute(
       pivot,
       subPivot,
       desiredOrder,
-      destinationIndex,
       prev,
     });
     throw new Error("distribute.subPivot");
