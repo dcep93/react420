@@ -9,11 +9,8 @@ export async function basic(
   var count = 0;
   for (let i = startIndex; i < endIndex; i++) {
     const currentIndex = desiredOrder
-      .map((value, currentIndex) => ({ value, currentIndex }))
-      .filter(
-        ({ currentIndex }) =>
-          currentIndex >= startIndex && currentIndex < endIndex
-      )
+      .slice(startIndex, endIndex)
+      .map((value, i) => ({ value, currentIndex: i + startIndex }))
       .sort((a, b) => a.value - b.value)[i - startIndex].currentIndex;
     if (currentIndex === i) {
       continue;
@@ -40,18 +37,29 @@ export function divideAndConquer(
   //   console.log("divideAndConquer");
   const min = 2;
   const size = endIndex - startIndex;
-  if (size <= min) {
-    return distribute(desiredOrder, startIndex, endIndex);
-  }
+  // if (size <= min) {
+  //   if (size <= 1) {
+  //     return Promise.resolve(0);
+  //   }
+  //   return Promise.resolve().then(async () => {
+  //     if (desiredOrder[startIndex] > desiredOrder[startIndex + 1]) {
+  //       await moveSong(startIndex + 1, 1, startIndex, desiredOrder);
+  //       return 1;
+  //     }
+  //     return 0;
+  //   });
+  // }
   const midpoint = getMidpoint(startIndex, endIndex);
   const getSubcount = () =>
-    Promise.resolve()
-      .then(() => [
-        divideAndConquer(desiredOrder, startIndex, midpoint),
-        divideAndConquer(desiredOrder, midpoint, endIndex),
-      ])
-      .then((ps) => Promise.all(ps))
-      .then((counts) => Math.max(...counts));
+    size <= min
+      ? Promise.resolve(0)
+      : Promise.resolve()
+          .then(() => [
+            divideAndConquer(desiredOrder, startIndex, midpoint),
+            divideAndConquer(desiredOrder, midpoint, endIndex),
+          ])
+          .then((ps) => Promise.all(ps))
+          .then((counts) => Math.max(...counts));
   return getSubcount().then(async (count) => {
     const x = [];
     x.push(desiredOrder.slice());
@@ -63,11 +71,12 @@ export function divideAndConquer(
     x.push(desiredOrder.slice());
     const subcount = await getSubcount();
     x.push(desiredOrder.slice());
+    x.push([]);
 
     const subdistribute = await distribute(desiredOrder, startIndex, endIndex);
     x.push(desiredOrder.slice());
 
-    console.log({ x, startIndex, endIndex });
+    console.log({ x, startIndex, endIndex, subdistribute });
 
     if (subdistribute !== 0) {
       throw new Error("divideAndConquer.subdistribute");
@@ -75,11 +84,8 @@ export function divideAndConquer(
 
     const isValid =
       desiredOrder
-        .map((value, currentIndex) => ({ value, currentIndex }))
-        .filter(
-          ({ currentIndex }) =>
-            currentIndex >= startIndex && currentIndex < endIndex
-        )
+        .slice(startIndex, endIndex)
+        .map((value, i) => ({ value, currentIndex: i + startIndex }))
         .map(({ value, currentIndex }) =>
           value < startIndex
             ? currentIndex - endIndex
@@ -92,6 +98,7 @@ export function divideAndConquer(
           Number.NEGATIVE_INFINITY as number | null
         ) !== null;
     if (!isValid) {
+      console.log({ startIndex, endIndex });
       throw new Error("divideAndConquer.isValid");
     }
 
@@ -100,8 +107,9 @@ export function divideAndConquer(
 }
 
 setTimeout(() => {
-  const x = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 10, 1, 15];
-  distribute(x, 12, 16).then((d) => console.log(x, d));
+  var x = [7, 3, 4, 1, 9, 5, 15, 6, 10, 13, 8, 11, 14, 0, 2, 12];
+  x = [8, 10, 4, 2, 5, 11, 6, 0, 7, 15, 3, 12, 9, 13, 14, 1];
+  divideAndConquer(x, 8, 12).then((d) => console.log(x, d));
 }, 100);
 
 async function distribute(
@@ -126,20 +134,14 @@ async function distribute(
       return undefined;
     }
     const pivot = desiredOrder
-      .map((value, currentIndex) => ({ value, currentIndex }))
-      .filter(
-        ({ currentIndex }) =>
-          currentIndex >= midpoint && currentIndex < endIndex
-      )
+      .slice(midpoint, endIndex)
+      .map((value, i) => ({ value, currentIndex: i + midpoint }))
       .reverse()
       .find(({ value }) => value < midpoint);
     if (pivot === undefined) {
       const destination = desiredOrder
-        .map((value, currentIndex) => ({ value, currentIndex }))
-        .filter(
-          ({ currentIndex }) =>
-            currentIndex >= startIndex && currentIndex < midpoint
-        )
+        .slice(startIndex, midpoint)
+        .map((value, i) => ({ value, currentIndex: i + startIndex }))
         .find(({ value }) => value >= endIndex);
       if (destination === undefined) {
         return undefined;
@@ -151,11 +153,8 @@ async function distribute(
       };
     }
     const destinationIndex = desiredOrder
-      .map((value, currentIndex) => ({ value, currentIndex }))
-      .filter(
-        ({ currentIndex }) =>
-          currentIndex >= startIndex && currentIndex < midpoint
-      )
+      .slice(startIndex, midpoint)
+      .map((value, i) => ({ value, currentIndex: i + startIndex }))
       .find(({ value }) => value >= startIndex)!.currentIndex;
     return {
       pivot,
@@ -169,22 +168,57 @@ async function distribute(
     if (midpoint === endIndex) {
       return undefined;
     }
-    if (desiredOrder[midpoint - 1] < endIndex) {
-      return undefined;
-    }
     if (desiredOrder[midpoint] >= endIndex) {
       return undefined;
     }
     const destinationIndex = desiredOrder
-      .map((value, currentIndex) => ({ value, currentIndex }))
-      .filter(
-        ({ currentIndex }) =>
-          currentIndex >= startIndex && currentIndex < midpoint
-      )
-      .find(({ value }) => value >= endIndex)!.currentIndex;
+      .slice(startIndex, midpoint)
+      .map((value, i) => ({ value, currentIndex: i + startIndex }))
+      .find(({ value }) => value >= endIndex)?.currentIndex;
+    if (destinationIndex === undefined) {
+      return undefined;
+    }
     return {
       sourceIndex: midpoint,
       size: endIndex - midpoint,
+      destinationIndex,
+    };
+  };
+  // patch one by one
+  // could be improved
+  const getZPivot = () => {
+    const sourceIndex = desiredOrder
+      .slice(startIndex, endIndex)
+      .map((value, i) => ({ value, currentIndex: i + startIndex }))
+      .slice(1)
+      .reverse()
+      .find(
+        ({ value, currentIndex }) => value < desiredOrder[currentIndex - 1]
+      )?.currentIndex;
+    if (sourceIndex === undefined) {
+      return undefined;
+    }
+    const destinationIndex = desiredOrder
+      .slice(startIndex, sourceIndex)
+      .map((value, i) => ({ value, currentIndex: i + startIndex }))
+      .find(
+        ({ value, currentIndex }) =>
+          currentIndex === startIndex || value < desiredOrder[sourceIndex]
+      )?.currentIndex;
+    if (destinationIndex === undefined) {
+      return undefined;
+    }
+    const sourceEnd = (
+      desiredOrder
+        .slice(sourceIndex + 1, endIndex)
+        .map((value, i) => ({ value, currentIndex: i + sourceIndex + 1 }))
+        .find(({ value }) => value > desiredOrder[sourceIndex - 1]) || {
+        currentIndex: endIndex,
+      }
+    ).currentIndex;
+    return {
+      sourceIndex,
+      size: sourceEnd - sourceIndex,
       destinationIndex,
     };
   };
@@ -199,15 +233,19 @@ async function distribute(
     );
     midpoint += xPivot.size;
   }
-  const yPivot = getYPivot();
-  if (yPivot !== undefined) {
+  for (let i = startIndex; i < endIndex; i++) {
+    const zPivot = getZPivot();
+    if (zPivot === undefined) {
+      return count;
+    }
     count++;
     await moveSong(
-      yPivot.sourceIndex,
-      yPivot.size,
-      yPivot.destinationIndex,
+      zPivot.sourceIndex,
+      zPivot.size,
+      zPivot.destinationIndex,
       desiredOrder
     );
   }
-  return count;
+  console.log({ startIndex, endIndex });
+  throw new Error("distribute.getZPivot.max");
 }
