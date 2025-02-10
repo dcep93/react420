@@ -92,9 +92,6 @@ export function divideAndConquer(
   });
 }
 
-const x = [4, 5, 1, 2, 6, 7, 0, 3];
-divideAndConquer(x, 4, 8).then(() => console.log(x));
-
 async function distribute(
   desiredOrder: number[],
   startIndex: number,
@@ -104,6 +101,9 @@ async function distribute(
   var midpoint = getMidpoint(startIndex, endIndex);
   // move < midpoint from right to left
   const getXPivot = () => {
+    if (desiredOrder[midpoint] >= midpoint) {
+      return undefined;
+    }
     if (desiredOrder[midpoint - 1] < startIndex) {
       return undefined;
     }
@@ -154,23 +154,22 @@ async function distribute(
   };
   // move >= endIndex from left to right
   const getYPivot = () => {
+    if (midpoint === endIndex) {
+      return undefined;
+    }
+    if (desiredOrder[midpoint - 1] < endIndex) {
+      return undefined;
+    }
     if (desiredOrder[midpoint] >= endIndex) {
       return undefined;
     }
-    if (
-      desiredOrder[midpoint - 1] < endIndex &&
-      desiredOrder[midpoint] >= midpoint
-    ) {
-      return undefined;
-    }
-    const destinationIndex =
-      desiredOrder
-        .map((value, currentIndex) => ({ value, currentIndex }))
-        .filter(
-          ({ currentIndex }) =>
-            currentIndex >= startIndex && currentIndex < midpoint
-        )
-        .find(({ value }) => value > endIndex)!.currentIndex - 1;
+    const destinationIndex = desiredOrder
+      .map((value, currentIndex) => ({ value, currentIndex }))
+      .filter(
+        ({ currentIndex }) =>
+          currentIndex >= startIndex && currentIndex < midpoint
+      )
+      .find(({ value }) => value >= endIndex)!.currentIndex;
     return {
       sourceIndex: midpoint,
       size: endIndex - midpoint,

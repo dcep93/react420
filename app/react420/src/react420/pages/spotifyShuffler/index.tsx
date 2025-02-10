@@ -62,7 +62,7 @@ export function moveSong(
 }
 
 function shuffle(): Promise<string> {
-  const num = 8;
+  const num = 16;
   const desiredOrder = Array.from(new Array(num))
     .map((_, i) => ({ i, r: Math.random() }))
     .sort((a, b) => a.r - b.r)
