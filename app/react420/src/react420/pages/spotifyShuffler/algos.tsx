@@ -37,18 +37,18 @@ export function divideAndConquer(
   //   console.log("divideAndConquer");
   const min = 2;
   const size = endIndex - startIndex;
-  // if (size <= min) {
-  //   if (size <= 1) {
-  //     return Promise.resolve(0);
-  //   }
-  //   return Promise.resolve().then(async () => {
-  //     if (desiredOrder[startIndex] > desiredOrder[startIndex + 1]) {
-  //       await moveSong(startIndex + 1, 1, startIndex, desiredOrder);
-  //       return 1;
-  //     }
-  //     return 0;
-  //   });
-  // }
+  if (size <= min) {
+    if (size <= 1) {
+      return Promise.resolve(0);
+    }
+    return Promise.resolve().then(async () => {
+      if (desiredOrder[startIndex] > desiredOrder[startIndex + 1]) {
+        await moveSong(startIndex + 1, 1, startIndex, desiredOrder);
+        return 1;
+      }
+      return 0;
+    });
+  }
   const midpoint = getMidpoint(startIndex, endIndex);
   const getSubcount = () =>
     size <= min
@@ -108,8 +108,8 @@ export function divideAndConquer(
 
 setTimeout(() => {
   var x = [7, 3, 4, 1, 9, 5, 15, 6, 10, 13, 8, 11, 14, 0, 2, 12];
-  x = [8, 10, 4, 2, 5, 11, 6, 0, 7, 15, 3, 12, 9, 13, 14, 1];
-  divideAndConquer(x, 8, 12).then((d) => console.log(x, d));
+  x = [0, 0, 0, 0, 0, 0, 0, 0, 12, 7, 8, 4, 1, 11, 2, 6];
+  divideAndConquer(x, 8, 16).then((d) => console.log(x, d));
 }, 100);
 
 async function distribute(
@@ -117,6 +117,7 @@ async function distribute(
   startIndex: number,
   endIndex: number
 ): Promise<number> {
+  const d = desiredOrder.slice();
   var count = 0;
   var midpoint = getMidpoint(startIndex, endIndex);
   // move < midpoint from right to left
@@ -201,6 +202,7 @@ async function distribute(
     const destinationIndex = desiredOrder
       .slice(startIndex, sourceIndex)
       .map((value, i) => ({ value, currentIndex: i + startIndex }))
+      .reverse()
       .find(
         ({ value, currentIndex }) =>
           currentIndex === startIndex || value < desiredOrder[sourceIndex]
@@ -233,8 +235,10 @@ async function distribute(
     );
     midpoint += xPivot.size;
   }
+  console.log({ startIndex, endIndex, d });
   for (let i = startIndex; i < endIndex; i++) {
     const zPivot = getZPivot();
+    console.log({ zPivot, x: desiredOrder.slice() });
     if (zPivot === undefined) {
       return count;
     }
