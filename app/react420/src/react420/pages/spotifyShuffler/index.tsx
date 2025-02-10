@@ -14,7 +14,7 @@ export default function SpotifyShuffler() {
       return;
     }
     if (!now) {
-      // updateNow(Date.now());
+      updateNow(Date.now());
       return;
     }
     errored = false;
@@ -23,14 +23,14 @@ export default function SpotifyShuffler() {
   }, [now]);
   return (
     <div>
-      <div
+      <button
         onClick={() => {
           errored = false;
           updateNow(Date.now());
         }}
       >
         spotifyShuffler
-      </div>
+      </button>
       <pre>{data}</pre>
     </div>
   );
@@ -62,7 +62,7 @@ export function moveSong(
 }
 
 function shuffle(): Promise<string> {
-  const num = 16;
+  const num = 1024;
   const desiredOrder = Array.from(new Array(num))
     .map((_, i) => ({ i, r: Math.random() }))
     .sort((a, b) => a.r - b.r)
@@ -71,7 +71,7 @@ function shuffle(): Promise<string> {
   console.log({ desiredOrder });
 
   const fs = {
-    // basic,
+    basic,
     divideAndConquer,
   };
 
