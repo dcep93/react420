@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { basic, divideAndConquer } from "./algos";
+import { getTicket, releaseTicket } from "./ticketer";
 
 export default function SpotifyShuffler() {
   const [now, updateNow] = useState(0);
   const [data, updateData] = useState("");
   useEffect(() => {
-    return;
     if (now) {
       initialized = true;
     }
@@ -14,7 +14,7 @@ export default function SpotifyShuffler() {
       return;
     }
     if (!now) {
-      updateNow(Date.now());
+      // updateNow(Date.now());
       return;
     }
     errored = false;
@@ -36,22 +36,29 @@ export default function SpotifyShuffler() {
   );
 }
 
-// todo lock
 export function moveSong(
   startIndex: number,
   count: number,
   endIndex: number,
   desiredOrder: number[]
 ): Promise<void> {
-  moves++;
-  desiredOrder.splice(endIndex, 0, ...desiredOrder.splice(startIndex, count));
-  //   console.log("moveSong", {
-  //     startIndex,
-  //     count,
-  //     endIndex,
-  //     x: desiredOrder.slice(),
-  //   });
-  return Promise.resolve();
+  return Promise.resolve()
+    .then(getTicket)
+    .then(() => {
+      //   console.log("moveSong", {
+      //     startIndex,
+      //     count,
+      //     endIndex,
+      //     x: desiredOrder.slice(),
+      //   });
+      moves++;
+      desiredOrder.splice(
+        endIndex,
+        0,
+        ...desiredOrder.splice(startIndex, count)
+      );
+    })
+    .then(releaseTicket);
 }
 
 function shuffle(): Promise<string> {

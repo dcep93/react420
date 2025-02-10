@@ -92,6 +92,9 @@ export function divideAndConquer(
   });
 }
 
+const x = [4, 5, 1, 2, 6, 7, 0, 3];
+divideAndConquer(x, 4, 8).then(() => console.log(x));
+
 async function distribute(
   desiredOrder: number[],
   startIndex: number,
