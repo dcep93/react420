@@ -103,7 +103,6 @@ async function distribute(
   startIndex: number,
   endIndex: number
 ): Promise<number> {
-  var count = 0;
   var midpoint = getMidpoint(startIndex, endIndex);
   const size = desiredOrder
     .slice(startIndex, endIndex)
