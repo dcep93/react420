@@ -5,6 +5,7 @@ export default function SpotifyShuffler() {
   const [now, updateNow] = useState(0);
   const [data, updateData] = useState("");
   useEffect(() => {
+    return;
     if (now) {
       initialized = true;
     }
@@ -35,6 +36,7 @@ export default function SpotifyShuffler() {
   );
 }
 
+// todo lock
 export function moveSong(
   startIndex: number,
   count: number,
