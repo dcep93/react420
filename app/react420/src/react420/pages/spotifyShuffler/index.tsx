@@ -6,13 +6,6 @@ export default function SpotifyShuffler() {
   const [now, updateNow] = useState(0);
   const [data, updateData] = useState("");
   useEffect(() => {
-    if (now) {
-      initialized = true;
-    }
-    if (!initialized) {
-      initialized = true;
-      return;
-    }
     if (!now) {
       updateNow(Date.now());
       return;
@@ -108,7 +101,6 @@ function shuffle(): Promise<string> {
     .then((o) => JSON.stringify(o, null, 2));
 }
 
-var initialized = false;
 export var errored = false;
 export var moves = 0;
 
