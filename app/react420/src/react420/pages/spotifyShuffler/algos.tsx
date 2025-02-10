@@ -1,4 +1,4 @@
-import { errored, moveSong, setErrored } from ".";
+import { moveSong } from ".";
 
 export async function basic(
   desiredOrder: number[],
@@ -7,39 +7,21 @@ export async function basic(
 ): Promise<number> {
   //   console.log("basic", { startIndex, endIndex });
   var count = 0;
-  while (count <= endIndex - startIndex) {
-    const found = find(desiredOrder, startIndex, endIndex);
-    if (found === undefined) {
-      return Promise.resolve(count);
-    }
-    count++;
-    await moveSong(found.currentIndex, 1, found.sortedIndex, desiredOrder);
-  }
-  if (!errored) {
-    setErrored();
-    console.log("error basic", { startIndex, endIndex, desiredOrder });
-  }
-  return Promise.resolve(-1);
-
-  function find(
-    desiredOrder: number[],
-    startIndex: number,
-    endIndex: number
-  ): { currentIndex: number; sortedIndex: number } | undefined {
-    // todo more basic
-    return desiredOrder
+  for (let i = startIndex; i < endIndex; i++) {
+    const currentIndex = desiredOrder
       .map((value, currentIndex) => ({ value, currentIndex }))
       .filter(
         ({ currentIndex }) =>
           currentIndex >= startIndex && currentIndex < endIndex
       )
-      .sort((a, b) => a.value - b.value)
-      .map((o, sortedIndex) => ({
-        ...o,
-        sortedIndex: sortedIndex + startIndex,
-      }))
-      .find((o) => o.sortedIndex !== o.currentIndex);
+      .sort((a, b) => a.value - b.value)[i - startIndex].currentIndex;
+    if (currentIndex === i) {
+      continue;
+    }
+    count++;
+    await moveSong(currentIndex, 1, i, desiredOrder);
   }
+  return count;
 }
 
 function getMidpoint(startIndex: number, endIndex: number): number {
@@ -59,8 +41,7 @@ export function divideAndConquer(
   const min = 2;
   const size = endIndex - startIndex;
   if (size <= min) {
-    // todo only swap if in range
-    return basic(desiredOrder, startIndex, endIndex);
+    return distribute(desiredOrder, startIndex, endIndex);
   }
   const midpoint = getMidpoint(startIndex, endIndex);
   const getSubcount = () =>
@@ -72,25 +53,56 @@ export function divideAndConquer(
       .then((ps) => Promise.all(ps))
       .then((counts) => Math.max(...counts));
   return getSubcount().then(async (count) => {
+    const x = [];
+    x.push(desiredOrder.slice());
     const distributeCount = await distribute(
       desiredOrder,
       startIndex,
       endIndex
     );
+    x.push(desiredOrder.slice());
     const subcount = await getSubcount();
-
-    // todo verify
-    // [...unorderedBelowStart, ordered, ...unorderedAboveEnd]
+    x.push(desiredOrder.slice());
 
     const subdistribute = await distribute(desiredOrder, startIndex, endIndex);
+    x.push(desiredOrder.slice());
+
+    console.log({ x, startIndex, endIndex });
 
     if (subdistribute !== 0) {
       throw new Error("divideAndConquer.subdistribute");
     }
 
+    const isValid =
+      desiredOrder
+        .map((value, currentIndex) => ({ value, currentIndex }))
+        .filter(
+          ({ currentIndex }) =>
+            currentIndex >= startIndex && currentIndex < endIndex
+        )
+        .map(({ value, currentIndex }) =>
+          value < startIndex
+            ? currentIndex - endIndex
+            : value >= endIndex
+            ? currentIndex + endIndex
+            : value
+        )
+        .reduce(
+          (prev, curr) => (prev === null ? null : curr > prev ? curr : null),
+          Number.NEGATIVE_INFINITY as number | null
+        ) !== null;
+    if (!isValid) {
+      throw new Error("divideAndConquer.isValid");
+    }
+
     return count + distributeCount + subcount;
   });
 }
+
+setTimeout(() => {
+  const x = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 10, 1, 15];
+  distribute(x, 12, 16).then((d) => console.log(x, d));
+}, 100);
 
 async function distribute(
   desiredOrder: number[],
