@@ -171,6 +171,7 @@ export default function Employees() {
               .map(({ d }) => d)
               .map((d, i) => (
                 <tr key={i}>
+                  <td>{i + 1}</td>
                   <td>{d.username || d.id}</td>
                   <td>{new Date(d.start * 1000).toDateString()}</td>
                   <td>{new Date(d.end * 1000).toDateString()}</td>

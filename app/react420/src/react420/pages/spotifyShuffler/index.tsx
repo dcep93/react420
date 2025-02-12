@@ -55,7 +55,7 @@ export function moveSong(
 }
 
 function shuffle(): Promise<string> {
-  const num = 1024;
+  const num = 2056;
   const desiredOrder = Array.from(new Array(num))
     .map((_, i) => ({ i, r: Math.random() }))
     .sort((a, b) => a.r - b.r)
