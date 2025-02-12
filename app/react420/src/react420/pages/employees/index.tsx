@@ -44,6 +44,10 @@ export default function Employees() {
       })
   );
   const [sortKey, updateSortKey] = useState("sortByStart");
+  const [filterActive, updateFilterActive] = useState(false);
+  const tableData = data.filter(
+    (d) => !filterActive || Date.now() / 1000 - d.end < 60 * 60 * 24 * 90 // 90 days
+  );
   return (
     <div>
       <div>
@@ -140,7 +144,17 @@ export default function Employees() {
         )}
       </div>
       <div>
-        <div>{data.length} entries</div>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              checked={filterActive}
+              onChange={(e) => updateFilterActive(!filterActive)}
+            />{" "}
+            filter inactive 90 days
+          </label>
+        </div>
+        <div>{tableData.length} entries</div>
         <div>
           {["sortByStart", "sortByEnd", "sortByTenure"].map((t, i) => (
             <div key={i}>
@@ -158,7 +172,7 @@ export default function Employees() {
         </div>
         <table>
           <tbody>
-            {data
+            {tableData
               .map((d) => ({
                 d,
                 s: {
