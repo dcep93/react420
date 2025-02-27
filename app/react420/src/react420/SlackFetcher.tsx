@@ -15,7 +15,7 @@ export default function SlackFetcher(
     stop: (s: SlackMessage) => boolean
   ) {
     const sleepMs = 1000;
-    const urlParts = window.location.href.split("/");
+    const urlParts = window.location.href.split("?")[0].split("/");
     const slack_route = urlParts[4];
     const channel = urlParts[5];
     const token = JSON.parse(localStorage.localConfig_v2).teams[slack_route]

@@ -2,8 +2,7 @@ import { Bar, BarChart, Tooltip, XAxis, YAxis } from "recharts";
 import SlackFetcher, { SlackMessage } from "../../SlackFetcher";
 import data_raw from "./data.json";
 
-// data is nested to make private data a bit simpler to hide
-const data = (data_raw as unknown[])[0] as {
+const data = data_raw as {
   git: { timestamp: number; hash: string }[];
   slack: SlackMessage[];
 };
