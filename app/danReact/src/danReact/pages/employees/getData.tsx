@@ -7,7 +7,7 @@ export type DataType = {
 
 export default function getData(): Promise<any> {
   const tsCutoff = "1514764800";
-  const urlParts = window.location.href.split("/");
+  const urlParts = window.location.href.split("?")[0].split("/");
   const slack_route = urlParts[4];
   const channel = urlParts[5];
   const token = JSON.parse(localStorage.localConfig_v2).teams[slack_route]
@@ -113,6 +113,10 @@ export default function getData(): Promise<any> {
           user: string;
           subtype: string;
           reply_users: string[];
+          blocks?: {
+            elements: { elements: { type: string; user_id: string }[] }[];
+          }[];
+          reactions?: { users: string[] }[];
         }[];
       }) =>
         resp.messages.length === 0
@@ -122,22 +126,36 @@ export default function getData(): Promise<any> {
                 resp.messages.flatMap((result) =>
                   result.subtype === "channel_join"
                     ? [[result.user, result.ts]]
-                    : (result.reply_users || [])
+                    : ([] as string[])
+                        .concat(result.reply_users || [])
+                        .concat(
+                          (result.blocks || []).flatMap(({ elements }) =>
+                            (elements || [])
+                              .filter(({ elements }) => elements)
+                              .flatMap(({ elements }) => elements)
+                              .filter(({ type }) => type === "user")
+                              .map(({ user_id }) => user_id)
+                          )
+                        )
+                        .concat(
+                          (result.reactions || []).flatMap(({ users }) => users)
+                        )
                         .filter((user) => user.startsWith("U"))
                         .map((user) => [user, result.ts])
                 )
               )
               .then((additionalJoins) =>
-                Promise.resolve()
-                  .then(
-                    () => new Promise((resolve) => setTimeout(resolve, 100))
-                  )
-                  .then(() =>
-                    getJoins(
-                      { ...joins, ...Object.fromEntries(additionalJoins) },
-                      resp.messages[resp.messages.length - 1].ts
-                    )
-                  )
+                getJoins(
+                  {
+                    ...joins,
+                    ...Object.fromEntries(
+                      additionalJoins.sort(
+                        (a, b) => parseFloat(b[1]) - parseFloat(a[1])
+                      )
+                    ),
+                  },
+                  resp.messages[resp.messages.length - 1].ts
+                )
               )
     );
   }
