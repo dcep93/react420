@@ -7,6 +7,8 @@ import getData, { DataType } from "./getData";
 const data: DataType[] = data_raw;
 
 export default function Employees() {
+  const slackURL = "https://app.slack.com/client/T024H38KR/C3G14QKPS";
+
   const [months, updateMonths] = useState(24);
   const [percentile, updatePercentile] = useState(0.5);
   const tab: number[] = [];
@@ -50,6 +52,9 @@ export default function Employees() {
   );
   return (
     <div>
+      <div>
+        <a href={slackURL}>{slackURL}</a>
+      </div>
       <div>
         <pre style={{ whiteSpace: "pre-wrap" }}>{printF(getData)}</pre>
       </div>

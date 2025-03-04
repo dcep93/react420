@@ -19,7 +19,7 @@ export default function getData(): Promise<any> {
 
   var errored = false;
   var tickets = 4;
-  const sleepMs = tickets * 800;
+  const sleepMs = tickets * 750;
   const queue: (() => void)[] = [];
   function getTicket(): Promise<void> {
     if (errored) throw new Error("cancelled");
@@ -93,6 +93,7 @@ export default function getData(): Promise<any> {
       "getJoins",
       new Date(parseFloat(latest) * 1000),
       Object.keys(joins).length,
+      joins,
     ]);
     return fetchMultipart(
       `https://quizlet.slack.com/api/conversations.history?_x_id=1d71f1f5-${
@@ -101,7 +102,7 @@ export default function getData(): Promise<any> {
       {
         token,
         channel,
-        limit: 28,
+        limit: 100,
         ignore_replies: true,
         latest,
       }
