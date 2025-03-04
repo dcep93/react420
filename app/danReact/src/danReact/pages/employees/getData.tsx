@@ -32,7 +32,7 @@ export default function getData(): Promise<any> {
 
   function releaseTicket<T>(t: T) {
     const p = queue.shift();
-    if (p) {
+    if (p && !errored) {
       setTimeout(p, sleepMs);
     } else {
       tickets++;
