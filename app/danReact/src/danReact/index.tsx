@@ -22,7 +22,7 @@ const pages = {
 function index() {
   return (
     <BrowserRouter>
-      <Catalog location={"react420"} pages={pages} />
+      <Catalog location={"danReact"} pages={pages} />
     </BrowserRouter>
   );
 }

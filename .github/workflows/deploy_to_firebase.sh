@@ -13,16 +13,15 @@ SA_KEY="$1"
 # gcloud iam service-accounts keys create gac.json --iam-account "deployer-github@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com"
 # cat gac.json
 
-cd app/react420
+cd app/danReact
 
 export GOOGLE_APPLICATION_CREDENTIALS="gac.json"
-echo "$SA_KEY" > "$GOOGLE_APPLICATION_CREDENTIALS"
+echo "$SA_KEY" >"$GOOGLE_APPLICATION_CREDENTIALS"
 npm install -g firebase-tools
 gcloud auth activate-service-account --key-file="$GOOGLE_APPLICATION_CREDENTIALS"
 project_id="$(cat $GOOGLE_APPLICATION_CREDENTIALS | jq -r .project_id)"
 
-
-cat <<EOF > firebase.json
+cat <<EOF >firebase.json
 {
     "hosting": {
         "public": "build",
@@ -35,7 +34,7 @@ cat <<EOF > firebase.json
 }
 EOF
 
-cat <<EOF > .firebaserc
+cat <<EOF >.firebaserc
 {
     "projects": {
         "default": "$project_id"
