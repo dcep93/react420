@@ -8,10 +8,64 @@ const data: DataType[] = data_raw;
 
 export default function Employees() {
   const slackURL = "https://app.slack.com/client/T024H38KR/C3G14QKPS";
+  const displayStart = 1514764800;
 
   const [months, updateMonths] = useState(24);
   const [percentile, updatePercentile] = useState(0.5);
   const tab: number[] = [];
+  var num_started = 0;
+  var num_ended = 0;
+
+  const metrics: {
+    key: string;
+    f: (o: { t: number; future: number }) => number;
+    g: () => any;
+  }[] = [
+    { key: "num_employees", f: () => tab.length, g: () => null },
+    { key: "num_started", f: () => num_started, g: () => null },
+    { key: "num_ended", f: () => num_ended, g: () => null },
+    {
+      key: "percent_here_in_months",
+      f: (o) =>
+        o.future > Date.now() / 1000
+          ? 0
+          : tab.filter((index) => data[index].end >= o.future).length /
+            tab.length,
+      g: () => (
+        <span>
+          <input
+            type={"range"}
+            defaultValue={months}
+            min={6}
+            max={60}
+            onChange={(e) => updateMonths(parseInt(e.target.value))}
+          />{" "}
+          {months}
+        </span>
+      ),
+    },
+    {
+      key: "percentile_tenure",
+      f: (o) =>
+        (o.t -
+          data[tab[Math.floor((tab.length - 1) * (1 - percentile))]]?.start) /
+        (60 * 60 * 24 * 365),
+      g: () => (
+        <span>
+          <input
+            type={"range"}
+            defaultValue={percentile}
+            min={0.1}
+            max={1}
+            step={0.01}
+            onChange={(e) => updatePercentile(parseFloat(e.target.value))}
+          />{" "}
+          {percentile}
+        </span>
+      ),
+    },
+  ];
+
   const mapped = clog(
     data
       .flatMap((d, index) => [
@@ -19,32 +73,24 @@ export default function Employees() {
         { t: d.end, index, is_start: false },
       ])
       .filter((o) => o.t > 0) // t is 0 if never sent a message
-      .filter((o) => o.t < data[0].start - 60 * 60 * 24 * 10)
+      .filter((o) => o.t < Date.now() / 1000 - 60 * 60 * 24 * 30)
       .map((o) => ({ ...o, future: o.t + (months * 60 * 60 * 24 * 365) / 12 }))
       .sort((a, b) => a.t - b.t)
       .map((o) => {
         if (o.is_start) {
+          num_started++;
           tab.push(o.index);
         } else {
+          num_ended++;
           tab.splice(tab.indexOf(o.index), 1);
         }
         return {
           t: o.t,
           index: o.index,
-          num_employees: tab.length,
-          percent_here_in_months:
-            o.future > Date.now() / 1000
-              ? 0
-              : tab.filter((index) => data[index].end >= o.future).length /
-                tab.length,
-          percentile_tenure:
-            (o.t -
-              data[tab[Math.floor((tab.length - 1) * (1 - percentile))]]
-                ?.start) /
-            (60 * 60 * 24 * 365),
+          ...Object.fromEntries(metrics.map((m) => [m.key, m.f(o)])),
         };
       })
-  );
+  ).filter((o) => o.t >= displayStart);
   const [sortKey, updateSortKey] = useState("sortByStart");
   const [filterActive, updateFilterActive] = useState(false);
   const tableData = data.filter(
@@ -61,90 +107,32 @@ export default function Employees() {
       <div>
         {data.length !== 0 && (
           <div>
-            <div>
-              <h1>num_employees</h1>
-              <LineChart data={mapped} width={1000} height={300}>
-                <XAxis
-                  dataKey={"t"}
-                  type={"number"}
-                  scale={"time"}
-                  domain={[mapped[0].t]}
-                  tickFormatter={(tick) =>
-                    new Date(tick * 1000).toLocaleDateString()
-                  }
-                />
-                <YAxis />
-                <Tooltip
-                  labelFormatter={(tick) =>
-                    new Date(tick * 1000).toLocaleDateString()
-                  }
-                />
-                <Line type="linear" dataKey={"num_employees"} />
-              </LineChart>
-            </div>
-            <div>
-              <h1>
-                percent_here_in_months
-                <input
-                  type={"range"}
-                  defaultValue={months}
-                  min={6}
-                  max={60}
-                  onChange={(e) => updateMonths(parseInt(e.target.value))}
-                />{" "}
-                {months}
-              </h1>
-              <LineChart data={mapped} width={1000} height={300}>
-                <XAxis
-                  dataKey={"t"}
-                  type={"number"}
-                  scale={"time"}
-                  domain={[mapped[0].t]}
-                  tickFormatter={(tick) =>
-                    new Date(tick * 1000).toLocaleDateString()
-                  }
-                />
-                <YAxis />
-                <Tooltip
-                  labelFormatter={(tick) =>
-                    new Date(tick * 1000).toLocaleDateString()
-                  }
-                />
-                <Line type="linear" dataKey={"percent_here_in_months"} />
-              </LineChart>
-            </div>
-            <div>
-              <h1>
-                percentile_tenure
-                <input
-                  type={"range"}
-                  defaultValue={percentile}
-                  min={0.1}
-                  max={1}
-                  step={0.01}
-                  onChange={(e) => updatePercentile(parseFloat(e.target.value))}
-                />{" "}
-                {percentile}
-              </h1>
-              <LineChart data={mapped} width={1000} height={300}>
-                <XAxis
-                  dataKey={"t"}
-                  type={"number"}
-                  scale={"time"}
-                  domain={[mapped[0].t]}
-                  tickFormatter={(tick) =>
-                    new Date(tick * 1000).toLocaleDateString()
-                  }
-                />
-                <YAxis />
-                <Tooltip
-                  labelFormatter={(tick) =>
-                    new Date(tick * 1000).toLocaleDateString()
-                  }
-                />
-                <Line type="linear" dataKey={"percentile_tenure"} />
-              </LineChart>
-            </div>
+            {metrics.map((m, i) => (
+              <div key={i}>
+                <h1>
+                  <span>{m.key}</span>
+                  <span>{m.g()}</span>
+                </h1>
+                <LineChart data={mapped} width={1000} height={300}>
+                  <XAxis
+                    dataKey={"t"}
+                    type={"number"}
+                    scale={"time"}
+                    domain={[]}
+                    tickFormatter={(tick) =>
+                      new Date(tick * 1000).toLocaleDateString()
+                    }
+                  />
+                  <YAxis />
+                  <Tooltip
+                    labelFormatter={(tick) =>
+                      new Date(tick * 1000).toLocaleDateString()
+                    }
+                  />
+                  <Line type="linear" dataKey={m.key} />
+                </LineChart>
+              </div>
+            ))}
           </div>
         )}
       </div>
@@ -211,6 +199,3 @@ function clog<T>(t: T): T {
   console.log(t);
   return t;
 }
-// num employees
-// % of employees from x months ago that are still here
-// px tenure

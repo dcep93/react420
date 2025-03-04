@@ -19,7 +19,7 @@ export default function getData(): Promise<any> {
 
   var errored = false;
   var tickets = 4;
-  const sleepMs = tickets * 1000;
+  const sleepMs = tickets * 1500;
   const queue: (() => void)[] = [];
   function getTicket(): Promise<void> {
     if (errored) throw new Error("cancelled");
