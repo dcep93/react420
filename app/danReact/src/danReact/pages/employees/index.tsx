@@ -8,7 +8,6 @@ const data: DataType[] = data_raw;
 
 export default function Employees() {
   const slackURL = "https://app.slack.com/client/T024H38KR/C3G14QKPS";
-  const displayStart = 1514764800;
 
   const [months, updateMonths] = useState(24);
   const [percentile, updatePercentile] = useState(0.5);
@@ -18,19 +17,34 @@ export default function Employees() {
 
   const metrics: {
     key: string;
-    f: (o: { t: number; future: number }) => number;
+    f: (t: number) => number;
     g: () => any;
   }[] = [
-    { key: "num_employees", f: () => tab.length, g: () => null },
-    { key: "num_started", f: () => num_started, g: () => null },
-    { key: "num_ended", f: () => num_ended, g: () => null },
+    {
+      key: "num_employees",
+      f: (t) => data.filter((d) => d.start <= t && d.end >= t).length,
+      g: () => null,
+    },
+    {
+      key: "num_started_this_month",
+      f: (t) =>
+        data.filter((d) => Math.abs(d.start - t) <= 30 * 24 * 60 * 60).length,
+      g: () => null,
+    },
+    {
+      key: "num_ended_this_month",
+      f: (t) =>
+        data.filter((d) => Math.abs(d.end - t) <= 30 * 24 * 60 * 60).length,
+      g: () => null,
+    },
     {
       key: "percent_here_in_months",
-      f: (o) =>
-        o.future > Date.now() / 1000
-          ? 0
-          : tab.filter((index) => data[index].end >= o.future).length /
-            tab.length,
+      f: (t) =>
+        ((future) =>
+          future > Date.now() / 1000
+            ? 0
+            : tab.filter((index) => data[index].end >= future).length /
+              tab.length)(t + (months * 60 * 60 * 24 * 365) / 12),
       g: () => (
         <span>
           <input
@@ -46,8 +60,8 @@ export default function Employees() {
     },
     {
       key: "percentile_tenure",
-      f: (o) =>
-        (o.t -
+      f: (t) =>
+        (t -
           data[tab[Math.floor((tab.length - 1) * (1 - percentile))]]?.start) /
         (60 * 60 * 24 * 365),
       g: () => (
@@ -66,31 +80,30 @@ export default function Employees() {
     },
   ];
 
+  const sorted = data
+    .flatMap((d, index) => [
+      { t: d.start, index, is_start: true },
+      { t: d.end, index, is_start: false },
+    ])
+    .filter((o) => o.t < Date.now() / 1000 - 60 * 60 * 24 * 60) // lots of recency noise
+    .sort((a, b) => a.t - b.t);
+
   const mapped = clog(
-    data
-      .flatMap((d, index) => [
-        { t: d.start, index, is_start: true },
-        { t: d.end, index, is_start: false },
-      ])
-      .filter((o) => o.t > 0) // t is 0 if never sent a message
-      .filter((o) => o.t < Date.now() / 1000 - 60 * 60 * 24 * 30)
-      .map((o) => ({ ...o, future: o.t + (months * 60 * 60 * 24 * 365) / 12 }))
-      .sort((a, b) => a.t - b.t)
-      .map((o) => {
-        if (o.is_start) {
-          num_started++;
-          tab.push(o.index);
-        } else {
-          num_ended++;
-          tab.splice(tab.indexOf(o.index), 1);
-        }
-        return {
-          t: o.t,
-          index: o.index,
-          ...Object.fromEntries(metrics.map((m) => [m.key, m.f(o)])),
-        };
-      })
-  ).filter((o) => o.t >= displayStart);
+    sorted.map((o) => {
+      if (o.is_start) {
+        num_started++;
+        tab.push(o.index);
+      } else {
+        num_ended++;
+        tab.splice(tab.indexOf(o.index), 1);
+      }
+      return {
+        t: o.t,
+        index: o.index,
+        ...Object.fromEntries(metrics.map((m) => [m.key, m.f(o.t)])),
+      };
+    })
+  );
   const [sortKey, updateSortKey] = useState("sortByStart");
   const [filterActive, updateFilterActive] = useState(false);
   const tableData = data.filter(
@@ -113,7 +126,7 @@ export default function Employees() {
                   <span>{m.key}</span>
                   <span>{m.g()}</span>
                 </h1>
-                <LineChart data={mapped} width={1000} height={300}>
+                <LineChart data={mapped} width={1400} height={300}>
                   <XAxis
                     dataKey={"t"}
                     type={"number"}
