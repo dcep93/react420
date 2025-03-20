@@ -72,6 +72,9 @@ export default function MarchMadness() {
                   border: "2px solid black",
                   padding: "0.7em",
                   margin: "0.5em",
+                  backgroundColor: { CORRECT: "lightgreen", INCORRECT: "pink" }[
+                    o.p.outcomePicked.result
+                  ],
                 }}
               >
                 <div>
