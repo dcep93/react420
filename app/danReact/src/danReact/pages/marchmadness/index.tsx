@@ -126,14 +126,16 @@ export default function MarchMadness() {
                           {p.p.picked
                             ?.map(
                               (picker) =>
-                                `${picker.name} (${
-                                  competitorPicks[picker.entryIndex][
-                                    p.p.p.mappings.find(
-                                      (m) => m.type === "COMPETITOR_ID"
-                                    )!.value
-                                  ].filter(({ date }) => date > o.prop.date)
-                                    .length
-                                })`
+                                `${picker.name} (${competitorPicks[
+                                  picker.entryIndex
+                                ][
+                                  p.p.p.mappings.find(
+                                    (m) => m.type === "COMPETITOR_ID"
+                                  )!.value
+                                ]
+                                  .filter(({ date }) => date > o.prop.date)
+                                  .map(() => "x")
+                                  .join("")})`
                             )
                             .join(" / ")}
                         </div>
