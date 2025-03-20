@@ -1,5 +1,5 @@
-import matches_raw from "./matches.json";
-import picks_raw from "./picks.json";
+import picks_raw from "./group.json";
+import propositions_raw from "./propositions.json";
 
 const picks: {
   entries: {
@@ -13,13 +13,11 @@ const picks: {
     }[];
   }[];
 } = picks_raw;
-const matches: {
-  propositions: {
-    id: string;
-    date: number;
-    possibleOutcomes: { id: string; description: string }[];
-  }[];
-} = matches_raw;
+const propositions: {
+  id: string;
+  date: number;
+  possibleOutcomes: { id: string; description: string }[];
+}[] = propositions_raw;
 
 export default function MarchMadness() {
   return (
@@ -27,7 +25,7 @@ export default function MarchMadness() {
       <div>
         {[
           "https://fantasy.espn.com/games/tournament-challenge-bracket-2025/group?id=46bd58e9-75da-4c0c-8c95-e1712bab4d53",
-          "https://gambit-api.fantasy.espn.com/apis/v1/challenges/tournament-challenge-bracket-2025/?platform=chui&view=chui_default",
+          "https://gambit-api.fantasy.espn.com/apis/v1/propositions/?challengeId=257&platform=chui&view=chui_default",
         ].map((url, i) => (
           <div key={i}>
             <a href={url}>{url}</a>
@@ -63,12 +61,7 @@ export default function MarchMadness() {
             ((p) => ({
               names: outliers.map((o) => o.name),
               p,
-              prop: matches.propositions.find(
-                (pr) => pr.id === p.propositionId
-              ) || {
-                date: 0,
-                possibleOutcomes: [{ id: "", description: p.propositionId }],
-              },
+              prop: propositions.find((pr) => pr.id === p.propositionId)!,
             }))(outliers[0].p)
           )
           .sort((a, b) => a.prop.date - b.prop.date)
@@ -93,6 +86,7 @@ export default function MarchMadness() {
                     .map((o) => o.description)
                     .join(" > ")}
                 </div>
+                <div>{o.prop.id}</div>
                 <div>-</div>
                 <div>
                   {o.names.map((n, j) => (
