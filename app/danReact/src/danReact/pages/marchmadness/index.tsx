@@ -20,7 +20,11 @@ export default function MarchMadness() {
       id: string;
       date: number;
       correctOutcomes?: string[];
-      possibleOutcomes: { id: string; description: string }[];
+      possibleOutcomes: {
+        id: string;
+        description: string;
+        mappings: { type: string; value: string }[];
+      }[];
     }[]
   >(propositions_raw);
   useEffect(() => {
@@ -30,6 +34,27 @@ export default function MarchMadness() {
       .then((r) => r.json())
       .then(update);
   }, []);
+  const competitorPicks = Object.fromEntries(
+    picks.entries.map((e, entryIndex) => [
+      entryIndex,
+      groupByF(
+        e.picks
+          .map((p) => ({
+            p,
+            prop: propositions.find((prop) => prop.id === p.propositionId)!,
+          }))
+          .map((o) => ({
+            competitorId: o.prop.possibleOutcomes
+              .find(
+                (outcome) => outcome.id === o.p.outcomesPicked[0].outcomeId
+              )!
+              .mappings.find((m) => m.type === "COMPETITOR_ID")!.value,
+            date: o.prop.date,
+          })),
+        (o) => o.competitorId
+      ),
+    ])
+  );
   return (
     <div>
       <div>
@@ -49,7 +74,8 @@ export default function MarchMadness() {
           .map((prop) => ({
             prop,
             grouped: groupByF(
-              picks.entries.map((e) => ({
+              picks.entries.map((e, entryIndex) => ({
+                entryIndex,
                 name: e.name,
                 outcomeId: e.picks.find((p) => p.propositionId === prop.id)!
                   .outcomesPicked[0].outcomeId,
@@ -73,30 +99,47 @@ export default function MarchMadness() {
                   #{i + 1} {new Date(o.prop.date).toLocaleString()}
                 </div>
                 <div>-</div>
-                <table>
-                  <tbody>
-                    {o.prop.possibleOutcomes
-                      .map((p) => ({ p, picked: o.grouped[p.id] }))
-                      .map((p) => ({ p, s: p.picked?.length || 0 }))
-                      .sort((a, b) => a.s - b.s)
-                      .map((p, j) => (
-                        <tr key={j}>
-                          <td
-                            style={{
-                              backgroundColor: o.prop.correctOutcomes?.includes(
-                                p.p.p.id
-                              )
-                                ? "lightgreen"
-                                : undefined,
-                            }}
-                          >
-                            {p.p.p.description}
-                          </td>
-                          <td>{p.p.picked?.map((p) => p.name).join(" / ")}</td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "4em",
+                  }}
+                >
+                  {o.prop.possibleOutcomes
+                    .map((p) => ({ p, picked: o.grouped[p.id] }))
+                    .map((p) => ({ p, s: p.picked?.length || 0 }))
+                    .sort((a, b) => a.s - b.s)
+                    .map((p, j) => (
+                      <div key={j}>
+                        <div
+                          style={{
+                            backgroundColor: o.prop.correctOutcomes?.includes(
+                              p.p.p.id
+                            )
+                              ? "lightgreen"
+                              : undefined,
+                          }}
+                        >
+                          {p.p.p.description}
+                        </div>
+                        <div>
+                          {p.p.picked
+                            ?.map(
+                              (picker) =>
+                                `${picker.name} (${
+                                  competitorPicks[picker.entryIndex][
+                                    p.p.p.mappings.find(
+                                      (m) => m.type === "COMPETITOR_ID"
+                                    )!.value
+                                  ].filter(({ date }) => date > o.prop.date)
+                                    .length
+                                })`
+                            )
+                            .join(" / ")}
+                        </div>
+                      </div>
+                    ))}
+                </div>
               </div>
             </div>
           ))}
