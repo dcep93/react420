@@ -3339,7 +3339,7 @@
     "bye": false,
     "cardType": "DENSE",
     "challengeId": 257,
-    "date": 1742817600000,
+    "date": 1742616000000,
     "dateTBD": true,
     "description": "Who will win this matchup?",
     "display": true,
@@ -3347,10 +3347,22 @@
     "featured": false,
     "id": "29e94600-e4b2-11ef-b0aa-77c6c7c47db6",
     "mappings": [
+      { "type": "COMPETITION_ID", "value": "401746034" },
+      { "type": "EVENT_ID", "value": "401746034" },
       { "type": "SPORT", "value": "basketball" },
-      { "type": "LEAGUE", "value": "mens-college-basketball" }
+      { "type": "LEAGUE", "value": "mens-college-basketball" },
+      {
+        "type": "URL_DESKTOP",
+        "value": "https://www.espn.com/mens-college-basketball/game/_/gameId/401746034/tbd-wisconsin"
+      },
+      {
+        "type": "URL_MOBILE",
+        "value": "https://www.espn.com/mens-college-basketball/game/_/gameId/401746034/tbd-wisconsin"
+      },
+      { "type": "LIVE_SCORING_COMPETITION_ID", "value": "401746034" },
+      { "type": "VIDEO_ID", "value": "401746034" }
     ],
-    "name": "Round 2, Matchup 11",
+    "name": "TBD @ WIS",
     "outcomeCardType": "DENSE",
     "possibleOutcomes": [
       {
@@ -3369,8 +3381,6 @@
         "id": "29e94601-e4b2-11ef-b0aa-77c6c7c47db6",
         "mappings": [
           { "type": "COMPETITOR_ID", "value": "252" },
-          { "type": "LEAGUE", "value": "mens-college-basketball" },
-          { "type": "SPORT", "value": "basketball" },
           { "type": "COLOR_SECONDARY", "value": "#ffffff" },
           { "type": "COLOR_PRIMARY", "value": "#003da5" },
           {
@@ -3382,7 +3392,11 @@
           {
             "type": "IMAGE_SECONDARY",
             "value": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/252.png"
-          }
+          },
+          { "type": "COMPETITION_ID", "value": "401746034" },
+          { "type": "EVENT_ID", "value": "401746034" },
+          { "type": "SPORT", "value": "basketball" },
+          { "type": "LEAGUE", "value": "mens-college-basketball" }
         ],
         "matchupPosition": 1,
         "name": "BYU",
@@ -3411,8 +3425,6 @@
         "id": "29e94602-e4b2-11ef-b0aa-77c6c7c47db6",
         "mappings": [
           { "type": "COMPETITOR_ID", "value": "2670" },
-          { "type": "LEAGUE", "value": "mens-college-basketball" },
-          { "type": "SPORT", "value": "basketball" },
           { "type": "COLOR_SECONDARY", "value": "#000000" },
           { "type": "COLOR_PRIMARY", "value": "#ffaf00" },
           {
@@ -3424,7 +3436,11 @@
           {
             "type": "IMAGE_SECONDARY",
             "value": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2670.png"
-          }
+          },
+          { "type": "COMPETITION_ID", "value": "401746034" },
+          { "type": "EVENT_ID", "value": "401746034" },
+          { "type": "SPORT", "value": "basketball" },
+          { "type": "LEAGUE", "value": "mens-college-basketball" }
         ],
         "matchupPosition": 2,
         "name": "VCU",
@@ -3439,6 +3455,7 @@
       },
       {
         "abbrev": "WIS",
+        "additionalInfo": "27-9",
         "choiceCounters": [
           {
             "count": 11816737,
@@ -3449,12 +3466,10 @@
         ],
         "dateTBD": false,
         "description": "Wisconsin Badgers",
-        "displayOrder": 0,
+        "displayOrder": 2,
         "id": "29e94603-e4b2-11ef-b0aa-77c6c7c47db6",
         "mappings": [
           { "type": "COMPETITOR_ID", "value": "275" },
-          { "type": "LEAGUE", "value": "mens-college-basketball" },
-          { "type": "SPORT", "value": "basketball" },
           { "type": "COLOR_SECONDARY", "value": "#ffffff" },
           { "type": "COLOR_PRIMARY", "value": "#c4012f" },
           {
@@ -3466,7 +3481,11 @@
           {
             "type": "IMAGE_SECONDARY",
             "value": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/275.png"
-          }
+          },
+          { "type": "COMPETITION_ID", "value": "401746034" },
+          { "type": "EVENT_ID", "value": "401746034" },
+          { "type": "SPORT", "value": "basketball" },
+          { "type": "LEAGUE", "value": "mens-college-basketball" }
         ],
         "matchupPosition": 3,
         "name": "Wisconsin",
@@ -3474,7 +3493,7 @@
         "regionId": 3,
         "regionSeed": 3,
         "status": "OPEN",
-        "subType": "AWAY",
+        "subType": "HOME",
         "tieScoreWinner": false,
         "type": "COMPETITOR",
         "unpickable": false
@@ -3495,8 +3514,6 @@
         "id": "29e94604-e4b2-11ef-b0aa-77c6c7c47db6",
         "mappings": [
           { "type": "COMPETITOR_ID", "value": "149" },
-          { "type": "LEAGUE", "value": "mens-college-basketball" },
-          { "type": "SPORT", "value": "basketball" },
           { "type": "COLOR_SECONDARY", "value": "#666666" },
           { "type": "COLOR_PRIMARY", "value": "#751D4A" },
           {
@@ -3508,7 +3525,11 @@
           {
             "type": "IMAGE_SECONDARY",
             "value": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/149.png"
-          }
+          },
+          { "type": "COMPETITION_ID", "value": "401746034" },
+          { "type": "EVENT_ID", "value": "401746034" },
+          { "type": "SPORT", "value": "basketball" },
+          { "type": "LEAGUE", "value": "mens-college-basketball" }
         ],
         "matchupPosition": 4,
         "name": "Montana",
@@ -13878,7 +13899,7 @@
             "type": "IMAGE_PRIMARY",
             "value": "https://a.espncdn.com/i/teamlogos/ncaa/500/228.png"
           },
-          { "type": "BETTING_LINE", "value": "-290" }
+          { "type": "BETTING_LINE", "value": "-280" }
         ],
         "matchupPosition": 1,
         "name": "Clemson",
@@ -13924,7 +13945,7 @@
             "type": "IMAGE_PRIMARY",
             "value": "https://a.espncdn.com/i/teamlogos/ncaa/500/2377.png"
           },
-          { "type": "BETTING_LINE", "value": "240" }
+          { "type": "BETTING_LINE", "value": "230" }
         ],
         "matchupPosition": 2,
         "name": "McNeese",
