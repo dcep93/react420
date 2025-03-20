@@ -53,10 +53,7 @@ export default function MarchMadness() {
             )
           )
           .filter((picked) => Object.keys(picked).length !== 1)
-          .map(
-            (picked) =>
-              Object.values(picked).sort((a, b) => a.length - b.length)[0]
-          )
+          .flatMap((picked) => Object.values(picked))
           .map((outliers) =>
             ((p) => ({
               names: outliers.map((o) => o.name),
@@ -80,10 +77,12 @@ export default function MarchMadness() {
                 <div>{o.p.outcomePicked.result}</div>
                 <div>
                   {o.prop.possibleOutcomes
-                    .sort((a, b) =>
-                      a.id === o.p.outcomePicked.outcomeId ? 1 : -1
-                    )
-                    .map((o) => o.description)
+                    .map((p) => ({
+                      p,
+                      s: { [o.p.outcomePicked.outcomeId]: -1 }[p.id] || 0,
+                    }))
+                    .sort((a, b) => a.s - b.s)
+                    .map((o) => o.p.description)
                     .join(" > ")}
                 </div>
                 <div>{o.prop.id}</div>
