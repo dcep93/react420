@@ -107,7 +107,10 @@ export default function MarchMadness() {
                 >
                   {o.prop.possibleOutcomes
                     .map((p) => ({ p, picked: o.grouped[p.id] }))
-                    .map((p) => ({ p, s: p.picked?.length || 0 }))
+                    .map((p) => ({
+                      p,
+                      s: p.picked?.length || Number.POSITIVE_INFINITY,
+                    }))
                     .sort((a, b) => a.s - b.s)
                     .map((p, j) => (
                       <div key={j}>
