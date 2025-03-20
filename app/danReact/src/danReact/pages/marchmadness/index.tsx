@@ -20,6 +20,7 @@ export default function MarchMadness() {
       id: string;
       date: number;
       correctOutcomes?: string[];
+      mappings: { type: string; value: string }[];
       possibleOutcomes: {
         id: string;
         description: string;
@@ -96,7 +97,14 @@ export default function MarchMadness() {
                 }}
               >
                 <div>
-                  #{i + 1} {new Date(o.prop.date).toLocaleString()}
+                  #{i + 1}{" "}
+                  <a
+                    href={`https://www.espn.com/mens-college-basketball/game/_/gameId/${
+                      o.prop.mappings.find((m) => m.type === "EVENT_ID")!.value
+                    }`}
+                  >
+                    {new Date(o.prop.date).toLocaleString()}
+                  </a>
                 </div>
                 <div>-</div>
                 <div
