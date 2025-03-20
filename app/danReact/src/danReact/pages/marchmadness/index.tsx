@@ -73,7 +73,9 @@ export default function MarchMadness() {
                   margin: "0.5em",
                 }}
               >
-                <div>{new Date(o.prop?.date || 0).toLocaleString()}</div>
+                <div>
+                  #{i + 1} {new Date(o.prop?.date || 0).toLocaleString()}
+                </div>
                 <div>{o.p.outcomePicked.result}</div>
                 <div>
                   {o.prop.possibleOutcomes
