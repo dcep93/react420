@@ -1,33 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import picks_raw from "./group.json";
 import propositions_raw from "./propositions.json";
 
-const propositions: {
-  id: string;
-  date: number;
-  possibleOutcomes: { id: string; description: string }[];
-}[] = propositions_raw;
+const picks: {
+  entries: {
+    name: string;
+    picks: {
+      outcomesPicked: {
+        outcomeId: string;
+      }[];
+      propositionId: string;
+    }[];
+  }[];
+} = picks_raw;
 
 export default function MarchMadness() {
-  const [picks, updatePicks] = useState<{
-    entries: {
-      name: string;
-      picks: {
-        outcomesPicked: {
-          outcomeId: string;
-          result: string;
-        }[];
-        propositionId: string;
-      }[];
-    }[];
-  } | null>(null);
-  if (picks === null) {
+  const [propositions, update] = useState<
+    {
+      id: string;
+      date: number;
+      correctOutcomes?: string[];
+      possibleOutcomes: { id: string; description: string }[];
+    }[]
+  >(propositions_raw);
+  useEffect(() => {
     fetch(
-      "https://gambit-api.fantasy.espn.com/apis/v1/challenges/257/groups/46bd58e9-75da-4c0c-8c95-e1712bab4d53/?view=chui_bracketcast_group&platform=chui"
+      "https://gambit-api.fantasy.espn.com/apis/v1/propositions/?challengeId=257&platform=chui&view=chui_default"
     )
       .then((r) => r.json())
-      .then(updatePicks);
-    return <div></div>;
-  }
+      .then(update);
+  }, []);
   return (
     <div>
       <div>
@@ -42,35 +44,20 @@ export default function MarchMadness() {
         ))}
       </div>
       <pre>
-        {Object.values(
-          groupByF(
-            picks!.entries.flatMap((e) =>
-              e.picks.map((p) => ({
-                p: {
-                  propositionId: p.propositionId,
-                  outcomePicked: p.outcomesPicked[0],
-                },
+        {propositions
+          .sort((a, b) => a.date - b.date)
+          .map((prop) => ({
+            prop,
+            grouped: groupByF(
+              picks.entries.map((e) => ({
                 name: e.name,
-              }))
+                outcomeId: e.picks.find((p) => p.propositionId === prop.id)!
+                  .outcomesPicked[0].outcomeId,
+              })),
+              (p) => p.outcomeId
             ),
-            (p) => p.p.propositionId
-          )
-        )
-          .map((entries) =>
-            groupByF(entries, (e) =>
-              JSON.stringify(e.p.outcomePicked.outcomeId)
-            )
-          )
-          .filter((picked) => Object.keys(picked).length !== 1)
-          .flatMap((picked) => Object.values(picked))
-          .map((outliers) =>
-            ((p) => ({
-              names: outliers.map((o) => o.name),
-              p,
-              prop: propositions.find((pr) => pr.id === p.propositionId)!,
-            }))(outliers[0].p)
-          )
-          .sort((a, b) => a.prop.date - b.prop.date)
+          }))
+          .filter(({ grouped }) => Object.keys(grouped).length !== 1)
           .map((o, i) => (
             <div key={i}>
               <div
@@ -80,32 +67,36 @@ export default function MarchMadness() {
                   border: "2px solid black",
                   padding: "0.7em",
                   margin: "0.5em",
-                  backgroundColor: { CORRECT: "lightgreen", INCORRECT: "pink" }[
-                    o.p.outcomePicked.result
-                  ],
                 }}
               >
                 <div>
-                  #{i + 1} {new Date(o.prop?.date || 0).toLocaleString()}
+                  #{i + 1} {new Date(o.prop.date).toLocaleString()}
                 </div>
-                <div>{o.p.outcomePicked.result}</div>
-                <div>
-                  {o.prop.possibleOutcomes
-                    .map((p) => ({
-                      p,
-                      s: { [o.p.outcomePicked.outcomeId]: -1 }[p.id] || 0,
-                    }))
-                    .sort((a, b) => a.s - b.s)
-                    .map((o) => o.p.description)
-                    .join(" > ")}
-                </div>
-                <div>{o.prop.id}</div>
                 <div>-</div>
-                <div>
-                  {o.names.map((n, j) => (
-                    <div key={j}>{n}</div>
-                  ))}
-                </div>
+                <table>
+                  <tbody>
+                    {o.prop.possibleOutcomes
+                      .map((p) => ({ p, picked: o.grouped[p.id] }))
+                      .map((p) => ({ p, s: p.picked?.length || 0 }))
+                      .sort((a, b) => a.s - b.s)
+                      .map((p, j) => (
+                        <tr key={j}>
+                          <td
+                            style={{
+                              backgroundColor: o.prop.correctOutcomes?.includes(
+                                p.p.p.id
+                              )
+                                ? "lightgreen"
+                                : undefined,
+                            }}
+                          >
+                            {p.p.p.description}
+                          </td>
+                          <td>{p.p.picked?.map((p) => p.name).join(" / ")}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           ))}
