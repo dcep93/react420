@@ -6,10 +6,12 @@ import chords from "./pages/chords";
 import DeployLocks from "./pages/deployLocks";
 import Employees from "./pages/employees";
 import firebaseHacker from "./pages/firebaseHacker";
+import MarchMadness from "./pages/marchmadness";
 import quizletEmbed from "./pages/quizletEmbed";
 import SpotifyShuffler from "./pages/spotifyShuffler";
 
 const pages = {
+  MarchMadness,
   chords,
   quizletEmbed,
   firebaseHacker,
@@ -22,7 +24,7 @@ const pages = {
 function index() {
   return (
     <BrowserRouter>
-      <Catalog location={"danReact"} pages={pages} />
+      <Catalog location={"react420"} pages={pages} />
     </BrowserRouter>
   );
 }

@@ -1,0 +1,2996 @@
+{
+  "entries": [
+    {
+      "finalPick": {
+        "outcomesPicked": [
+          {
+            "outcomeId": "29ef87b1-e4b2-11ef-b0aa-77c6c7c47db6",
+            "result": "UNDECIDED"
+          }
+        ],
+        "propositionId": "29ef8790-e4b2-11ef-b0aa-77c6c7c47db6"
+      },
+      "id": "80ef3870-02b6-11f0-a871-a9e19a93519d",
+      "member": {
+        "displayName": "ESPNFAN8716777047",
+        "firstName": "Daniel",
+        "lastName": "Cepeda"
+      },
+      "name": "chat skibidi",
+      "picks": [
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29d82f00-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29d807f0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29d98e92-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "CORRECT"
+            }
+          ],
+          "propositionId": "29d98e90-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29da03c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29da03c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29da78f1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29da78f0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29db1530-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29daee20-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dbb171-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dbb170-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dbff91-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dbff90-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dc74c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dc74c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dd1101-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dd1100-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dd8631-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dd8630-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ddd451-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ddd450-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29de2271-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29de2270-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29de97a1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29de97a0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dee5c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dee5c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29df5af2-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29df5af0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dfa911-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dfa910-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e04551-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e04550-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e0ba81-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e0ba80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e0e191-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e0e190-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e17dd1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e17dd0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e1cbf1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e1cbf0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e24121-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e24120-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e28f41-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e28f40-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e32b81-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e32b80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e379a1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e379a0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e3eed1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e3eed0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e43cf1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e43cf0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e48b11-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e48b10-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e50041-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e50040-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e54e61-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e54e60-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e59c82-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e59c80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e5eaa1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e5eaa0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e638c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e638c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e686e3-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e686e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e6d503-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e6d500-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e74a33-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e74a30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e79851-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e79850-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e7e673-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e7e670-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e83493-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e83490-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e882b3-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e882b0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e8a9c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e8a9c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e8f7e3-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e8f7e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e94603-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e94600-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e96d13-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e96d10-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e9bb31-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e9bb30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ea0953-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ea0950-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ea3063-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ea3060-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ea7e83-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ea7e80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eacca1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eacca0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eb1ac3-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eb1ac0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eb68e1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eb68e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ebde17-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ebde10-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ec2c31-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ec2c30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ec7a57-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ec7a50-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ecc871-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ecc870-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ed3da7-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ed3da0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ed8bc1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ed8bc0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29edd9ef-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29edd9e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ee2801-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ee2800-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ee9d3f-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ee9d30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eeeb6f-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eeeb50-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ef3971-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ef3970-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ef87b1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ef8790-e4b2-11ef-b0aa-77c6c7c47db6"
+        }
+      ],
+      "score": {
+        "overallScore": 10,
+        "percentile": 0.0,
+        "possiblePointsMax": 1920,
+        "rank": 1,
+        "record": {
+          "losses": 0,
+          "wins": 1
+        }
+      }
+    },
+    {
+      "finalPick": {
+        "outcomesPicked": [
+          {
+            "outcomeId": "29ef87b1-e4b2-11ef-b0aa-77c6c7c47db6",
+            "result": "UNDECIDED"
+          }
+        ],
+        "propositionId": "29ef8790-e4b2-11ef-b0aa-77c6c7c47db6"
+      },
+      "id": "e33c8910-02ca-11f0-8546-f1c95cf89588",
+      "member": {
+        "displayName": "ESPNFAN1140842987",
+        "firstName": "Neil",
+        "lastName": "Fitzgerald"
+      },
+      "name": "ESPNFAN1140842987's Picks 1",
+      "picks": [
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29d82f00-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29d807f0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29d98e91-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "INCORRECT"
+            }
+          ],
+          "propositionId": "29d98e90-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29da03c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29da03c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29da78f1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29da78f0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29db1530-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29daee20-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dbb171-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dbb170-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dbff91-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dbff90-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dc74c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dc74c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dd1101-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dd1100-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dd8631-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dd8630-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ddd451-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ddd450-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29de2271-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29de2270-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29de97a1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29de97a0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dee5c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dee5c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29df5af1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29df5af0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dfa911-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dfa910-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e04551-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e04550-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e0ba81-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e0ba80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e0e191-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e0e190-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e17dd1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e17dd0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e1cbf1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e1cbf0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e24121-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e24120-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e28f41-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e28f40-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e32b81-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e32b80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e379a1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e379a0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e3eed1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e3eed0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e43cf1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e43cf0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e48b11-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e48b10-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e50041-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e50040-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e54e61-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e54e60-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e59c81-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e59c80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e5eaa1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e5eaa0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e638c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e638c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e686e3-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e686e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e6d503-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e6d500-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e74a33-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e74a30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e79851-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e79850-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e7e673-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e7e670-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e83493-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e83490-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e882b3-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e882b0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e8a9c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e8a9c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e8f7e3-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e8f7e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e94603-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e94600-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e96d13-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e96d10-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e9bb31-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e9bb30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ea0953-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ea0950-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ea3063-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ea3060-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ea7e83-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ea7e80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eacca1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eacca0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eb1ac7-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eb1ac0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eb68e1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eb68e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ebde17-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ebde10-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ec2c31-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ec2c30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ec7a57-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ec7a50-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ecc871-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ecc870-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ed3da7-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ed3da0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ed8bc1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ed8bc0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29edd9e1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29edd9e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ee2801-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ee2800-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ee9d31-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ee9d30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eeeb61-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eeeb50-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ef3971-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ef3970-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ef87b1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ef8790-e4b2-11ef-b0aa-77c6c7c47db6"
+        }
+      ],
+      "score": {
+        "overallScore": 0,
+        "percentile": 0.0,
+        "possiblePointsMax": 1910,
+        "rank": 2,
+        "record": {
+          "losses": 1,
+          "wins": 0
+        }
+      }
+    },
+    {
+      "finalPick": {
+        "outcomesPicked": [
+          {
+            "outcomeId": "29ef87b1-e4b2-11ef-b0aa-77c6c7c47db6",
+            "result": "UNDECIDED"
+          }
+        ],
+        "propositionId": "29ef8790-e4b2-11ef-b0aa-77c6c7c47db6"
+      },
+      "id": "976600c0-0473-11f0-91fa-0d7c27f5419d",
+      "member": {
+        "displayName": "ESPNfan2974896784",
+        "firstName": "Alec",
+        "lastName": "Heifetz"
+      },
+      "name": "Heify",
+      "picks": [
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29d82f00-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29d807f0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29d98e91-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "INCORRECT"
+            }
+          ],
+          "propositionId": "29d98e90-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29da03c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29da03c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29da78f1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29da78f0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29db1531-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29daee20-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dbb171-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dbb170-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dbff91-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dbff90-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dc74c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dc74c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dd1101-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dd1100-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dd8631-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dd8630-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ddd452-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ddd450-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29de2271-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29de2270-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29de97a1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29de97a0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dee5c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dee5c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29df5af1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29df5af0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dfa911-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dfa910-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e04551-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e04550-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e0ba82-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e0ba80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e0e191-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e0e190-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e17dd1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e17dd0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e1cbf1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e1cbf0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e24121-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e24120-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e28f41-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e28f40-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e32b81-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e32b80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e379a1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e379a0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e3eed1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e3eed0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e43cf1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e43cf0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e48b11-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e48b10-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e50041-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e50040-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e54e61-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e54e60-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e59c81-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e59c80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e5eaa1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e5eaa0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e638c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e638c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e686e3-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e686e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e6d502-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e6d500-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e74a31-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e74a30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e79851-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e79850-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e7e673-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e7e670-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e83493-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e83490-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e882b1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e882b0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e8a9c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e8a9c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e8f7e3-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e8f7e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e94603-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e94600-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e96d13-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e96d10-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e9bb31-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e9bb30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ea0951-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ea0950-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ea3063-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ea3060-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ea7e83-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ea7e80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eacca7-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eacca0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eb1ac2-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eb1ac0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eb68e1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eb68e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ebde13-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ebde10-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ec2c31-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ec2c30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ec7a57-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ec7a50-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ecc871-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ecc870-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ed3da7-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ed3da0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ed8bc7-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ed8bc0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29edd9e1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29edd9e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ee2801-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ee2800-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ee9d31-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ee9d30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eeeb57-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eeeb50-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ef3971-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ef3970-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ef87b1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ef8790-e4b2-11ef-b0aa-77c6c7c47db6"
+        }
+      ],
+      "score": {
+        "overallScore": 0,
+        "percentile": 0.0,
+        "possiblePointsMax": 1910,
+        "rank": 2,
+        "record": {
+          "losses": 1,
+          "wins": 0
+        }
+      }
+    },
+    {
+      "finalPick": {
+        "outcomesPicked": [
+          {
+            "outcomeId": "29ef87b1-e4b2-11ef-b0aa-77c6c7c47db6",
+            "result": "UNDECIDED"
+          }
+        ],
+        "propositionId": "29ef8790-e4b2-11ef-b0aa-77c6c7c47db6"
+      },
+      "id": "d1303520-fdff-11ef-94ae-918b1c77a205",
+      "member": {
+        "displayName": "my.name.jeff.bu",
+        "firstName": "Jeff",
+        "lastName": "Bu"
+      },
+      "name": "blunderooskidoo",
+      "picks": [
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29d82f00-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29d807f0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29d98e91-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "INCORRECT"
+            }
+          ],
+          "propositionId": "29d98e90-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29da03c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29da03c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29da78f2-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29da78f0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29db1530-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29daee20-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dbb171-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dbb170-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dbff92-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dbff90-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dc74c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dc74c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dd1101-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dd1100-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dd8631-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dd8630-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ddd452-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ddd450-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29de2271-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29de2270-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29de97a1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29de97a0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dee5c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dee5c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29df5af1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29df5af0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dfa911-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dfa910-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e04551-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e04550-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e0ba82-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e0ba80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e0e191-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e0e190-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e17dd1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e17dd0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e1cbf1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e1cbf0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e24121-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e24120-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e28f42-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e28f40-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e32b81-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e32b80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e379a1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e379a0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e3eed1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e3eed0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e43cf1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e43cf0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e48b11-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e48b10-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e50042-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e50040-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e54e61-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e54e60-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e59c81-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e59c80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e5eaa1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e5eaa0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e638c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e638c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e686e1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e686e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e6d503-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e6d500-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e74a33-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e74a30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e79851-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e79850-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e7e673-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e7e670-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e83493-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e83490-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e882b3-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e882b0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e8a9c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e8a9c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e8f7e3-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e8f7e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e94601-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e94600-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e96d13-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e96d10-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e9bb31-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e9bb30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ea0951-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ea0950-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ea3063-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ea3060-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ea7e83-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ea7e80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eacca1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eacca0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eb1ac7-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eb1ac0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eb68e1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eb68e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ebde13-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ebde10-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ec2c31-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ec2c30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ec7a57-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ec7a50-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ecc871-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ecc870-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ed3da7-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ed3da0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ed8bc1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ed8bc0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29edd9e1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29edd9e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ee2801-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ee2800-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ee9d31-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ee9d30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eeeb51-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eeeb50-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ef3971-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ef3970-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ef87b1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ef8790-e4b2-11ef-b0aa-77c6c7c47db6"
+        }
+      ],
+      "score": {
+        "overallScore": 0,
+        "percentile": 0.0,
+        "possiblePointsMax": 1910,
+        "rank": 2,
+        "record": {
+          "losses": 1,
+          "wins": 0
+        }
+      }
+    }
+  ],
+  "groupSettings": {
+    "public": false
+  },
+  "largeGroup": false,
+  "requestorEntries": [
+    {
+      "finalPick": {
+        "outcomesPicked": [
+          {
+            "outcomeId": "29ef87b1-e4b2-11ef-b0aa-77c6c7c47db6",
+            "result": "UNDECIDED"
+          }
+        ],
+        "propositionId": "29ef8790-e4b2-11ef-b0aa-77c6c7c47db6"
+      },
+      "id": "80ef3870-02b6-11f0-a871-a9e19a93519d",
+      "member": {
+        "displayName": "ESPNFAN8716777047",
+        "firstName": "Daniel",
+        "lastName": "Cepeda"
+      },
+      "name": "chat skibidi",
+      "picks": [
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29d82f00-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29d807f0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29d98e92-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "CORRECT"
+            }
+          ],
+          "propositionId": "29d98e90-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29da03c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29da03c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29da78f1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29da78f0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29db1530-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29daee20-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dbb171-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dbb170-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dbff91-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dbff90-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dc74c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dc74c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dd1101-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dd1100-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dd8631-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dd8630-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ddd451-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ddd450-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29de2271-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29de2270-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29de97a1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29de97a0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dee5c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dee5c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29df5af2-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29df5af0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29dfa911-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29dfa910-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e04551-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e04550-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e0ba81-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e0ba80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e0e191-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e0e190-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e17dd1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e17dd0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e1cbf1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e1cbf0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e24121-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e24120-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e28f41-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e28f40-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e32b81-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e32b80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e379a1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e379a0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e3eed1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e3eed0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e43cf1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e43cf0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e48b11-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e48b10-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e50041-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e50040-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e54e61-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e54e60-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e59c82-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e59c80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e5eaa1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e5eaa0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e638c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e638c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e686e3-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e686e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e6d503-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e6d500-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e74a33-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e74a30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e79851-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e79850-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e7e673-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e7e670-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e83493-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e83490-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e882b3-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e882b0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e8a9c1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e8a9c0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e8f7e3-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e8f7e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e94603-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e94600-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e96d13-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e96d10-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29e9bb31-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29e9bb30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ea0953-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ea0950-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ea3063-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ea3060-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ea7e83-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ea7e80-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eacca1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eacca0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eb1ac3-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eb1ac0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eb68e1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eb68e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ebde17-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ebde10-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ec2c31-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ec2c30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ec7a57-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ec7a50-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ecc871-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ecc870-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ed3da7-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ed3da0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ed8bc1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ed8bc0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29edd9ef-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29edd9e0-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ee2801-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ee2800-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ee9d3f-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ee9d30-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29eeeb6f-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29eeeb50-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ef3971-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ef3970-e4b2-11ef-b0aa-77c6c7c47db6"
+        },
+        {
+          "outcomesPicked": [
+            {
+              "outcomeId": "29ef87b1-e4b2-11ef-b0aa-77c6c7c47db6",
+              "result": "UNDECIDED"
+            }
+          ],
+          "propositionId": "29ef8790-e4b2-11ef-b0aa-77c6c7c47db6"
+        }
+      ],
+      "score": {
+        "overallScore": 10,
+        "percentile": 0.0,
+        "possiblePointsMax": 1920,
+        "rank": 1,
+        "record": {
+          "losses": 0,
+          "wins": 1
+        }
+      }
+    }
+  ],
+  "size": 4
+}
