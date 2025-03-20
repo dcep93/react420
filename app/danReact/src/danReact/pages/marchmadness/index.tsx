@@ -74,6 +74,7 @@ export default function MarchMadness() {
           .sort((a, b) => a.date - b.date)
           .map((prop) => ({
             prop,
+            eventId: prop.mappings.find((m) => m.type === "EVENT_ID")?.value,
             grouped: groupByF(
               picks.entries.map((e, entryIndex) => ({
                 entryIndex,
@@ -98,13 +99,15 @@ export default function MarchMadness() {
               >
                 <div>
                   #{i + 1}{" "}
-                  <a
-                    href={`https://www.espn.com/mens-college-basketball/game/_/gameId/${
-                      o.prop.mappings.find((m) => m.type === "EVENT_ID")!.value
-                    }`}
-                  >
-                    {new Date(o.prop.date).toLocaleString()}
-                  </a>
+                  {o.eventId === undefined ? (
+                    new Date(o.prop.date).toDateString()
+                  ) : (
+                    <a
+                      href={`https://www.espn.com/mens-college-basketball/game/_/gameId/${o.eventId}`}
+                    >
+                      {new Date(o.prop.date).toLocaleString()}
+                    </a>
+                  )}
                 </div>
                 <div>-</div>
                 <div
