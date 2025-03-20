@@ -1,18 +1,6 @@
-import picks_raw from "./group.json";
+import { useState } from "react";
 import propositions_raw from "./propositions.json";
 
-const picks: {
-  entries: {
-    name: string;
-    picks: {
-      outcomesPicked: {
-        outcomeId: string;
-        result: string;
-      }[];
-      propositionId: string;
-    }[];
-  }[];
-} = picks_raw;
 const propositions: {
   id: string;
   date: number;
@@ -20,12 +8,32 @@ const propositions: {
 }[] = propositions_raw;
 
 export default function MarchMadness() {
+  const [picks, updatePicks] = useState<{
+    entries: {
+      name: string;
+      picks: {
+        outcomesPicked: {
+          outcomeId: string;
+          result: string;
+        }[];
+        propositionId: string;
+      }[];
+    }[];
+  } | null>(null);
+  if (picks === null) {
+    fetch(
+      "https://gambit-api.fantasy.espn.com/apis/v1/challenges/257/groups/46bd58e9-75da-4c0c-8c95-e1712bab4d53/?view=chui_bracketcast_group&platform=chui"
+    )
+      .then((r) => r.json())
+      .then(updatePicks);
+    return <div></div>;
+  }
   return (
     <div>
       <div>
         {[
-          "https://fantasy.espn.com/games/tournament-challenge-bracket-2025/bracket?id=80ef3870-02b6-11f0-a871-a9e19a93519d",
           "https://fantasy.espn.com/games/tournament-challenge-bracket-2025/group?id=46bd58e9-75da-4c0c-8c95-e1712bab4d53",
+          "https://gambit-api.fantasy.espn.com/apis/v1/challenges/257/groups/46bd58e9-75da-4c0c-8c95-e1712bab4d53/?view=chui_bracketcast_group&platform=chui",
           "https://gambit-api.fantasy.espn.com/apis/v1/propositions/?challengeId=257&platform=chui&view=chui_default",
         ].map((url, i) => (
           <div key={i}>
@@ -36,7 +44,7 @@ export default function MarchMadness() {
       <pre>
         {Object.values(
           groupByF(
-            picks.entries.flatMap((e) =>
+            picks!.entries.flatMap((e) =>
               e.picks.map((p) => ({
                 p: {
                   propositionId: p.propositionId,
