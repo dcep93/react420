@@ -148,7 +148,7 @@ export default function MarchMadness() {
                                   )!.value
                                 ]
                                   .filter(({ date }) => date > o.prop.date)
-                                  .map(() => "x")
+                                  .map(() => "+")
                                   .join("")})`
                             )
                             .join(" / ")}
