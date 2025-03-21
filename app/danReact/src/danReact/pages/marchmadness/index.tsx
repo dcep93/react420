@@ -139,16 +139,18 @@ export default function MarchMadness() {
                     .sort((a, b) => a.s - b.s)
                     .map((p, j) => (
                       <div key={j}>
-                        <div
-                          style={{
-                            backgroundColor: o.prop.correctOutcomes?.includes(
-                              p.p.p.id
-                            )
-                              ? "lightgreen"
-                              : undefined,
-                          }}
-                        >
-                          {p.p.p.description}
+                        <div>
+                          <span
+                            style={{
+                              backgroundColor: o.prop.correctOutcomes?.includes(
+                                p.p.p.id
+                              )
+                                ? "lightgreen"
+                                : undefined,
+                            }}
+                          >
+                            {p.p.p.description}
+                          </span>
                         </div>
                         <div>
                           {p.p.picked
