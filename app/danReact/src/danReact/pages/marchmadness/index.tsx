@@ -15,6 +15,7 @@ const picks: {
 } = picks_raw;
 
 export default function MarchMadness() {
+  const [hideAgreements, updateHide] = useState(true);
   const [propositions, update] = useState<
     {
       id: string;
@@ -69,6 +70,16 @@ export default function MarchMadness() {
           </div>
         ))}
       </div>
+      <div>
+        <label>
+          <input
+            type="checkbox"
+            checked={hideAgreements}
+            onChange={(e) => updateHide(!hideAgreements)}
+          />{" "}
+          hide agreements
+        </label>
+      </div>
       <pre>
         {propositions
           .sort((a, b) => a.date - b.date)
@@ -85,7 +96,10 @@ export default function MarchMadness() {
               (p) => p.outcomeId
             ),
           }))
-          .filter(({ grouped }) => Object.keys(grouped).length !== 1)
+          .filter(
+            ({ grouped }) =>
+              !hideAgreements || Object.keys(grouped).length !== 1
+          )
           .map((o, i) => (
             <div key={i}>
               <div
