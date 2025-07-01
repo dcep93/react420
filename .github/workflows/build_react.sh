@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-cd app/danReact
+cd app/react420
 npm install
 yarn build
 rm -rf node_modules

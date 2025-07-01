@@ -1,9 +1,9 @@
 import "./App.css";
 
-import danReact from "./danReact";
+import react420 from "./react420";
 
 function App() {
-  return danReact();
+  return react420();
 }
 
 export default App;
