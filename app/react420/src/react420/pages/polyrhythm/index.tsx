@@ -2,7 +2,11 @@ import { useState } from "react";
 import PolyrhythmAudio from "./PolyrhythmAudio";
 
 export default function Polyrhythm() {
-  const [params, updateParams] = useState({ period: 2, countC: 4, countG: 3 });
+  const [params, updateParams] = useState({
+    period: 16,
+    countC: 32,
+    countG: 31,
+  });
   const [playing, updatePlaying] = useState(false);
   return (
     <div>
