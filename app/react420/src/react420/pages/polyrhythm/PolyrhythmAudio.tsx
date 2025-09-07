@@ -14,100 +14,142 @@ export default function PolyrhythmAudio({
   playing: boolean;
 }) {
   const ctxRef = useRef<AudioContext | null>(null);
-  const gainRef = useRef<GainNode | null>(null);
+  const busRef = useRef<AudioNode | null>(null); // ← master bus (to compressor/clipper)
   const timerRef = useRef<number | null>(null);
-  const nextBoundaryRef = useRef(0);
+  const nextRef = useRef(0);
+  const schedRef = useRef<
+    Array<{ osc: OscillatorNode; g: GainNode; when: number }>
+  >([]);
 
-  const NL = 0.1;
-  const LOOKAHEAD = 0.2; // check cadence (s)
-  const AHEAD_VISIBLE = 0.8; // schedule horizon when tab visible
-  const AHEAD_HIDDEN = 6.0; // bigger horizon for hidden-tab throttling
-  const PER_NOTE_GAIN = 0.22;
+  // params
+  const NL = 0.1,
+    FADE = 0.006,
+    GAIN = 5,
+    LOOKAHEAD = 0.2,
+    HORIZON = 0.8;
 
-  const ensureAudio = () => {
-    if (!ctxRef.current) {
-      const ctx = new (window.AudioContext ||
-        (window as any).webkitAudioContext)();
-      const m = ctx.createGain();
-      m.gain.value = 0.9;
-      m.connect(ctx.destination);
-      ctxRef.current = ctx;
-      gainRef.current = m;
-      nextBoundaryRef.current = ctx.currentTime;
+  const ensureAudio = useCallback(() => {
+    if (ctxRef.current) return;
+    const AC = (window.AudioContext ||
+      (window as any).webkitAudioContext) as typeof AudioContext;
+    const ctx = new AC();
+
+    // --- Mastering chain: soft clipper -> compressor -> destination ---
+    const shaper = ctx.createWaveShaper();
+    shaper.curve = makeTanhCurve(3.0); // gentle saturation
+    const comp = ctx.createDynamicsCompressor();
+    comp.threshold.value = -24;
+    comp.knee.value = 30;
+    comp.ratio.value = 12;
+    comp.attack.value = 0.003;
+    comp.release.value = 0.25;
+
+    shaper.connect(comp).connect(ctx.destination);
+    busRef.current = shaper; // notes connect here
+
+    ctxRef.current = ctx;
+    nextRef.current = ctx.currentTime;
+  }, []);
+
+  // Simple tanh waveshaper curve
+  const makeTanhCurve = (amount = 3.0, n = 1024) => {
+    const c = new Float32Array(n);
+    for (let i = 0; i < n; i++) {
+      const x = (i / (n - 1)) * 2 - 1;
+      c[i] = Math.tanh(amount * x);
     }
+    return c;
   };
 
-  const scheduleNote = (freq: number, when: number) => {
+  // schedule one note with fades; route into master bus
+  const note = (freq: number, when: number) => {
     const ctx = ctxRef.current!,
-      master = gainRef.current!;
-    const o = ctx.createOscillator(),
-      g = ctx.createGain();
-    o.frequency.value = freq;
+      bus = busRef.current || ctx.destination;
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.frequency.value = freq;
+
     g.gain.setValueAtTime(0, when);
-    g.gain.linearRampToValueAtTime(PER_NOTE_GAIN, when + 0.006);
-    g.gain.setValueAtTime(PER_NOTE_GAIN, when + NL - 0.012);
+    g.gain.linearRampToValueAtTime(GAIN, when + FADE);
+    g.gain.setValueAtTime(GAIN, when + NL - FADE);
     g.gain.linearRampToValueAtTime(0, when + NL);
-    o.connect(g).connect(master);
-    o.start(when);
-    o.stop(when + NL + 0.005);
+
+    osc.connect(g).connect(bus);
+    osc.start(when);
+    osc.stop(when + NL + 0.01);
+
+    const rec = { osc, g, when };
+    schedRef.current.push(rec);
+    osc.onended = () => {
+      try {
+        osc.disconnect();
+        g.disconnect();
+      } catch {}
+      const i = schedRef.current.indexOf(rec);
+      if (i >= 0) schedRef.current.splice(i, 1);
+    };
   };
 
   const tick = useCallback(() => {
-    const loopOffsets = (n: number) =>
-      Array.from({ length: n }, (_, k) => (k * period_s) / n);
     const ctx = ctxRef.current!;
-    const now = ctx.currentTime;
-    const horizon = now + (document.hidden ? AHEAD_HIDDEN : AHEAD_VISIBLE);
-
-    if (nextBoundaryRef.current < now - period_s) nextBoundaryRef.current = now;
-
-    while (nextBoundaryRef.current < horizon) {
-      const t0 = nextBoundaryRef.current;
-      scheduleNote(F.C, t0);
-      scheduleNote(F.G, t0);
-      scheduleNote(F.E, t0);
-      for (const t of loopOffsets(countC).slice(1)) scheduleNote(F.C, t0 + t);
-      for (const t of loopOffsets(countG).slice(1)) scheduleNote(F.G, t0 + t);
-      nextBoundaryRef.current = t0 + period_s;
+    const now = ctx.currentTime,
+      horizon = now + HORIZON;
+    while (nextRef.current < horizon) {
+      const t0 = nextRef.current;
+      note(F.C, t0);
+      note(F.G, t0);
+      note(F.E, t0);
+      for (let k = 1; k < countC; k++) note(F.C, t0 + (k * period_s) / countC);
+      for (let k = 1; k < countG; k++) note(F.G, t0 + (k * period_s) / countG);
+      nextRef.current = t0 + period_s;
     }
   }, [countC, countG, period_s]);
 
-  // Start/stop scheduler
+  // stop immediately: cancel future & fast-fade current
+  const hardStop = () => {
+    const ctx = ctxRef.current;
+    if (!ctx) return;
+    const now = ctx.currentTime;
+    for (const { osc, g, when } of schedRef.current.splice(0)) {
+      try {
+        g.gain.cancelScheduledValues(0);
+        if (when > now) {
+          try {
+            osc.stop(now);
+          } catch {}
+        } else {
+          g.gain.setValueAtTime(g.gain.value ?? 0, now);
+          g.gain.linearRampToValueAtTime(0, now + 0.01);
+          try {
+            osc.stop(now + 0.02);
+          } catch {}
+        }
+      } catch {}
+      try {
+        osc.disconnect();
+        g.disconnect();
+      } catch {}
+    }
+  };
+
   useEffect(() => {
     if (!playing) {
-      if (timerRef.current != null) {
+      if (timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
       }
-      // Let queued audio play; optionally suspend later
-      const id = window.setTimeout(() => ctxRef.current?.suspend(), 500);
-      return () => clearTimeout(id);
+      hardStop();
+      return;
     }
-
     ensureAudio();
-    const ctx = ctxRef.current!;
-    ctx.resume();
-    nextBoundaryRef.current = ctx.currentTime; // re-align on play
-    tick(); // prime immediately
+    ctxRef.current!.resume();
+    nextRef.current = ctxRef.current!.currentTime;
+    tick();
     timerRef.current = window.setInterval(tick, LOOKAHEAD * 1000);
     return () => {
-      if (timerRef.current != null) clearInterval(timerRef.current);
-      timerRef.current = null;
+      if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [tick, playing, period_s, countC, countG]);
-
-  // Keep scheduling when tab visibility changes
-  useEffect(() => {
-    const onVis = () => {
-      if (!ctxRef.current) return;
-      if (playing) {
-        ctxRef.current.resume();
-        tick();
-      }
-    };
-    document.addEventListener("visibilitychange", onVis);
-    return () => document.removeEventListener("visibilitychange", onVis);
-  }, [tick, playing]);
+  }, [playing, period_s, countC, countG, ensureAudio, tick]);
 
   return null;
 }
