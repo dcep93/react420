@@ -3,12 +3,12 @@ import { useCallback, useEffect, useRef } from "react";
 const F = { C: 261.63, G: 392.0, E: 659.26 };
 
 export default function PolyrhythmAudio({
-  period,
+  period_s,
   countC,
   countG,
   playing,
 }: {
-  period: number;
+  period_s: number;
   countC: number;
   countG: number;
   playing: boolean;
@@ -54,12 +54,12 @@ export default function PolyrhythmAudio({
 
   const tick = useCallback(() => {
     const loopOffsets = (n: number) =>
-      Array.from({ length: n }, (_, k) => (k * period) / n);
+      Array.from({ length: n }, (_, k) => (k * period_s) / n);
     const ctx = ctxRef.current!;
     const now = ctx.currentTime;
     const horizon = now + (document.hidden ? AHEAD_HIDDEN : AHEAD_VISIBLE);
 
-    if (nextBoundaryRef.current < now - period) nextBoundaryRef.current = now;
+    if (nextBoundaryRef.current < now - period_s) nextBoundaryRef.current = now;
 
     while (nextBoundaryRef.current < horizon) {
       const t0 = nextBoundaryRef.current;
@@ -68,9 +68,9 @@ export default function PolyrhythmAudio({
       scheduleNote(F.E, t0);
       for (const t of loopOffsets(countC).slice(1)) scheduleNote(F.C, t0 + t);
       for (const t of loopOffsets(countG).slice(1)) scheduleNote(F.G, t0 + t);
-      nextBoundaryRef.current = t0 + period;
+      nextBoundaryRef.current = t0 + period_s;
     }
-  }, [countC, countG, period]);
+  }, [countC, countG, period_s]);
 
   // Start/stop scheduler
   useEffect(() => {
@@ -94,7 +94,7 @@ export default function PolyrhythmAudio({
       if (timerRef.current != null) clearInterval(timerRef.current);
       timerRef.current = null;
     };
-  }, [tick, playing, period, countC, countG]);
+  }, [tick, playing, period_s, countC, countG]);
 
   // Keep scheduling when tab visibility changes
   useEffect(() => {

@@ -3,7 +3,7 @@ import PolyrhythmAudio from "./PolyrhythmAudio";
 
 export default function Polyrhythm() {
   const [params, updateParams] = useState({
-    period: 16,
+    period_s: 16,
     countC: 32,
     countG: 31,
   });
