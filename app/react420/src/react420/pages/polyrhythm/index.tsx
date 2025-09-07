@@ -27,9 +27,9 @@ export default function Polyrhythm() {
               key={key}
               style={{ border: "2px solid black", display: "flex" }}
             >
-              <div>
+              <pre>
                 {key}: {value}
-              </div>
+              </pre>
               <div style={{ width: "1em" }}></div>
               <button onClick={() => setValue(Math.max(1, value - 1))}>
                 ⬇
