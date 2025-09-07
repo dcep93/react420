@@ -2,9 +2,7 @@ import { useState } from "react";
 import PolyrhythmAudio from "./PolyrhythmAudio";
 
 export default function Polyrhythm() {
-  const [period, updatePeriod] = useState(2);
-  const [countC, updateCountC] = useState(4);
-  const [countG, updateCountG] = useState(3);
+  const [params, updateParams] = useState({ period: 2, countC: 4, countG: 3 });
   const [playing, updatePlaying] = useState(false);
   return (
     <div>
@@ -13,21 +11,34 @@ export default function Polyrhythm() {
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
+          fontSize: "xxx-large",
         }}
       >
-        <span
-          style={{ fontSize: "xxx-large" }}
-          onClick={() => updatePlaying(!playing)}
-        >
-          ⏯️
-        </span>
+        <span onClick={() => updatePlaying(!playing)}>⏯️</span>
+        {Object.entries(params)
+          .map(([key, value]) => ({
+            key,
+            value,
+            setValue: (newValue: number) =>
+              updateParams(Object.assign({}, params, { [key]: newValue })),
+          }))
+          .map(({ key, value, setValue }) => (
+            <div
+              key={key}
+              style={{ border: "2px solid black", display: "flex" }}
+            >
+              <div>
+                {key}: {value}
+              </div>
+              <div style={{ width: "1em" }}></div>
+              <button onClick={() => setValue(Math.max(1, value - 1))}>
+                ⬇
+              </button>
+              <button onClick={() => setValue(value + 1)}>⬆</button>
+            </div>
+          ))}
       </div>
-      <PolyrhythmAudio
-        period={period}
-        countC={countC}
-        countG={countG}
-        playing={playing}
-      />
+      <PolyrhythmAudio {...params} playing={playing} />
     </div>
   );
 }
